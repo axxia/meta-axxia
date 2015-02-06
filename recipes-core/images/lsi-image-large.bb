@@ -1,5 +1,7 @@
 require recipes-core/images/core-image-minimal-dev.bb
 
+DEPENDS += "libgfortran"
+
 IMAGE_INSTALL = " \
 run-postinsts \
 udev-utils \
