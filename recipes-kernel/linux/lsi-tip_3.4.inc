@@ -9,3 +9,7 @@ KREPO = "git://git@github.com/lsigithub/lsi_axxia_yocto.git;protocol=ssh"
 
 SRCREV_machine="${AUTOREV}"
 SRCREV_meta="${AUTOREV}"
+
+SRC_URI = "${KREPO};nocheckout=1;branch=${KBRANCH},${KMETA};name=machine,meta"
+SRC_URI += "file://fit"
+SRC_URI += "file://defconfig"

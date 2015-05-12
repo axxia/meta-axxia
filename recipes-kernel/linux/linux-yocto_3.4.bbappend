@@ -1,12 +1,10 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}/linux-3.4/${KARCH}:${THISDIR}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}:\
+${THISDIR}/${PN}/linux-3.4/${KARCH}:\
+${THISDIR}/conf/linux-3.4/${MACHINE}:"
 
 LINUX_KERNEL_TYPE = "standard"
 LSI_SRC ?= "linux-yocto"
 KV = "3.4"
+KERNEL_EXTRA_FEATURES = ""
 
 require ${LSI_SRC}_3.4.inc
-
-SRC_URI = "${KREPO};nocheckout=1;branch=${KBRANCH},${KMETA};name=machine,meta"
-
-SRC_URI += "file://defconfig"
-SRC_URI += "file://fit"
