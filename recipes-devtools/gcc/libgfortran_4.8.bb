@@ -57,10 +57,10 @@ DEPENDS = "gcc-runtime"
 BBCLASSEXTEND = "nativesdk"
 
 PACKAGES = "\
+    ${PN} \
     ${PN}-dbg \
-    libgfortran \
-    libgfortran-dev \
-    libgfortran-staticdev \
+    ${PN}-dev \
+    ${PN}-staticdev \
 "
 FILES_${PN} = "${libdir}/libgfortran.so.*"
 FILES_${PN}-dev = "\
