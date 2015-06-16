@@ -1,6 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}:\
-${THISDIR}/${PN}/linux-3.4/${KARCH}:\
-${THISDIR}/conf/linux-3.4/${MACHINE}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
 LINUX_KERNEL_TYPE = "standard"
 LSI_SRC ?= "linux-yocto"

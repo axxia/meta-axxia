@@ -1,3 +1,4 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 require linux-yocto.inc
 

@@ -1,3 +1,4 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}:"
 
 require linux-yocto.inc
 
@@ -7,7 +8,7 @@ KBRANCH = "standard/axxia/base"
 KMETA = "meta"
 KREPO = "git://git.yoctoproject.org/linux-yocto-3.4.git"
 
-SRCREV_machine = "2991cb14f151762ba0856facf600c18eaf3ee382"
+SRCREV_machine = "07aaf12d572f9e394a15f49eb52aba414a420685"
 SRCREV_meta = "5da29766338644adce97d3ab0c8be7f8e4e746bd"
 
 SRC_URI = "${KREPO};nocheckout=1;branch=${KBRANCH},${KMETA};name=machine,meta"

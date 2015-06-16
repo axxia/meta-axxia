@@ -1,6 +1,6 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/conf/linux-3.10/${MACHINE}:\
-${THISDIR}/conf/linux-3.10/${MACHINE}/big-endian:\
-${THISDIR}/conf/linux-3.10/${MACHINE}/dbg-arm:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/linux-yocto/linux-3.10/${MACHINE}:\
+${THISDIR}/conf/linux-yocto/linux-3.10/${MACHINE}/big-endian:\
+${THISDIR}/conf/linux-yocto/linux-3.10/${MACHINE}/dbg-arm:"
 
 # adding fragments with kernel options to the final .config
 KERNEL_EXTRA_FEATURES = "features/taskstats/taskstats.scc"

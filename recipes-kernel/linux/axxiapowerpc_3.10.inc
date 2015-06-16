@@ -1,5 +1,5 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/conf/linux-3.10/${MACHINE}:\
-${THISDIR}/conf/linux-3.10/${MACHINE}/dbg-ppc:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/linux-yocto/linux-3.10/${MACHINE}:\
+${THISDIR}/conf/linux-yocto/linux-3.10/${MACHINE}/dbg-ppc:"
 
 # adding fragments with kernel options to the final .config
 KERNEL_EXTRA_FEATURES = ""
