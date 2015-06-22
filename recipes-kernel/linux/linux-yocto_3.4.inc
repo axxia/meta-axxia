@@ -13,4 +13,5 @@ SRCREV_meta = "5da29766338644adce97d3ab0c8be7f8e4e746bd"
 
 SRC_URI = "${KREPO};nocheckout=1;branch=${KBRANCH},${KMETA};name=machine,meta"
 SRC_URI += "file://fit"
-SRC_URI += "file://standard.scc"
+SRC_URI += "file://standard.scc \
+	${@base_conditional('TESTING', 'yes', 'file://testing.scc', '', d)} "
