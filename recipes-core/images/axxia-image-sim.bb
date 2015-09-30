@@ -7,7 +7,6 @@ ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
 IMAGE_INSTALL_append = " \
-eglibc-dbg \
 libgcc \
 inetutils \
 gdb \
@@ -15,7 +14,6 @@ gdbserver \
 python-core \
 lttng-modules \
 lttng-tools \
-valgrind \
 "
 
 IMAGE_FEATURES += "dev-pkgs"
