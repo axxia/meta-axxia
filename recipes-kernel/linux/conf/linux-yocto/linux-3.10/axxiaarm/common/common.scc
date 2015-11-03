@@ -1,2 +1,7 @@
-kconf non-hardware common-non-hw.cfg
+include features/taskstats/taskstats.scc
+include features/usb/ehci-hcd.scc
+include cfg/usb-mass-storage.scc
+include cfg/virtio.scc
+
 kconf hardware common-hw.cfg
+kconf non-hardware common-non-hw.cfg
