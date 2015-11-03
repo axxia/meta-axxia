@@ -1,16 +1,13 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
-require linux-yocto.inc
+require dt-${KARCH}.inc
 
 LSI_KERNEL_TAG = "tip"
-LINUX_VERSION = "3.10.38-${LSI_KERNEL_TAG}"
-
-KBRANCH = "standard/preempt-rt/lsi/base"
+LINUX_VERSION = "3.10.65-${LSI_KERNEL_TAG}"
+KBRANCH = "standard/preempt-rt/axxia-dev/base"
+KMETA = ""
 KREPO = "git://git@github.com/lsigithub/lsi_axxia_yocto_3.10.git;protocol=ssh"
-
-SRCREV_machine="${AUTOREV}"
-SRCREV_meta="${AUTOREV}"
-
-SRC_URI = "${KREPO};bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
+SRCREV_machine = "${AUTOREV}"
+SRC_URI = "${KREPO};bareclone=1;branch=${KBRANCH};name=machine"
 SRC_URI += "file://fit"
 SRC_URI += "file://defconfig"

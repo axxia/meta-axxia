@@ -1,6 +1,9 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
-LINUX_KERNEL_TYPE = "standard"
+COMPATIBLE_MACHINE = "^axxiaarm$|^axxiapowerpc$"
+INSANE_SKIP_kernel-dev = "debug-files"
+PARALLEL_MAKE = ""
+
 LSI_SRC ?= "linux-yocto"
 TESTING ?= "no"
 KV = "3.4"
