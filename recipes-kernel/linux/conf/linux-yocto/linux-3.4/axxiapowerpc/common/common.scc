@@ -1,6 +1,2 @@
-include features/usb/ehci-hcd.scc
-include cfg/usb-mass-storage.scc
-include cfg/timer/hz_100.scc
-
 kconf hardware common-hw.cfg
 kconf non-hardware common-non-hw.cfg
