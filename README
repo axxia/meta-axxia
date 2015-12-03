@@ -107,7 +107,7 @@ networking. Download the Open Embedded Yocto Project hosted repository with the
 following.
 
    $ cd $YOCTO/poky
-   $ git clone https://github.com/openembedded/meta-oe.git
+   $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-oe
    $ git checkout dizzy
 
@@ -130,9 +130,9 @@ actual value you provided in step 1.
             $YOCTO/poky/meta \
             $YOCTO/poky/meta-yocto \
             $YOCTO/poky/meta-yocto-bsp \
-            $YOCTO/poky/meta-oe/meta-oe \
-            $YOCTO/poky/meta-oe/meta-python \
-            $YOCTO/poky/meta-oe/meta-networking \
+            $YOCTO/poky/meta-openembedded/meta-oe \
+            $YOCTO/poky/meta-openembedded/meta-python \
+            $YOCTO/poky/meta-openembedded/meta-networking \
             $YOCTO/poky/meta-axxia \
             "
 
@@ -240,14 +240,14 @@ d. Regression testing (3.10 and 3.14)
    $ bitbake <image type>
 
 Available root filesystem types:
-   * lsi-image-small 
+   * axxia-image-small 
      A small image for use in simulation, flash, or as a ram disk. Should be
      sufficient to use the RTE. 
 
-   * lsi-image-sim 
+   * axxia-image-sim 
      An image for use in simulation. 
 
-   * lsi-image-large
+   * axxia-image-large
      A more complete image.
 
 Once complete the images for the target machine will be available in the output
