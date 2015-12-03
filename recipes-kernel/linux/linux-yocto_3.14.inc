@@ -1,18 +1,12 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/common:\
 ${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
-require linux-yocto.inc
+require dt-${KARCH}.inc
 
 LINUX_VERSION = "3.14.39"
-
 KBRANCH = "standard/axxia/base"
-KMETA = "meta"
-KREPO = "git://git.yoctoproject.org/linux-yocto-3.14"
-
-SRCREV_machine = "f490412acb655a4573f7612a7fcfa806674a46f6"
-SRCREV_meta = "288766d58bfdfd8b1cbfd4171a621fc44c1e1cf9"
-
-SRC_URI = "${KREPO};bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
+SRCREV_machine ="${AUTOREV}"
+SRCREV_meta ="${AUTOREV}"
 SRC_URI += "file://fit"
 
-require ${MACHINE}_${LINUX_KERNEL_TYPE}_${KV}.inc
+require frags-${KARCH}.inc
