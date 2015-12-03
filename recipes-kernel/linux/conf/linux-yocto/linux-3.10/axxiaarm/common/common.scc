@@ -1,2 +1,4 @@
-kconf non-hardware common-non-hw.cfg
+include features/taskstats/taskstats.scc
+
 kconf hardware common-hw.cfg
+kconf non-hardware common-non-hw.cfg

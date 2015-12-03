@@ -1,7 +1,11 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
-LINUX_KERNEL_TYPE = "preempt-rt"
+COMPATIBLE_MACHINE = "^axxiaarm$|^axxiapowerpc$"
+INSANE_SKIP_kernel-dev = "debug-files"
+PARALLEL_MAKE = ""
+
 LSI_SRC ?= "linux-yocto"
+SMP ?= "yes"
 POWER_MANAGEMENT ?= "low-power"
 BIG_ENDIAN ?= "no"
 DBG ?= "no"
