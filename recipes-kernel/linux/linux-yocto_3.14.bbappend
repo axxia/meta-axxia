@@ -14,4 +14,7 @@ TESTING ?= "no"
 KV = "3.14"
 KERNEL_EXTRA_FEATURES = ""
 
-require ${LSI_SRC}_3.14.inc
+# 3.14 Github Kernel didn't have public version. Reset LSI_SRC to "linux-yocto" in this case
+LSI_SRC_RESET = "${@base_conditional('LSI_SRC', 'lsi-public', 'linux-yocto', '${LSI_SRC}',  d)}"
+
+require ${LSI_SRC_RESET}_3.14.inc
