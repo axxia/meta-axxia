@@ -106,7 +106,7 @@ RDEPENDS_${PN} = "\
     setserial \
     tcp-wrappers \
     mdadm \
-    bluez4 \
+    bluez5 \
     groff \
     iptables \
     elfutils \
