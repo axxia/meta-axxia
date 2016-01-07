@@ -1,6 +1,9 @@
+# Only 3.10 have no-smp fragment
+NO_SMP = "${@base_conditional('KV', '3.10', 'file://no-smp.scc', '', d)}"
+
 # adding fragments with kernel options to the final .config
 SRC_URI += "file://common.scc \
-	${@base_conditional('SMP', 'yes', 'file://smp.scc', '', d)} \
+	${@base_conditional('SMP', 'yes', 'file://smp.scc', '${NO_SMP}', d)} \
 	${@base_conditional('LINUX_KERNEL_TYPE', 'preempt-rt', 'file://preempt-rt.scc', 'file://standard.scc', d)} \
 	${@base_conditional('BIG_ENDIAN', 'yes', 'file://big-endian.scc', '', d)} \
 	${@base_conditional('DBG', 'yes', 'file://dbg.scc', '', d)} \
