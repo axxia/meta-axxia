@@ -1,7 +1,7 @@
 meta-axxia
 ========
 
-This is the official OpenEmbedded/Yocto BSP layer for LSI’s family of
+This is the official OpenEmbedded/Yocto BSP layer for Intel’s family of
 Axxia Mobile & Enterprise Communication Processors.
 
 
@@ -46,7 +46,8 @@ Sources
 
 git://git.yoctoproject.org/meta-axxia
 http://git.yoctoproject.org/git/meta-axxia
-https://github.com/lsigithub/meta-axxia
+branch: dizzy
+revision: HEAD
 
 
 Dependencies
@@ -94,12 +95,12 @@ device-tree-compiler (dtc)
    $ cd poky
    $ git checkout dizzy
 
-3. Clone the LSI meta layer. This provides meta data for building images for the
-LSI specific board types.
+3. Clone the Axxia meta layer. This provides meta data for building images for the
+Axxia specific board types.
 
    $ cd $YOCTO/poky
-   $ git clone git@github.com:lsigithub/meta-axxia-private
-   $ cd meta-axxia-private
+   $ git clone git://git.yoctoproject.org/meta-axxia.git
+   $ cd meta-axxia
    $ git checkout dizzy
 
 4. The Open Embedded project provides many useful layers and packages such as
@@ -108,7 +109,7 @@ following.
 
    $ cd $YOCTO/poky
    $ git clone https://github.com/openembedded/meta-openembedded.git
-   $ cd meta-oe
+   $ cd meta-openembedded
    $ git checkout dizzy
 
 5. Create the build directory. The name is optional and will default to 'build',
@@ -116,7 +117,7 @@ however it helps to choose a name to match the board type. For example, we will
 use axxia.
 
    $ cd $YOCTO
-   $ source poky/oe-init-bild-env axxia
+   $ source poky/oe-init-build-env axxia
 
 6. Edit the conf/bblayers.conf file
 
@@ -176,8 +177,8 @@ parallelism BitBake should use:
    PREFERRED_VERSION_linux-yocto = "3.14%"
    PREFERRED_VERSION_linux-yocto-rt = "3.14%"
   
-7.7 Select the KERNEL repository to use. Meta-lsi is able to build the kernel 
-from 3 sources: LSI GITHUB public, LSI GITHUB private and YOCTO kernel repo 
+7.7 Select the KERNEL repository to use. Meta-axxia is able to build the kernel 
+from 3 sources: public lsigithub, private lsigithub and public YOCTO kernel repo 
 depending on LSI_SRC variable from local.conf:
 
 a. by default (missing to set LSI_SRC) or setting
@@ -186,28 +187,36 @@ a. by default (missing to set LSI_SRC) or setting
 
    will build from Yocto (axxia) repos:
    3.10: http://git.yoctoproject.org/git/linux-yocto-3.10 
-        standard/axxia/base branch
+        standard/axxia/base or standard/preempt-rt/axxia/base branch
    3.14: http://git.yoctoproject.org/git/linux-yocto-3.14
-        standard/axxia/base branch
+        standard/axxia/base or standard/preempt-rt/axxia/base branch
 
 b. LSI_SRC = "lsi-public" (3.10 only)
 
    will build kernel from GitHub public repos:
    3.10: https://github.com/lsigithub/lsi_axxia_yocto_public_3.10
+        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
 c. LSI_SRC = "lsi-tip"
    
-   will build kernel from GitHub private repos (require authentication):
+   will build kernel from GitHub private repos (require authentication with
+   public key):
    3.10: https://github.com/lsigithub/lsi_axxia_yocto_3.10
-   3.14: git@github.com:lsigithub/axxia_yocto_linux_3.14_private.git
+        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
+   3.14: https://github.com/lsigithub/axxia_yocto_linux_3.14_private.git
+        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
 7.8 Customizing the Kernel .config file
-When building the kernel from the Yocto repositories, the final .config is built
-using configuration fragments. Otherwise, a pre-built defconfig is used.
-Besides the options specific to the standard and preempt-rt kernel, you are able
-to add extra kernel fragments by setting the following options
+NOTE: This options are available only with LSI_SRC = "linux-yocto"
+      When building from github, fixed defconfigs are used instead.
 
-a. Power management scheme (3.10 and 3.14)
+When building the kernel from the Yocto repositories, the final .config is built
+using configuration fragments. Otherwise, when building from lsigithub,
+an defconfig is used.
+Besides the options specific to the standard and preempt-rt kernel, you are able
+to add extra kernel fragments by setting the following options:
+
+a. Power management scheme (axxiaarm only)
    - POWER_MANAGEMENT = "low-power" (DEFAULT)
      to keep the core low power when is shut down
    - POWER_MANAGEMENT = "full-power"
@@ -215,19 +224,24 @@ a. Power management scheme (3.10 and 3.14)
    - POWER_MANAGEMENT = "full-power-L2"
      to complete power down the core and L2 cache when is shut down
 
-b. Big-endian or little-endian (3.10, ARM only)
+b. Big-endian or little-endian (axxiaarm only)
 Set the order in which a sequence of bytes are stored in computer memory.
    - BIG_ENDIAN = "no" (DEFAULT)
-     Little-endien is the default settings.
+     Little-endian is the default settings.
    - BIG_ENDIAN = "yes"
      Kernel will be built with CONFIG_CPU_BIG_ENDIAN enabled.
 
-c. Debug options(3.10, ARM and POWERPC)
+c. Debug options:
    - DBG = "no" (DEFAULT)
    - DBG = "yes"
      Will enable options for debug in the Kernel config.
 
-d. Regression testing (3.10 and 3.14)
+d. SMP options:
+   - SMP = "yes" (DEFAULT)
+   - SMP = "no"
+     Will enable or disable SMP related kernel options.
+
+e. Regression testing:
     TESTING = "yes"
 
 7.9 Other optional settings for saving disk space and build time:
@@ -235,17 +249,35 @@ d. Regression testing (3.10 and 3.14)
    DL_DIR = "/<some-shared-location>/downloads"
    SSTATE_DIR = "/<some-shared-location>/sstate-cache
 
+7.10. Example. Append these lines to conf/local.conf file from the build dir
+
+BB_NUMBER_THREADS = "12"
+PARALLEL_MAKE = "-j 12"
+MACHINE = "axxiaarm"
+IMAGE_FSTYPES += "ext2"
+IMAGE_FSTYPES += "tar.gz"
+PREFERRED_PROVIDER_virtual/bootloader = "u-boot-lsi"
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+PREFERRED_VERSION_linux-yocto-rt = "3.10%"
+LSI_SRC = "linux-yocto"
+DBG = "yes"
+SMP = "yes"
+TESTING = "yes"
+DL_DIR = "/<some-shared-location>/downloads"
+SSTATE_DIR = "/<some-shared-location>/sstate-cache"
+
+
 8. Select the image type and start the build
    $ cd $YOCTO/axxia
    $ bitbake <image type>
 
 Available root filesystem types:
    * axxia-image-small 
-     A small image for use in simulation, flash, or as a ram disk. Should be
+     A small image used in simulation, flash, or as a ram disk. Should be
      sufficient to use the RTE. 
 
-   * axxia-image-sim 
-     An image for use in simulation. 
+   * axxia-image-sim
+     An image used in simulation.
 
    * axxia-image-large
      A more complete image.
@@ -273,23 +305,23 @@ Guidelines for submitting patches
 ---------------------------------
 
 Please submit any patches against meta-axxia BSPs to the meta-axxia
-mailing list (meta-axxia@yoctoproject.org) and cc: the maintainers.  
+mailing list (meta-lsi@yoctoproject.org) and cc: the maintainers.  
 
 Mailing list:
-	https://lists.yoctoproject.org/listinfo/meta-axxia
+	https://lists.yoctoproject.org/listinfo/meta-lsi
 
 When creating patches, please use something like:
 	git format-patch -s --subject-prefix='meta-axxia][PATCH' origin
 
 When sending patches, please use something like:
-	git send-email --to meta-axxia@yoctoproject.org --cc <maintainers> 
+	git send-email --to meta-lsi@yoctoproject.org --cc <maintainers>
 		      <generated patch>
 
 
 Maintenance
 -----------
 
-Maintainers: Cristian Bercaru <cristian.bercaru@windriver.com>
+Maintainers: Daniel Dragomir <daniel.dragomir@windriver.com>
 	     Lucian Creanga <lucian.creanga@windriver.com>
 
 Please see the meta-axxia/MAINTAINERS file for more details.
