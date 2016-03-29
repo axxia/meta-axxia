@@ -184,6 +184,7 @@ libgfortran \
 libgfortran-dev \
 libgfortran-dbg \
 libgfortran-staticdev \
+perf \
 "
 
 DESCRIPTION = ""
