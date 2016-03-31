@@ -183,6 +183,9 @@ gfortran \
 gfortran-symlinks \
 libgfortran \
 libgfortran-dev \
+libgfortran-dbg \
+libgfortran-staticdev \
+perf \
 "
 
 DESCRIPTION = ""
