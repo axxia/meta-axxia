@@ -25,3 +25,5 @@ LICENSE = "MIT"
 inherit core-image
 
 IMAGE_ROOTFS_SIZE = "16384"
+
+SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
