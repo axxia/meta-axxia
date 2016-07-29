@@ -4,7 +4,7 @@ COMPATIBLE_MACHINE = "^axxiaarm$|^axxiapowerpc$"
 INSANE_SKIP_kernel-dev = "debug-files"
 PARALLEL_MAKE = ""
 
-LSI_SRC ?= "linux-yocto"
+AXXIA_SRC ?= "linux-yocto"
 SMP ?= "yes"
 POWER_MANAGEMENT ?= "low-power"
 CHIPSET ?= "5500"
@@ -14,4 +14,4 @@ TESTING ?= "no"
 KV = "3.14"
 KERNEL_EXTRA_FEATURES = ""
 
-require ${LSI_SRC}-rt_3.14.inc
+require ${AXXIA_SRC}-rt_3.14.inc
