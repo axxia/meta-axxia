@@ -1,12 +1,12 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}/patch:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}/patch:"
 
 require dt-${KARCH}.inc
 
-LSI_KERNEL_TAG = "tip"
-LINUX_VERSION = "3.14.39-${LSI_KERNEL_TAG}"
+AXXIA_KERNEL_TAG = "tip"
+LINUX_VERSION = "3.14.39-${AXXIA_KERNEL_TAG}"
 KBRANCH = "standard/preempt-rt/axxia-dev/base"
 KMETA = ""
-KREPO_KERNEL = "git://git@github.com/lsigithub/axxia_yocto_linux_3.14_private.git;protocol=ssh"
+KREPO_KERNEL = "git://git@github.com/axxia/axxia_yocto_linux_3.14_private.git;protocol=ssh"
 SRCREV_machine ="${AUTOREV}"
 SRC_URI = "${KREPO_KERNEL};branch=${KBRANCH};name=machine"
 SRC_URI += "file://fit"

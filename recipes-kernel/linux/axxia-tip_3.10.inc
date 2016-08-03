@@ -1,12 +1,12 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${LSI_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 require dt-${KARCH}.inc
 
-LSI_KERNEL_TAG = "tip"
-LINUX_VERSION = "3.10.65-${LSI_KERNEL_TAG}"
+AXXIA_KERNEL_TAG = "tip"
+LINUX_VERSION = "3.10.65-${AXXIA_KERNEL_TAG}"
 KBRANCH = "standard/axxia-dev/base"
 KMETA = ""
-KREPO = "git://git@github.com/lsigithub/lsi_axxia_yocto_3.10.git;protocol=ssh"
+KREPO = "git://git@github.com/axxia/lsi_axxia_yocto_3.10.git;protocol=ssh"
 SRCREV_machine = "${AUTOREV}"
 SRCREV_meta = "${AUTOREV}"
 
