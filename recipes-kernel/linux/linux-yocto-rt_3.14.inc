@@ -3,7 +3,7 @@ ${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISD
 
 require dt-${KARCH}.inc
 
-LINUX_VERSION = "3.14.39"
+LINUX_VERSION = "3.14.62"
 KBRANCH = "standard/preempt-rt/axxia/base"
 SRCREV_machine ="${AUTOREV}"
 SRCREV_meta ="${AUTOREV}"

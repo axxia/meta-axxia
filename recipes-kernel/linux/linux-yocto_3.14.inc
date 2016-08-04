@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/
 ${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}/patch:"
 
 require dt-${KARCH}.inc
-LINUX_VERSION = "3.14.39"
+LINUX_VERSION = "3.14.62"
 KBRANCH = "standard/axxia/base"
 SRCREV_machine ="${AUTOREV}"
 SRCREV_meta ="${AUTOREV}"
