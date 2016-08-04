@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/
 
 require dt-${KARCH}.inc
 
-AXXIA_KERNEL_TAG = "7.8.1.48"
+AXXIA_KERNEL_TAG = "public"
 LINUX_VERSION = "3.4.91-${AXXIA_KERNEL_TAG}"
 KBRANCH = "standard/axxia-dev/base"
 KMETA = ""

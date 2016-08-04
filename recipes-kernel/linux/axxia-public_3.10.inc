@@ -2,8 +2,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/
 
 require dt-${KARCH}.inc
 
-AXXIA_KERNEL_TAG = "8.8.1.53"
-LINUX_VERSION = "3.10.38-${AXXIA_KERNEL_TAG}"
+AXXIA_KERNEL_TAG = "public"
+LINUX_VERSION = "3.10.65-${AXXIA_KERNEL_TAG}"
 KBRANCH = "standard/axxia-dev/base"
 KMETA = ""
 KREPO = "git://git@github.com/axxia/lsi_axxia_yocto_public_3.10.git;protocol=ssh"
