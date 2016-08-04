@@ -158,7 +158,7 @@ parallelism BitBake should use:
 
 7.4 Select the custom bootloader as preferred:
 
-  PREFERRED_PROVIDER_virtual/bootloader = "u-boot-lsi"
+  PREFERRED_PROVIDER_virtual/bootloader = "u-boot-axxia"
 
 7.5 Select the KERNEL type:
    for standard
@@ -177,12 +177,12 @@ parallelism BitBake should use:
    PREFERRED_VERSION_linux-yocto-rt = "3.10%"
   
 7.7 Select the KERNEL repository to use. Meta-axxia is able to build the kernel 
-from 3 sources: public lsigithub, private lsigithub and public YOCTO kernel repo 
-depending on LSI_SRC variable from local.conf:
+from 3 sources: public axxia github, private axxia github and public YOCTO kernel repo 
+depending on AXXIA_SRC variable from local.conf:
 
-a. by default (missing to set LSI_SRC) or setting
+a. by default (missing to set AXXIA_SRC) or setting
 
-   LSI_SRC = "linux-yocto"
+   AXXIA_SRC = "linux-yocto"
 
    will build from Yocto (axxia) repos:
    3.10: http://git.yoctoproject.org/git/linux-yocto-3.10 
@@ -190,29 +190,29 @@ a. by default (missing to set LSI_SRC) or setting
    3.4: http://git.yoctoproject.org/git/linux-yocto-3.4
         standard/axxia/base or standard/preempt-rt/axxia/base branch
 
-b. LSI_SRC = "lsi-public"
+b. AXXIA_SRC = "axxia-public"
 
    will build kernel from GitHub public repos:
-   3.10: https://github.com/lsigithub/lsi_axxia_yocto_public_3.10
+   3.10: https://github.com/axxia/lsi_axxia_yocto_public_3.10
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
-   3.4: https://github.com/lsigithub/lsi_axxia_yocto_public
+   3.4: https://github.com/axxia/lsi_axxia_yocto_public
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
-c. LSI_SRC = "lsi-tip"
+c. AXXIA_SRC = "axxia-tip"
    
    will build kernel from GitHub private repos (require authentication with
    public key):
-   3.10: https://github.com/lsigithub/lsi_axxia_yocto_3.10
+   3.10: https://github.com/axxia/lsi_axxia_yocto_3.10
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
-   3.4: https://github.com/lsigithub/lsi_axxia_yocto
+   3.4: https://github.com/axxia/lsi_axxia_yocto
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
 7.8 Customizing the Kernel .config file
-NOTE: This options are available only with LSI_SRC = "linux-yocto"
+NOTE: This options are available only with AXXIA_SRC = "linux-yocto"
       When building from github, fixed defconfigs are used instead.
 
 When building the kernel from the Yocto repositories, the final .config is built
-using configuration fragments. Otherwise, when building from lsigithub,
+using configuration fragments. Otherwise, when building from axxia github,
 an defconfig is used.
 Besides the options specific to the standard and preempt-rt kernel, you are able
 to add extra kernel fragments by setting the following options:
@@ -257,10 +257,10 @@ PARALLEL_MAKE = "-j 12"
 MACHINE = "axxiaarm"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
-PREFERRED_PROVIDER_virtual/bootloader = "u-boot-lsi"
+PREFERRED_PROVIDER_virtual/bootloader = "u-boot-axxia"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 PREFERRED_VERSION_linux-yocto-rt = "3.10%"
-LSI_SRC = "linux-yocto"
+AXXIA_SRC = "linux-yocto"
 DBG = "yes"
 SMP = "yes"
 TESTING = "yes"
