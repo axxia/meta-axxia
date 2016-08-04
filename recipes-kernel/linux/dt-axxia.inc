@@ -6,13 +6,13 @@ mk_fit_images() {
 	cd ../fit
 	if [ "${KARCH}" = "arm" ] && [ "${KV}" = "3.10" ]; then
 		oe_runmake "ARCH=${KARCH}" \
-				'DESCRIPTION=LSI Axxia Linux' \
+				'DESCRIPTION=INTEL Axxia Linux' \
 				"ADDRESS=${addr}" \
 				'VMLINUX=${B}/vmlinux' \
 				"DTB=${B}/arch/${KARCH}/boot/dts/${name}.dtb"
 	else
 		oe_runmake "ARCH=${KARCH}" \
-				'DESCRIPTION=LSI Axxia Linux' \
+				'DESCRIPTION=INTEL Axxia Linux' \
 				"ADDRESS=${addr}" \
 				'VMLINUX=${B}/vmlinux' \
 				"DTB=${B}/arch/${KARCH}/boot/${name}.dtb"
