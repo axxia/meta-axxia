@@ -194,3 +194,4 @@ perf \
 DESCRIPTION = ""
 
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
+TOOLCHAIN_TARGET_TASK_append = " libc-staticdev"
