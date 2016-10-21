@@ -1,0 +1,17 @@
+binutils: Correct comparison with negative expr on right
+
+Signed-off-by: Daniel Dragomir <daniel.dragomir@windriver.com>
+
+Index: binutils-2.23.2/gas/config/tc-i386.c
+===================================================================
+--- binutils-2.23.2.orig/gas/config/tc-i386.c
++++ binutils-2.23.2/gas/config/tc-i386.c
+@@ -5514,7 +5514,7 @@ build_modrm_byte (void)
+ 	      op.bitfield.regmem = 0;
+ 	      if ((dest + 1) >= i.operands
+ 		  || (op.bitfield.reg32 != 1
+-		      && !op.bitfield.reg64 != 1
++		      && 1 != !op.bitfield.reg64
+ 		      && !operand_type_equal (&op, &regxmm)
+ 		      && !operand_type_equal (&op, &regymm)))
+ 		abort ();
