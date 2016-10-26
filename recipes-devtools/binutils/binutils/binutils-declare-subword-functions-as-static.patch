@@ -1,0 +1,35 @@
+binutils: Declare SUBWORD functions as static
+
+We need to declare those fucntions as static if we define them in a 
+header file, otherwise multiple symbol table definitions are created 
+for the functions (one in each .c file) and will collide when you try 
+to link the respective object files. 
+
+Errors will be like:
+../opcodes/.libs/libopcodes.a(m32c-ibld.o): In function `SUBWORDSIQI':
+m32c-ibld.c:(.text+0x7fc0): multiple definition of `SUBWORDSIQI'
+../opcodes/.libs/libopcodes.a(m32c-dis.o):m32c-dis.c:(.text+0x15f0): first defined here
+
+Signed-off-by: Daniel Dragomir <daniel.dragomir@windriver.com>
+								     
+Index: binutils-2.23.2/include/cgen/basic-ops.h
+===================================================================
+--- binutils-2.23.2.orig/include/cgen/basic-ops.h
++++ binutils-2.23.2/include/cgen/basic-ops.h
+@@ -295,11 +295,11 @@ extern SI TRUNCDISI (DI);
+    significant and word number 0 is the most significant word.
+    ??? May also wish an endian-dependent version.  Later.  */
+ 
+-QI SUBWORDSIQI (SI, int);
+-HI SUBWORDSIHI (SI, int);
+-QI SUBWORDDIQI (DI, int);
+-HI SUBWORDDIHI (DI, int);
+-SI SUBWORDDISI (DI, int);
++static QI SUBWORDSIQI (SI, int);
++static HI SUBWORDSIHI (SI, int);
++static QI SUBWORDDIQI (DI, int);
++static HI SUBWORDDIHI (DI, int);
++static SI SUBWORDDISI (DI, int);
+ 
+ #ifdef SEMOPS_DEFINE_INLINE
+ 
