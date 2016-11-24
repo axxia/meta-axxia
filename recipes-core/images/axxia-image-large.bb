@@ -193,7 +193,8 @@ libgfortran-dev \
 libgfortran-dbg \
 libgfortran-staticdev \
 perf \
-"
+kexec \
+kdump "
 
 DESCRIPTION = ""
 
