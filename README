@@ -12,10 +12,10 @@ Boards Supported by this layer (Please refer to the associate .conf for more
 information):
 
 	* axxiapowerpc - Axxia 3000 PPC Mobile & Enterprise Communication 
-                        Processors family
+                         Processors family
 
 	* axxiaarm - Axxia 5000 ARM Mobile & Enterprise Communication 
-                    Processors family (32-bit)
+                     Processors family (32-bit)
 
 	* axxiaarm64 - Axxia 5000 ARM Mobile & Enterprise Communication 
                     Processors family (64-bit)
@@ -43,7 +43,13 @@ Amarillo – Reference board for the Axxia 5500 line of Communication Processor
 devices. The 5500 device combines an ARM CPU subsystem with up to 16 Cortex-A15
 Cores along with advanced packet-processing acceleration engines.
 
-5600 boards (Lionfish and X9) hardware is not available yet, just the simulator
+Victoria – Reference board for the Axxia 5600 line of Communication Processor
+devices. The 5600 device combines an ARM X9 CPU subsystem with up to 16 Cortex-A57
+Cores along with advanced packet-processing acceleration engines. 
+
+Waco – Reference board for the Axxia 6700 line of Communication Processor
+devices. The 6700 device combines an ARM XLF (lionfish) CPU subsystem with up to 
+32 Cortex-A53 Cores along with advanced packet-processing acceleration engines. 
 
  
 Sources
