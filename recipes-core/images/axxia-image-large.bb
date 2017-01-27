@@ -194,8 +194,11 @@ libgfortran-dbg \
 libgfortran-staticdev \
 perf \
 kexec \
-kdump "
+kdump \
+${LXC_SUPPORT} "
 
+LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \
+               lxc lxc-setup lxc-templates lxc-networking "
 DESCRIPTION = ""
 
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
