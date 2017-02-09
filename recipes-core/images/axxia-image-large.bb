@@ -195,6 +195,7 @@ libgfortran-staticdev \
 perf \
 kexec \
 kdump \
+ltp \
 ${LXC_SUPPORT} "
 
 LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \
