@@ -43,7 +43,7 @@ do_configure_prepend() {
 }
 
 do_install_append() {
-    if ${@base_contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
        install -d ${D}${systemd_unitdir}/system
        if [ -d "${D}${libdir}/systemd/system" ]; then
            mv ${D}${libdir}/systemd/system/* ${D}${systemd_unitdir}/system/
