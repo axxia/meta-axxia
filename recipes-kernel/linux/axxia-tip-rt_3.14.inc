@@ -2,8 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/
 
 require dt-${KARCH}.inc
 
-AXXIA_KERNEL_TAG = "tip"
-LINUX_VERSION = "3.14.39-${AXXIA_KERNEL_TAG}"
+LINUX_VERSION = "3.14.62-tip"
 KBRANCH = "standard/preempt-rt/axxia-dev/base"
 KMETA = ""
 KREPO_KERNEL = "git://git@github.com/axxia/axxia_yocto_linux_3.14_private.git;protocol=ssh"
