@@ -1,4 +1,5 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${CHIPSET}/${LINUX_KERNEL_TYPE}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${CHIPSET}/${LINUX_KERNEL_TYPE}:\
+${THISDIR}/conf/${AXXIA_SRC}/linux-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 require dt-${KARCH}.inc
 
