@@ -7,26 +7,26 @@ ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
 IMAGE_INSTALL_append = " \
-libgcc \
-inetutils \
+dhcp-client \
 gdb \
 gdbserver \
-python-core \
-python-modules \
-python-netserver \
+inetutils \
+libgcc \
 lttng-modules \
 lttng-modules-dev \
 lttng-tools \
 lttng-tools-dev \
 lttng-ust \
 lttng-ust-dev \
-dhcp-client \
+netcat \
 netkit-tftp-client \
 openssh \
 openssh-sftp \
-inetutils \
-netcat \
-perl-module-bigint"
+perl-module-bigint \
+python-core \
+python-modules \
+python-netserver \
+"
 
 IMAGE_FEATURES += "dev-pkgs"
 
