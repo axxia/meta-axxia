@@ -160,9 +160,6 @@ strace \
 sudo \
 sysfsutils \
 sysklogd \
-sysvinit \
-sysvinit-inittab \
-sysvinit-pidof \
 tar \
 tcl \
 tcpdump \
@@ -170,7 +167,6 @@ tcp-wrappers \
 time \
 tzdata \
 udev \
-udev-cache \
 udev-extraconf \
 unzip \
 update-rc.d \
