@@ -66,7 +66,7 @@ PACKAGECONFIG[seccomp] ="--enable-seccomp,--disable-seccomp,libseccomp,libseccom
 PACKAGECONFIG[lua] = "--enable-lua,--disable-lua,lua,"
 PACKAGECONFIG[python3] = "--enable-python,--disable-python,python3,"
 
-inherit autotools pkgconfig ptest update-rc.d systemd
+inherit autotools pkgconfig ptest update-rc.d axxia-systemd
 
 SYSTEMD_PACKAGES = "${PN}-setup"
 SYSTEMD_SERVICE_${PN}-setup = "lxc.service"
