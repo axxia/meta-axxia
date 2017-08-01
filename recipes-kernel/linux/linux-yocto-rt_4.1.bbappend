@@ -4,7 +4,6 @@ inherit axxia-kernel
 
 COMPATIBLE_MACHINE = "^axxiaarm$|^axxiaarm64$|^axxiapowerpc$"
 INSANE_SKIP_kernel-dev = "debug-files"
-PARALLEL_MAKE = ""
 
 AXXIA_SRC ?= "linux-yocto"
 SMP ?= "yes"

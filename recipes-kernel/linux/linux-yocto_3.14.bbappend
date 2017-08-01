@@ -2,7 +2,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
 COMPATIBLE_MACHINE = "^axxiaarm$|^axxiapowerpc$"
 INSANE_SKIP_kernel-dev = "debug-files"
-PARALLEL_MAKE = ""
 
 AXXIA_SRC ?= "linux-yocto"
 SMP ?= "yes"
