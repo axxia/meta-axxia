@@ -87,6 +87,7 @@ libnfsidmap \
 libnl \
 libnss-mdns \
 libogg \
+libpython2 \
 libpam \
 libpcap \
 libpcre \
@@ -143,6 +144,8 @@ ppp \
 procps \
 psmisc \
 python-core \
+python-dev \
+python-distutils \
 python-modules \
 python-netserver \
 quota \

@@ -12,6 +12,7 @@ gdb \
 gdbserver \
 inetutils \
 libgcc \
+libpython2 \
 lttng-modules \
 lttng-modules-dev \
 lttng-tools \
@@ -24,6 +25,8 @@ openssh \
 openssh-sftp \
 perl-module-bigint \
 python-core \
+python-dev \
+python-distutils \
 python-modules \
 python-netserver \
 "
