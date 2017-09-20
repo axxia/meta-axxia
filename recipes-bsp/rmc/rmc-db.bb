@@ -42,7 +42,10 @@ do_deploy () {
 	if [ -f ${RMC_DB_DIR}/rmc.db ]; then
 		install -m 0400 ${RMC_DB_DIR}/rmc.db ${DEPLOYDIR}
 	else
-		echo "Warning: no RMC central database found, skip deployment."
+		echo "Warning: no RMC central database found, creating empty rmc.db."
+		mkdir -p ${DEPLOYDIR}
+		touch ${DEPLOYDIR}/rmc.db
+		chmod 0400 ${DEPLOYDIR}/rmc.db
 	fi
 }
 
