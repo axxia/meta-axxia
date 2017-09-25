@@ -141,6 +141,7 @@ however it helps to choose a name to match the board type. For example, we will
 use axxia.
 
    $ cd $YOCTO
+   $ source poky/meta-axxia/axxia-env
    $ source poky/oe-init-build-env axxia
 
 7. Edit the conf/bblayers.conf file
