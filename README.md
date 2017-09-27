@@ -69,7 +69,7 @@ For changes accepted by the Yocto project, use the following.
 
 git clone git://git.yoctoproject.org/meta-axxia
 
-In all cases, use the 'morty' branch. The commit used as HEAD for a
+In all cases, use the 'master' branch. The commit used as HEAD for a
 particular release will be listed in the release notes.
 
 
@@ -79,22 +79,22 @@ Dependencies
 This layer depends on:
 Poky
 URI: git://git.yoctoproject.org/poky.git
-branch: morty
+branch: master
 revision: HEAD
 
 OpenEmbedded
 URI: https://github.com/openembedded/meta-openembedded.git
-branch: morty
+branch: master
 revision: HEAD
 
 Yocto Virtualization Layer
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: morty
+branch: master
 revision: HEAD
 
 Intel Meta Layer
 URI: git://git.yoctoproject.org/meta-intel
-branch: morty
+branch: master
 revision: HEAD
 
 
@@ -127,7 +127,7 @@ device-tree-compiler (dtc)
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/poky.git
    $ cd poky
-   $ git checkout morty
+   $ git checkout master
 
 3. Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
@@ -136,7 +136,7 @@ device-tree-compiler (dtc)
    $ cd $YOCTO/poky
    $ <the git clone command chosen above>
    $ cd meta-axxia
-   $ git checkout morty
+   $ git checkout master
 
 4. The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
@@ -145,7 +145,7 @@ device-tree-compiler (dtc)
    $ cd $YOCTO/poky
    $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-openembedded
-   $ git checkout morty
+   $ git checkout master
 
 5. Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
@@ -153,7 +153,7 @@ device-tree-compiler (dtc)
    $ git clone git://git.yoctoproject.org/meta-virtualization
    $ cd $YOCTO/poky
    $ cd meta-virtualization
-   $ git checkout morty
+   $ git checkout master
 
 6. Clone the Intel meta layer. This provides Intel hardware support 
    metadata which are inherited in axxiax86-64 BSP.
@@ -161,7 +161,7 @@ device-tree-compiler (dtc)
    $ cd $YOCTO/poky
    $ git clone git://git.yoctoproject.org/meta-intel
    $ cd meta-intel
-   $ git checkout morty
+   $ git checkout master
 
 7. Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
