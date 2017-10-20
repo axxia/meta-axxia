@@ -152,7 +152,6 @@ perl-module-bigint \
 pkgconfig \
 ${@base_conditional('MACHINE', 'axxiax86-64', 'pmtools', '', d)} \
 popt \
-portmap \
 ppp \
 procps \
 psmisc \
