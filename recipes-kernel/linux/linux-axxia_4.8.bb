@@ -3,7 +3,7 @@ ${THISDIR}/conf/axxia-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 require recipes-kernel/linux/linux-yocto.inc
 
-inherit axxia-kernel
+DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.8"
 LINUX_VERSION = "4.8.25"

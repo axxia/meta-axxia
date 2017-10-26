@@ -1,7 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/conf/yocto-${KV}/${MACHINE}/common:\
 ${THISDIR}/conf/yocto-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}:"
 
-inherit axxia-kernel
+DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
 LINUX_VERSION = "4.9.49"
