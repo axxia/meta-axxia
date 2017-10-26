@@ -1,5 +1,7 @@
 inherit kernel
 
+DEPENDS += "u-boot-mkimage-native dtc-native"
+
 kernel_do_install() {
 	#
 	# First install the modules
