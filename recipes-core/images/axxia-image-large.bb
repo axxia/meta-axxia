@@ -17,7 +17,6 @@ bluez5 \
 boost \
 boost-dev \
 busybox \
-busybox-syslog \
 busybox-udhcpc \
 bzip2 \
 coreutils \
