@@ -38,8 +38,8 @@ SRC_URI = "git://git.yoctoproject.org/linux-yocto-4.9.git;name=machine;branch=${
 "
 
 KBRANCH = "standard/preempt-rt/axxia/base"
-SRCREV_machine ="${AUTOREV}"
-SRCREV_meta ="${AUTOREV}"
+SRCREV_machine = "4bd1483677fbde2bf22d5b52f7d983fc5ad704b7"
+SRCREV_meta = "f4e37e151102d89c4d0e110c88eb3b3c36bdeaa4"
 SRC_URI += "file://fit"
 
 require dt/dt-${KARCH}.inc
