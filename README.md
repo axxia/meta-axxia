@@ -165,13 +165,17 @@ actual value you provided in step 1.
 8. Edit the conf/local.conf file:
    $ vi conf/local.conf
 
-8.1 Depending on your processor, set these two options that control how much
+8.1 Set distribution configuration to have all Axxia specific features.
+
+  DISTRO = "axxia"
+
+8.2 Depending on your processor, set these two options that control how much
 parallelism BitBake should use:
 
   BB_NUMBER_THREADS = "12"
   PARALLEL_MAKE = "-j 12"
 
-8.2 Select a specific machine to target the build with:
+8.3 Select a specific machine to target the build with:
 
   MACHINE = "axxiaarm"
   or
@@ -179,16 +183,16 @@ parallelism BitBake should use:
   or
   MACHINE = "axxiapowerpc"
 
-8.3 Select the root filesystem image compression type (can set multiple types):
+8.4 Select the root filesystem image compression type (can set multiple types):
 
   IMAGE_FSTYPES += "ext2"
   IMAGE_FSTYPES += "tar.gz"
 
-8.4 Select the custom bootloader as preferred:
+8.5 Select the custom bootloader as preferred:
 
   PREFERRED_PROVIDER_virtual/bootloader = "u-boot-axxia"
 
-8.5 Select the kernel to use. 
+8.6 Select the kernel to use. 
     Meta-axxia is able to build the kernel from 2 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
@@ -220,7 +224,7 @@ b. Private Axxia Github (github.com/axxia)
    4.1:  git@github.com:axxia/axxia_yocto_linux_4.1_private.git
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
-8.6 Select the kernel version:
+8.7 Select the kernel version:
 
 NOTE: axxiaarm and axxiapowerpc are available only with linux 3.14
       axxiaarm64 is available only with linux 4.1
@@ -231,7 +235,7 @@ NOTE: axxiaarm and axxiapowerpc are available only with linux 3.14
    for 4.1, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_<preferred-provider> = "4.1%"
 
-8.7 Customizing the Kernel .config file
+8.8 Customizing the Kernel .config file
 NOTE: This options are available only for linux-yocto kernel.
       When building linux-axxia, fixed defconfigs are used instead.
 
@@ -276,7 +280,7 @@ f. Chip specific options (for axxiaarm64):
 Note: CHIPSET variable is also used for fine tuning (see 7.9) and to choose the
 proper defconfig for Github builds (see 7.7).
 
-8.8 Choose proper fine tuning for each CHIPSET (kernel 4.1 only)
+8.9 Choose proper fine tuning for each CHIPSET (kernel 4.1 only)
 As long as specfic tunes are defined, user can choose the proper 
 tune using the CHIPSET variable. Features and flags for each tune
 are defined bellow:
@@ -317,7 +321,7 @@ NOTE: For ARMv8, AArch64 state, other availabe tunes are for BE with
           floating-point, thumb and neon extensions. Crypto, thumb and BE are 
           optional.
 
-8.9 Building a 32-bit RootFS for ARMv8 based boards:
+8.10 Building a 32-bit RootFS for ARMv8 based boards:
 For ARM architecture, depending on the machine selected on step 7.2, 
 specific Kernel and RootFS are built for specific boards:
     - axxiaarm: 32-bit Kernel and Rootfs for 5500 board series which have
@@ -337,13 +341,14 @@ If CHIPSET is not set, it will default to 5500 (ARMv7).
 NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel 
       resulting from an axxiaarm64 build.
 
-8.10 Other optional settings for saving disk space and build time:
+8.11 Other optional settings for saving disk space and build time:
    
    DL_DIR = "/<some-shared-location>/downloads"
    SSTATE_DIR = "/<some-shared-location>/sstate-cache
 
-8.11 Example. Append these lines to conf/local.conf file from the build dir
+8.12 Example. Append these lines to conf/local.conf file from the build dir
 
+DISTRO = "axxia"
 BB_NUMBER_THREADS = "12"
 PARALLEL_MAKE = "-j 12"
 MACHINE = "axxiaarm"
