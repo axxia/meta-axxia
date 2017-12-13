@@ -27,17 +27,17 @@ Please keep this list in alphabetical order.
 Maintainers List (try to look for most precise areas first)
 
 		-----------------------------------
-AXIAARM
+AXXIAARM
 M:	Daniel Dragomir <cristian.bercaru@windriver.com>
 M:	Lucian Creanga <lucian.creanga@windriver.com>
 F:	meta-axxia/
 
-AXIAARM64
+AXXIAARM64
 M:	Daniel Dragomir <cristian.bercaru@windriver.com>
 M:	Lucian Creanga <lucian.creanga@windriver.com>
 F:	meta-axxia/
 
-AXIAPOWERPC
+AXXIAPOWERPC
 M:	Daniel Dragomir <cristian.bercaru@windriver.com>
 M:	Lucian Creanga <lucian.creanga@windriver.com>
 F:	meta-axxia/
