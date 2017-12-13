@@ -4,7 +4,7 @@ ${THISDIR}/conf/yocto-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}:"
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
-LINUX_VERSION = "4.9.49"
+LINUX_VERSION = "4.9.57"
 
 # skip yocto-kernel-cache for axxiax86_64 to use full defconfig untill we'll have fragments upstream
 KMETA_SOURCES = "git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.9;destsuffix=${KMETA}"
