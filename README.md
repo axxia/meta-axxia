@@ -207,10 +207,6 @@ actual value you provided in step 1.
     axxiaarm machine (e.g.), you will build binaries for all available
     ARM targets.
 
-  - Axxia 3000 PPC Mobile & Enterprise Communication Processors family
-    (Galveston and Elpaso)
-  MACHINE = "axxiapowerpc"
-
   - Axxia 5500 ARM Mobile & Enterprise Communication Processors family
     (Amarillo)
   MACHINE = "axxiaarm"
