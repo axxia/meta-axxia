@@ -2,7 +2,7 @@ mk_fit_images() {
 	name=$1
 	addr=$2
 
-	if [ "${KARCH}" = "arm" ] || [ "${KARCH}" = "powerpc" ]
+	if [ "${KARCH}" = "arm" ]
 	then
 		oe_runmake -j1 ${name}.dtb
 	elif [ "${KARCH}" = "arm64" ]
