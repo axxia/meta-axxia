@@ -109,9 +109,6 @@ Check the YOCTO Reference Manual for the system you are using and verify you
 have the minimum required packages installed. 
 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
 
-NOTE: You may also require packages: u-boot-tools (mkimage) and
-device-tree-compiler (dtc)
-
 1. Create an empty build directory and verify that the partition has
    at least 50Gb of free space. Next set an environment variable, YOCTO,
    to the full path.
@@ -235,11 +232,7 @@ actual value you provided in step 1.
     IMAGE_FSTYPES += "tar.gz"
     IMAGE_FSTYPES += "hddimg"
 
-9.5 Select the custom bootloader as preferred:
-
-    PREFERRED_PROVIDER_virtual/bootloader = "u-boot-axxia"
-
-9.6 Select the kernel to use.
+9.5 Select the kernel to use.
     Meta-axxia is able to build the kernel from 2 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
@@ -267,7 +260,7 @@ b. Private Axxia Github (github.com/axxia)
    4.9: git@github.com:axxia/axxia_yocto_linux_4.9_private.git
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
-9.7 Select the kernel version:
+9.6 Select the kernel version:
 
    for 4.9, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_<preferred-provider>= "4.9%"
@@ -276,7 +269,7 @@ NOTE: <preferred-provider> can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
 
 
-9.8 Customizing the Kernel .config file
+9.7 Customizing the Kernel .config file
 
 NOTE: This options are available only for linux-yocto kernel.
       When building linux-axxia, fixed defconfigs are used instead.
@@ -322,7 +315,7 @@ f. Chip specific options (for axxiaarm64):
 Note: CHIPSET variable is also used for fine tuning (see 7.9) and to choose the
 proper defconfig for Github builds (see 7.7).
 
-9.9 Choose proper fine tuning for each CHIPSET As long as specfic
+9.8 Choose proper fine tuning for each CHIPSET As long as specfic
     tunes are defined, user can choose the proper tune using the CHIPSET
     variable. Features and flags for each tune are defined bellow:
 
@@ -368,7 +361,7 @@ NOTE: For ARMv8, AArch64 state, other availabe tunes are for BE with
  
 NOTE: For axxiax86-64 machine, no CHIPSET variable should be set.
 
-9.10 For axxiax86-64 machine (SNR), choose the System where the image will run
+9.9 For axxiax86-64 machine (SNR), choose the System where the image will run
 between simulation and emulation:
 
    for Simics Simulation System (default):
@@ -377,7 +370,7 @@ between simulation and emulation:
    for Frio FPGA Emulation System:
    RUNTARGET = "frio"
 
-9.11 Building a 32-bit RootFS for ARMv8 based boards:
+9.10 Building a 32-bit RootFS for ARMv8 based boards:
 For ARM architecture, depending on the machine selected on step 7.2, 
 specific Kernel and RootFS are built for specific boards:
     - axxiaarm: 32-bit Kernel and Rootfs for 5500 board series which have
@@ -397,19 +390,19 @@ If CHIPSET is not set, it will default to 5500 (ARMv7).
 NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel 
       resulting from an axxiaarm64 build.
 
-9.12 Other optional settings for saving disk space and build time:
+9.11 Other optional settings for saving disk space and build time:
    
    DL_DIR = "/<some-shared-location>/downloads"
    SSTATE_DIR = "/<some-shared-location>/sstate-cache
 
-9.13 Examples.
+9.12 Examples.
 
      See http://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html
      for complete documentation on the Yocto build system.
 
      Here are the local.conf files used for open builds.
 
-9.13.1 axxiaarm
+9.12.1 axxiaarm
 
 MACHINE = "axxiaarm"
 CHIPSET = "5500"
@@ -436,7 +429,7 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-9.13.2 axxiaarm64
+9.12.2 axxiaarm64
 
 MACHINE = "axxiaarm64"
 CHIPSET = "X9"
@@ -463,7 +456,7 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-9.13.3 axxiax86-64
+9.12.3 axxiax86-64
 
 MACHINE = "axxiax86-64"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
