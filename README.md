@@ -69,7 +69,7 @@ For changes accepted by the Yocto project, use the following.
 
 git clone git://git.yoctoproject.org/meta-axxia
 
-In all cases, use the 'master' branch. The commit used as HEAD for a
+In all cases, use the 'rocko' branch. The commit used as HEAD for a
 particular release will be listed in the release notes.
 
 
@@ -79,23 +79,23 @@ Dependencies
 This layer depends on:
 Poky
 URI: git://git.yoctoproject.org/poky.git
-branch: master
-revision: b9182def2952952c5aa716d93a9094846719bdc3
+branch: rocko
+revision: HEAD
 
 OpenEmbedded
 URI: https://github.com/openembedded/meta-openembedded.git
-branch: master
-revision: b40116cf457b88a2db14b86fda9627fb34d56ae6
+branch: rocko
+revision: HEAD
 
 Yocto Virtualization Layer
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: master
-revision: dfe24c5b5ac39f38fd2ac7370cca441cb47c31bc
+branch: rocko
+revision: HEAD
 
 Intel Meta Layer
 URI: git://git.yoctoproject.org/meta-intel
-branch: master
-revision: c781510a5a6b45e60cc32b6614ddcce3f1452121
+branch: rocko
+revision: HEAD
 
 
 Building the meta-axxia BSP layer
@@ -124,7 +124,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/poky.git
    $ cd poky
-   $ git checkout master
+   $ git checkout rocko
 
 3. Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
@@ -133,7 +133,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO/poky
    $ <the git clone command chosen above>
    $ cd meta-axxia
-   $ git checkout master
+   $ git checkout rocko
 
 4. The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
@@ -142,7 +142,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO/poky
    $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-openembedded
-   $ git checkout master
+   $ git checkout rocko
 
 5. Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
@@ -150,7 +150,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ git clone git://git.yoctoproject.org/meta-virtualization
    $ cd $YOCTO/poky
    $ cd meta-virtualization
-   $ git checkout master
+   $ git checkout rocko
 
 6. Clone the Intel meta layer. This provides Intel hardware support 
    metadata which are inherited in axxiax86-64 BSP.
@@ -158,7 +158,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO/poky
    $ git clone git://git.yoctoproject.org/meta-intel
    $ cd meta-intel
-   $ git checkout master
+   $ git checkout rocko
 
 7. Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
