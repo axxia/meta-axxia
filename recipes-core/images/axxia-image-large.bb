@@ -212,7 +212,7 @@ ${@base_conditional('MACHINE', 'axxiax86-64', 'axxia-rc-local', '', d)} \
 ${LXC_SUPPORT} "
 
 LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \
-	       lxc lxc-setup lxc-templates lxc-networking "
+	       lxc lxc-setup lxc-templates "
 
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 TOOLCHAIN_TARGET_TASK_append = " libc-staticdev"
