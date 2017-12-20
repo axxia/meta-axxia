@@ -1,6 +1,11 @@
 CHANGES:
 ========
 
+1.22 * Added support for Linux kernel version 4.12.
+     * generic_readlink replaced by vfs_readlink.
+     * Type casting to long from int for hostfs_getattr
+       - error: initialization from incompatible pointer type
+
 1.21 * Added support for Linux kernel version 4.9.
      * inode_change_ok replaced by setattr_prepare.
 

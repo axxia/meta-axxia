@@ -507,8 +507,10 @@ static int hostfs_inode_readlink(struct dentry *dentry, char *buf, int size)
 	return vfs_readlink(dentry, buf, size, data.filename);
 #elif LINUX_VERSION_CODE < KERNEL_VERSION(4, 6, 0)
 	return readlink_copy(buf, size, data.filename);
-#else
+#elif LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
 	return generic_readlink(dentry, buf, size);
+#else
+	return vfs_readlink(dentry, buf, size);
 #endif
 }
 
@@ -745,7 +747,7 @@ static struct inode_operations hostfs_file_iops = {
 	.truncate = hostfs_inode_truncate,
 #endif
 	.setattr = hostfs_setattr,
-	.getattr = hostfs_getattr,
+	.getattr = (long) hostfs_getattr,
 };
 
 static const struct address_space_operations hostfs_file_aops = {

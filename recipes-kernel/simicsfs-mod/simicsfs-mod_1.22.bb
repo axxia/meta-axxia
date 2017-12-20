@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://README;md5=d85032171211186dc98a06988cb7504a"
 
 inherit module
 
-PV="1.20"
+PV="1.22"
 
 SRC_URI = "file://CHANGES \
            file://Kconfig \
