@@ -9,9 +9,6 @@ DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
 LINUX_VERSION = "4.9.65"
-LINUX_KERNEL_TYPE = "preempt-rt"
-PV = "${LINUX_VERSION}+git${SRCPV}"
-
 KBRANCH = "standard/preempt-rt/axxia/base"
 SRCREV_machine = "c980edf56736d882079e6a15bbc2a03425e1f2f1"
 SRCREV_meta = "f4e37e151102d89c4d0e110c88eb3b3c36bdeaa4"

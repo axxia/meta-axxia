@@ -9,9 +9,6 @@ DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
 LINUX_VERSION = "4.9.65"
-LINUX_KERNEL_TYPE = "standard"
-PV = "${LINUX_VERSION}+git${SRCPV}"
-
 KBRANCH = "standard/axxia/base"
 SRCREV_machine = "53fef56b9ab4da73647fde0ed9c194121d51b7a1"
 SRCREV_meta = "f4e37e151102d89c4d0e110c88eb3b3c36bdeaa4"
