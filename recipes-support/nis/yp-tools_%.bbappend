@@ -1,6 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += "file://nisdomainname"
+SRC_URI += "file://nisdomainname \
+	    file://domainname.service"
 
 do_install_append() {
 	install -d ${D}${sysconfdir}
