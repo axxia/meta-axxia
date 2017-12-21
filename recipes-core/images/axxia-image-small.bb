@@ -3,7 +3,6 @@ or as a ram disk that supports the RTE."
 
 IMAGE_INSTALL = " \
 packagegroup-core-boot \
-${ROOTFS_PKGMANAGE_BOOTSTRAP} \
 ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

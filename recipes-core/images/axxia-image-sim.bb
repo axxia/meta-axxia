@@ -2,7 +2,6 @@ DESCRIPTION = "A minimal image used in simulation."
 
 IMAGE_INSTALL = " \
 packagegroup-core-boot \
-${ROOTFS_PKGMANAGE_BOOTSTRAP} \
 ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
