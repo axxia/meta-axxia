@@ -9,7 +9,7 @@ require recipes-kernel/linux/linux-yocto.inc
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.12"
-LINUX_VERSION = "4.12.16"
+LINUX_VERSION = "4.12.18"
 LINUX_KERNEL_TYPE = "preempt-rt"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
