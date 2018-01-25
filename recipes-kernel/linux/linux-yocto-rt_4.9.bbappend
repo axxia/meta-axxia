@@ -11,7 +11,7 @@ KV = "4.9"
 LINUX_VERSION = "4.9.71"
 KBRANCH = "standard/preempt-rt/axxia/base"
 SRCREV_machine = "d2a54ff45e6c5e9b9a3c47ff5675622859f1f1a4"
-SRCREV_meta = "4540e14cdccbb8bf8db591fd60fb03342f155342"
+SRCREV_meta = "688a904c38ecfdc36c23eafc8e93aadc2c537535"
 
 # skip yocto-kernel-cache for axxiax86_64 to use full defconfig untill we'll have fragments upstream
 KMETA_SOURCES = "git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.9;destsuffix=${KMETA}"
