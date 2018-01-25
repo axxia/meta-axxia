@@ -4,11 +4,11 @@ ${THISDIR}/conf/yocto-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:${THISDIR}:"
 inherit axxia-kernel
 
 KV = "4.1"
-LINUX_VERSION = "4.1.43"
+LINUX_VERSION = "4.1.48"
 
 KBRANCH = "standard/axxia/base"
-SRCREV_machine ="${AUTOREV}"
-SRCREV_meta ="${AUTOREV}"
+SRCREV_machine = "909c98a4f6512eaca1c975469d58b46b7326b8e9"
+SRCREV_meta = "78e5080885b6c72d436fc14614e575ec0f422c76"
 SRC_URI += "file://fit"
 
 require dt/dt-${KARCH}.inc
