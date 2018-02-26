@@ -61,7 +61,6 @@ groff \
 gzip \
 hdparm \
 hostap-utils \
-${@base_conditional('MACHINE', 'axxiax86-64', 'iasl', '', d)} \
 icu \
 inetutils \
 inetutils-telnetd \
@@ -136,7 +135,7 @@ netbase \
 net-tools \
 nfs-utils \
 nfs-utils-client \
-${@base_conditional('MACHINE', 'axxiaarm', '', 'numactl', d)} \
+${@base_conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
 openssh \
 openssh-sftp \
 openssh-sftp-server \
@@ -152,7 +151,6 @@ ${@base_conditional('MACHINE', 'axxiaarm64', 'perf', '', d)} \
 perl \
 perl-module-bigint \
 pkgconfig \
-${@base_conditional('MACHINE', 'axxiax86-64', 'pmtools', '', d)} \
 popt \
 ppp \
 procps \
@@ -208,7 +206,6 @@ yp-tools \
 yp-tools-dev \
 zip \
 zlib \
-${@base_conditional('MACHINE', 'axxiax86-64', 'axxia-rc-local', '', d)} \
 ${LXC_SUPPORT} "
 
 LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \

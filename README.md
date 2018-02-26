@@ -17,9 +17,6 @@ for more information):
 	* axxiaarm64 - Axxia 5000 and 6000 ARM Mobile & Enterprise 
                        Communication Processors family (64-bit)
 
-	* axxiax86-64 - Axxia x86 Mobile & Enterprise Communication 
-                        Processors family (64-bit)
-
 NOTE: Machines are divided by architecture. By building Linux for
 axxiaarm machine (e.g.), you will build binaries for all available ARM
 targets.
@@ -43,9 +40,6 @@ Processor devices. The 6700 device combines an ARM XLF (lionfish) CPU
 subsystem with up to 32 Cortex-A53 Cores along with advanced
 packet-processing acceleration engines.
 
-Snowridge - based on x86_64 architecture - hardware is not available
-yet, just the simulator.
-
 
 Sources
 =======
@@ -58,16 +52,16 @@ The Intel github.com repositories have the latest. To access the
 private repository, request permission from Intel. Note that the
 private repository is used for development and is not supported.
 
-git clone https://github.com/axxia/meta-axxia_private.git meta-axxia
+   $ git clone https://github.com/axxia/meta-axxia_private.git meta-axxia
 
 The public Intel repository contains changes that have been submitted
 to Yocto, but may not have been accepted yet.
 
-git clone https://github.com/axxia/meta-axxia.git
+   $ git clone https://github.com/axxia/meta-axxia.git
 
 For changes accepted by the Yocto project, use the following.
 
-git clone git://git.yoctoproject.org/meta-axxia
+   $ git clone git://git.yoctoproject.org/meta-axxia
 
 In all cases, use the 'rocko' branch. The commit used as HEAD for a
 particular release will be listed in the release notes.
@@ -77,23 +71,22 @@ Dependencies
 ============
 
 This layer depends on:
+
 Poky
+----
 URI: git://git.yoctoproject.org/poky.git
 branch: rocko
 revision: HEAD
 
 OpenEmbedded
+------------
 URI: https://github.com/openembedded/meta-openembedded.git
 branch: rocko
 revision: HEAD
 
 Yocto Virtualization Layer
+--------------------------
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: rocko
-revision: HEAD
-
-Intel Meta Layer
-URI: git://git.yoctoproject.org/meta-intel
 branch: rocko
 revision: HEAD
 
@@ -102,11 +95,11 @@ Building the meta-axxia BSP layer
 =================================
 
 To begin using the Yocto Project build tools, you must first setup your work
-environment and verify that that you have the required host packages installed
+environment and verify that you have the required host packages installed
 on the system you will be using for builds. 
 
 Check the YOCTO Reference Manual for the system you are using and verify you
-have the minimum required packages installed. 
+have the minimum required packages installed:
 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
 
 1. Create an empty build directory and verify that the partition has
@@ -117,7 +110,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ df -h .  # verify output shows adequate space available
    $ mkdir yocto
    $ cd yocto
-   $ export YOCTO=$HOME/yocto # should also add this to your ~/.bashrc file. 
+   $ export YOCTO=$HOME/yocto # should also add this to your ~/.bashrc file.
 
 2. Clone the Yocto Project build tools (Poky) environment.
 
@@ -130,8 +123,8 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    images for the Axxia specific board types.  See 'Sources' above to
    select the right meta-axxia repository, branch, and version.
 
-   $ cd $YOCTO/poky
-   $ <the git clone command chosen above>
+   $ cd $YOCTO
+   $ (the git clone command chosen above)
    $ cd meta-axxia
    $ git checkout rocko
 
@@ -139,7 +132,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    such as networking. Download the Open Embedded Yocto Project hosted
    repository with the following.
 
-   $ cd $YOCTO/poky
+   $ cd $YOCTO
    $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-openembedded
    $ git checkout rocko
@@ -147,61 +140,52 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
 5. Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
 
+   $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/meta-virtualization
-   $ cd $YOCTO/poky
    $ cd meta-virtualization
    $ git checkout rocko
 
-6. Clone the Intel meta layer. This provides Intel hardware support 
-   metadata which are inherited in axxiax86-64 BSP.
-
-   $ cd $YOCTO/poky
-   $ git clone git://git.yoctoproject.org/meta-intel
-   $ cd meta-intel
-   $ git checkout rocko
-
-7. Create the build directory. The name is optional and will default
+6. Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
    type. For example, we will use axxia.
 
    $ cd $YOCTO
-   $ source poky/meta-axxia/axxia-env
-   $ source poky/oe-init-build-env axxia
+   $ source meta-axxia/axxia-env
+   $ source poky/oe-init-build-env axxia-build
 
-8. Edit the conf/bblayers.conf file
+7. Check the conf/bblayers.conf file and edit if necessary.
 
-   $ pwd (you should be at $YOCTO/axxia)
+   $ pwd (you should be at $YOCTO/axxia-build)
    $ vi conf/bblayers.conf
 
-Edit BBLAYERS variable as follows. Replace references to $YOCTO below with the
-actual value you provided in step 1.
+BBLAYERS variable should have the following content (references to $YOCTO
+below shoud be replaced with the actual value you provided in step 1).
 
    BBLAYERS ?= " \
             $YOCTO/poky/meta \
             $YOCTO/poky/meta-poky \
-            $YOCTO/poky/meta-openembedded/meta-oe \
-            $YOCTO/poky/meta-openembedded/meta-python \
-            $YOCTO/poky/meta-openembedded/meta-networking \
-            $YOCTO/poky/meta-virtualization \
-            $YOCTO/poky/meta-intel \
-            $YOCTO/poky/meta-axxia \
+            $YOCTO/meta-openembedded/meta-oe \
+            $YOCTO/meta-openembedded/meta-networking \
+            $YOCTO/meta-openembedded/meta-python \
+            $YOCTO/meta-virtualization \
+            $YOCTO/meta-axxia \
             "
 
-9. Edit the conf/local.conf file:
+8. Check the conf/local.conf file and edit if necessary.
 
    $ vi conf/local.conf
 
-9.1 Set distribution configuration to have all Axxia specific features.
+8.1 Set distribution configuration to have all Axxia specific features.
 
     DISTRO = "axxia"
 
-9.2 Depending on your processor, set these two options that control
+8.2 Depending on your processor, set these two options that control
     how much parallelism BitBake should use:
 
   BB_NUMBER_THREADS = "12"
   PARALLEL_MAKE = "-j 12"
 
-9.3 Select a specific machine to target the build with:
+8.3 Select a specific machine to target the build with:
 
     NOTE: Machines are divided by architecture. By building Linux for
     axxiaarm machine (e.g.), you will build binaries for all available
@@ -214,11 +198,8 @@ actual value you provided in step 1.
   - Axxia 5600 and 6700 ARM Mobile & Enterprise Communication Processors
     family (Victoria and Waco).
   MACHINE = "axxiaarm64"
-  
-  - Axxia SNR Mobile & Enterprise Communication Processors family.
-  MACHINE = "axxiax86-64"
 
-9.4 Select the root filesystem image compression type (can set
+8.4 Select the root filesystem image compression type (can set
     multiple types):
 
     NOTE: Default types are set for each machine configuration file
@@ -228,7 +209,7 @@ actual value you provided in step 1.
     IMAGE_FSTYPES += "tar.gz"
     IMAGE_FSTYPES += "hddimg"
 
-9.5 Select the kernel to use.
+8.5 Select the kernel to use.
     Meta-axxia is able to build the kernel from 2 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
@@ -240,7 +221,7 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 
    will build from Yocto repos:
-   4.9: http://git.yoctoproject.org/git/linux-yocto-4.9 
+   4.9: http://git.yoctoproject.org/git/linux-yocto-4.9
         standard/axxia/base or standard/preempt-rt/axxia/base branch
 
 b. Private Axxia Github (github.com/axxia)
@@ -256,7 +237,7 @@ b. Private Axxia Github (github.com/axxia)
    4.9: git@github.com:axxia/axxia_yocto_linux_4.9_private.git
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
-9.6 Select the kernel version:
+8.6 Select the kernel version:
 
    for 4.9, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_<preferred-provider>= "4.9%"
@@ -265,7 +246,7 @@ NOTE: <preferred-provider> can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
 
 
-9.7 Customizing the Kernel .config file
+8.7 Customizing the Kernel .config file
 
 NOTE: This options are available only for linux-yocto kernel.
       When building linux-axxia, fixed defconfigs are used instead.
@@ -276,7 +257,7 @@ NOTE: This options are available only for linux-yocto kernel.
       specific to the standard and preempt-rt kernel, you are able to add
       extra kernel fragments by setting the following options:
 
-a. Power management scheme (axxiaarm and axxiaarm64 only):
+a. Power management scheme:
    - POWER_MANAGEMENT = "low-power" (DEFAULT)
      to keep the core low power when is shut down
    - POWER_MANAGEMENT = "full-power"
@@ -284,24 +265,24 @@ a. Power management scheme (axxiaarm and axxiaarm64 only):
    - POWER_MANAGEMENT = "full-power-L2"
      to complete power down the core and L2 cache when is shut down
 
-b. Big-endian or little-endian (axxiaarm and axxiaarm64 only):
+b. Big-endian or little-endian:
 Set the order in which a sequence of bytes are stored in computer memory.
    - BIG_ENDIAN = "no" (DEFAULT)
      Little-endian is the default settings.
    - BIG_ENDIAN = "yes"
      Kernel will be built with CONFIG_CPU_BIG_ENDIAN enabled.
 
-c. Debug options (axxiaarm and axxiaarm64 only):
+c. Debug options:
    - DBG = "no" (DEFAULT)
    - DBG = "yes"
      Will enable options for debug in the Kernel config.
 
-d. SMP options (axxiaarm and axxiaarm64 only):
+d. SMP options:
    - SMP = "yes" (DEFAULT)
    - SMP = "no"
      Will enable or disable SMP related kernel options.
 
-e. Regression testing (axxiaarm and axxiaarm64 only):
+e. Regression testing:
     TESTING = "yes"
 
 f. Chip specific options (for axxiaarm64):
@@ -311,7 +292,7 @@ f. Chip specific options (for axxiaarm64):
 Note: CHIPSET variable is also used for fine tuning (see 7.9) and to choose the
 proper defconfig for Github builds (see 7.7).
 
-9.8 Choose proper fine tuning for each CHIPSET As long as specfic
+8.8 Choose proper fine tuning for each CHIPSET As long as specfic
     tunes are defined, user can choose the proper tune using the CHIPSET
     variable. Features and flags for each tune are defined bellow:
 
@@ -351,22 +332,7 @@ NOTE: For ARMv8, AArch64 state, other availabe tunes are for BE with
           floating-point, thumb and neon extensions. Crypto, thumb and BE are 
           optional.
 
-- for axxiax86-64:
-    - default tune: corei7-64
-    - TUNE_FEATURES = "m64 corei7"
- 
-NOTE: For axxiax86-64 machine, no CHIPSET variable should be set.
-
-9.9 For axxiax86-64 machine (SNR), choose the System where the image will run
-between simulation and emulation:
-
-   for Simics Simulation System (default):
-   RUNTARGET = "simics"
-
-   for Frio FPGA Emulation System:
-   RUNTARGET = "frio"
-
-9.10 Building a 32-bit RootFS for ARMv8 based boards:
+8.9 Building a 32-bit RootFS for ARMv8 based boards:
 For ARM architecture, depending on the machine selected on step 7.2, 
 specific Kernel and RootFS are built for specific boards:
     - axxiaarm: 32-bit Kernel and Rootfs for 5500 board series which have
@@ -386,19 +352,19 @@ If CHIPSET is not set, it will default to 5500 (ARMv7).
 NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel 
       resulting from an axxiaarm64 build.
 
-9.11 Other optional settings for saving disk space and build time:
+8.10 Other optional settings for saving disk space and build time:
    
    DL_DIR = "/<some-shared-location>/downloads"
    SSTATE_DIR = "/<some-shared-location>/sstate-cache
 
-9.12 Examples.
+8.11 Examples.
 
      See http://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html
      for complete documentation on the Yocto build system.
 
      Here are the local.conf files used for open builds.
 
-9.12.1 axxiaarm
+8.12.1 axxiaarm
 
 MACHINE = "axxiaarm"
 CHIPSET = "5500"
@@ -425,7 +391,7 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-9.12.2 axxiaarm64
+8.12.2 axxiaarm64
 
 MACHINE = "axxiaarm64"
 CHIPSET = "X9"
@@ -452,32 +418,8 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-9.12.3 axxiax86-64
-
-MACHINE = "axxiax86-64"
-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
-PREFERRED_VERSION_linux-yocto = "4.9%"
-DISTRO = "axxia"
-RUNTARGET = "simics"
-PACKAGE_CLASSES ?= "package_rpm"
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-PATCHRESOLVE = "noop"
-BB_DISKMON_DIRS = "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    STOPTASKS,/tmp,100M,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K \
-    ABORT,/tmp,10M,1K"
-PACKAGECONFIG_append_pn-qemu-native = " sdl"
-PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
-CONF_VERSION = "1"
-
-10. Select the image type and start the build
-   $ cd $YOCTO/axxia
+9. Select the image type and start the build
+   $ cd $YOCTO/axxia-build
    $ bitbake <image type>
 
 Available root filesystem types:
@@ -498,7 +440,7 @@ Available root filesystem types:
 Once complete the images for the target machine will be available in the output
 directory 'tmp/deploy/images/$MACHINE'.
 
-11. Images generated:
+10. Images generated:
 
 * <image type>-<machine name>.ext2 (rootfs in EXT2 format)
 * <image type>-<machine name>.tar.gz (rootfs in tar+GZIP format)
@@ -512,10 +454,8 @@ NOTE: For axxiaarm64, only Image files are generated, instead of zImage.
 	* fdt.fit-<target name> (DTB in fit image format)
 	* linux.fit-<target name> (Kernel binary in fit image format)
 	* multi.fit-<target name> (Kernel binary + DTB in fit image format)
-* <image type>-<machine name>.hddimg (rootfs in hddimg format - axxiaarmx86-64)
-* <image type>-<machine name>.wic (rootfs in wic format - axxiaarmx86-64)
 
-12. Build and install the SDK:
+11. Build and install the SDK:
 
 In step 9. above, add '-c populate_sdk' to create the SDK install self
 extracting script in tmp/deploy/sdk.  Simply run the poky*.sh script.
@@ -528,9 +468,9 @@ the Linux source will not be available.
 
 After the installation completes, do the following.
 
-12.1 libnl Links
+11.1 libnl Links
 
-At present, no links get created in <sysroot>/usr/lib for the expected
+At present, no links get created in (sysroot)/usr/lib for the expected
 names of the netlink libraries.  DPDK, for example, expects
 libnl-3.so, but the SDK has libnl-3.so.200 (which is a link to the
 actual library, libnl-3.so.200.23.0 etc.).  Fix this as follows.
@@ -541,12 +481,12 @@ ln -s libnl-genl-3.so.200 libnl-genl-3.so
 ln -s libnl-nf-3.so.200 libnl-nf-3.so
 ln -s libnl-route-3.so.200 libnl-route-3.so
 
-12.2 Some Updates for LTTng
+11.2 Some Updates for LTTng
 
 cd $SYSROOT/usr/lib
 sed -i "s|/usr/lib|$SYSROOT/usr/lib|" liblttng-ust.la
 
-12.3 Optional Linux Module Tools Update
+11.3 Optional Linux Module Tools Update
 
 If external Linux modules need to be buildable on multiple versions of
 Linux hosts, and the tools were installed on the most recent version,
@@ -555,17 +495,9 @@ glibc on the Linux host that the SDK install script was executed on
 are expected.  To use an older version, simply do the following on the
 older Linux host.
 
-source <install directory>/environment-setup*
+source (install directory)/environment-setup*
 cd $SYSROOT/usr/src/kernel
 make clean silentoldconfig scripts
-
-12.4 Creating .craff Images for Simics
-
-When in the simics environment, the 'craff' utility should be
-available.  Use 'craff' to create .craff images from the .hddimg
-images as follows.
-
-craff -o <craff image> <Yocto .hddimg>
 
 
 Guidelines for submitting patches
