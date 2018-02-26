@@ -224,6 +224,9 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    4.9: http://git.yoctoproject.org/git/linux-yocto-4.9
         standard/axxia/base or standard/preempt-rt/axxia/base branch
 
+   4.12: http://git.yoctoproject.org/git/linux-yocto-4.12
+        standard/axxia/base or standard/preempt-rt/axxia/base branch
+
 b. Private Axxia Github (github.com/axxia)
 
    for standard
@@ -237,10 +240,17 @@ b. Private Axxia Github (github.com/axxia)
    4.9: git@github.com:axxia/axxia_yocto_linux_4.9_private.git
         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
+   4.12: git@github.com:axxia/axxia_yocto_linux_4.12_private.git
+        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
+
+
 8.6 Select the kernel version:
 
    for 4.9, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_<preferred-provider>= "4.9%"
+
+   for 4.12, depending on PREFERRED_PROVIDER_virtual/kernel
+   PREFERRED_VERSION_<preferred-provider>= "4.12%"
 
 NOTE: <preferred-provider> can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
