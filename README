@@ -63,10 +63,6 @@ For changes accepted by the Yocto project, use the following.
 
    $ git clone git://git.yoctoproject.org/meta-axxia
 
-In all cases, use the 'rocko' branch. The commit used as HEAD for a
-particular release will be listed in the release notes.
-
-
 Dependencies
 ============
 
@@ -247,12 +243,12 @@ b. Private Axxia Github (github.com/axxia)
 8.6 Select the kernel version:
 
    for 4.9, depending on PREFERRED_PROVIDER_virtual/kernel
-   PREFERRED_VERSION_<preferred-provider>= "4.9%"
+   PREFERRED_VERSION_(preferred-provider)= "4.9%"
 
    for 4.12, depending on PREFERRED_PROVIDER_virtual/kernel
-   PREFERRED_VERSION_<preferred-provider>= "4.12%"
+   PREFERRED_VERSION_(preferred-provider)= "4.12%"
 
-NOTE: <preferred-provider> can be linux-yocto, linux-yocto-rt,
+NOTE: (preferred-provider) can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
 
 
@@ -364,8 +360,8 @@ NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel
 
 8.10 Other optional settings for saving disk space and build time:
    
-   DL_DIR = "/<some-shared-location>/downloads"
-   SSTATE_DIR = "/<some-shared-location>/sstate-cache
+   DL_DIR = "/(some-shared-location)/downloads"
+   SSTATE_DIR = "/(some-shared-location)/sstate-cache
 
 8.11 Examples.
 
@@ -430,7 +426,7 @@ CONF_VERSION = "1"
 
 9. Select the image type and start the build
    $ cd $YOCTO/axxia-build
-   $ bitbake <image type>
+   $ bitbake (image type)
 
 Available root filesystem types:
    * axxia-image-small 
@@ -452,18 +448,18 @@ directory 'tmp/deploy/images/$MACHINE'.
 
 10. Images generated:
 
-* <image type>-<machine name>.ext2 (rootfs in EXT2 format)
-* <image type>-<machine name>.tar.gz (rootfs in tar+GZIP format)
-* modules-<machine name>.tgz (modules in tar+GZIP format)
-* zImage and zImage-<machine name> (Linux Kernel binary, in u-boot wrapped 
+* (image type)-(machine name).ext2 (rootfs in EXT2 format)
+* (image type)-(machine name).tar.gz (rootfs in tar+GZIP format)
+* modules-(machine name).tgz (modules in tar+GZIP format)
+* zImage and zImage-(machine name) (Linux Kernel binary, in u-boot wrapped 
 format)
 NOTE: For axxiaarm64, only Image files are generated, instead of zImage.
       Use mkimage to convert them to zImage format. 
-* <target name>.dtb
+* (target name).dtb
 * FIT images, 3 types:
-	* fdt.fit-<target name> (DTB in fit image format)
-	* linux.fit-<target name> (Kernel binary in fit image format)
-	* multi.fit-<target name> (Kernel binary + DTB in fit image format)
+	* fdt.fit-(target name) (DTB in fit image format)
+	* linux.fit-(target name) (Kernel binary in fit image format)
+	* multi.fit-(target name) (Kernel binary + DTB in fit image format)
 
 11. Build and install the SDK:
 
@@ -523,16 +519,16 @@ When creating patches, please use something like:
 	git format-patch -s --subject-prefix='meta-axxia][PATCH' origin
 
 When sending patches, please use something like:
-	git send-email --to meta-lsi@yoctoproject.org --cc <maintainers>
-		      <generated patch>
+	git send-email --to meta-lsi@yoctoproject.org --cc (maintainers)
+		      (generated patch)
 
 
 Maintenance
 ===========
 
-Maintainers: Daniel Dragomir <daniel.dragomir@windriver.com>
-	     Lucian Creanga <lucian.creanga@windriver.com>
-	     John Jacques <john.jacques@intel.com>
+Maintainers: Daniel Dragomir (daniel.dragomir@windriver.com)
+	     Lucian Creanga (lucian.creanga@windriver.com)
+	     John Jacques (john.jacques@intel.com)
 
 Please see the meta-axxia/MAINTAINERS file for more details.
 
