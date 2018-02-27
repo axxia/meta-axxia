@@ -8,12 +8,15 @@ require recipes-kernel/linux/linux-yocto.inc
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
-LINUX_VERSION = "4.9.65"
+LINUX_VERSION = "4.9.82"
 LINUX_KERNEL_TYPE = "standard"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
-KBRANCH = "standard/axxia-dev/base"
-SRCREV_machine = "${AUTOREV}"
+KBRANCH_axxiaarm = "standard/axxia-dev/base"
+SRCREV_machine_axxiaarm = "a4698e4e285f4cb260fffd4116fbca778cddcaa7"
+KBRANCH_axxiaarm64 = "standard/axxia-dev/base"
+SRCREV_machine_axxiaarm64 = "a4698e4e285f4cb260fffd4116fbca778cddcaa7"
+
 KMETA = ""
 
 KREPO_KERNEL = "git://git@github.com/axxia/axxia_yocto_linux_4.9_private.git;protocol=ssh"

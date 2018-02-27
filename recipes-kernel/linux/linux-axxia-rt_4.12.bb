@@ -11,8 +11,11 @@ LINUX_VERSION = "4.12.18"
 LINUX_KERNEL_TYPE = "preempt-rt"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
-KBRANCH = "standard/preempt-rt/axxia/base"
-SRCREV_machine = "${AUTOREV}"
+KBRANCH_axxiaarm = "standard/preempt-rt/axxia-dev/base"
+SRCREV_machine_axxiaarm = "9a9ed85698dc664f0bf2ea0f7212ed7aa1119b88"
+KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia-dev/base"
+SRCREV_machine_axxiaarm64 = "9a9ed85698dc664f0bf2ea0f7212ed7aa1119b88"
+
 KMETA = ""
 
 KREPO_KERNEL = "git://git@github.com/axxia/axxia_yocto_linux_4.12_private.git;protocol=ssh"

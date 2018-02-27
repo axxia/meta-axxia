@@ -7,8 +7,12 @@ DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
 LINUX_VERSION = "4.9.71"
-KBRANCH = "standard/axxia/base"
-SRCREV_machine = "95fe699e8a23c05858255c17b92816b67c37b5ce"
+
+KBRANCH_axxiaarm = "standard/axxia/base"
+SRCREV_machine_axxiaarm = "95fe699e8a23c05858255c17b92816b67c37b5ce"
+KBRANCH_axxiaarm64 = "standard/axxia/base"
+SRCREV_machine_axxiaarm64 = "95fe699e8a23c05858255c17b92816b67c37b5ce"
+
 SRCREV_meta = "688a904c38ecfdc36c23eafc8e93aadc2c537535"
 
 SRC_URI_append = " file://fit"
