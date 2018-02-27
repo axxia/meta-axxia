@@ -27,7 +27,7 @@ SRC_URI = "git://git.yoctoproject.org/linux-yocto-4.9.git;name=machine;branch=${
 require dt/dt-${KARCH}.inc
 require frags/frags-${KARCH}.inc
 
-COMPATIBLE_MACHINE_append = "|axxiaarm|axxiaarm64"
+COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64"
 INSANE_SKIP_kernel-dev = "debug-files"
 
 SMP ?= "yes"

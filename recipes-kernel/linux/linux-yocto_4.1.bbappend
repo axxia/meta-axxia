@@ -22,7 +22,7 @@ SRC_URI_append = " file://fit"
 require dt/dt-${KARCH}.inc
 require frags/frags-${KARCH}.inc
 
-COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64|axxiapowerpc"
+COMPATIBLE_MACHINE_append = "|axxiaarm|axxiaarm64|axxiapowerpc"
 INSANE_SKIP_kernel-dev = "debug-files"
 
 SMP ?= "yes"
