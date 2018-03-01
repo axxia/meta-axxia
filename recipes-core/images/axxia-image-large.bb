@@ -180,6 +180,7 @@ strongswan \
 sudo \
 sysfsutils \
 sysklogd \
+systemd-analyze \
 tar \
 tcl \
 tcpdump \
