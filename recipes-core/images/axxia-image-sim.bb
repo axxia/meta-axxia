@@ -8,29 +8,27 @@ ${CORE_IMAGE_EXTRA_INSTALL} \
 
 IMAGE_INSTALL_append = " \
 boost \
-dhcp-client \
 dhcp-server \
+dhcp-client \
 dmidecode \
 e2fsprogs-resize2fs \
 ethtool \
 expect \
 gdb \
 gdbserver \
-${@base_conditional('MACHINE', 'axxiax86-64', 'iasl', '', d)} \
 inetutils \
 kernel-modules \
 kmod \
 ldd \
 libasan \
+libubsan \
 libgcc \
 libnl \
 libnl-genl \
 libnl-nf \
 libnl-route \
-libpcap \
 libpython2 \
-libpython3 \
-libubsan \
+libpcap \
 libudev \
 lttng-modules \
 lttng-modules-dev \
@@ -41,12 +39,11 @@ lttng-ust-dev \
 netcat \
 netkit-tftp-client \
 net-tools \
-${@base_conditional('MACHINE', 'axxiaarm', '', 'numactl', d)} \
+${@base_conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
 openssh \
 openssh-sftp \
 pciutils \
 perl-module-bigint \
-${@base_conditional('MACHINE', 'axxiax86-64', 'pmtools', '', d)} \
 python-cffi \
 python-core \
 python-dev \
@@ -54,21 +51,9 @@ python-distutils \
 python-modules \
 python-netserver \
 python-nose \
-python3-cffi \
-python3-core \
-python3-dev \
-python3-distutils \
-python3-modules \
-python3-netserver \
-python3-nose \
-readline \
-swig \
-tcl \
 telnetd \
-tk \
 tmux \
-vlan \
-${@base_conditional('MACHINE', 'axxiax86-64', 'axxia-rc-local', '', d)} "
+vlan "
 
 IMAGE_FEATURES += "dev-pkgs"
 

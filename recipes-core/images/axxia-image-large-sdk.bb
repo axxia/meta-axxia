@@ -22,7 +22,7 @@ elfutils-dev \
 libelf \
 libnl-dev \
 libunwind-dev \
-${@base_conditional('MACHINE', 'axxiaarm', '', 'numactl-dev', d)} \
+${@base_conditional('MACHINE', 'axxiaarm64', 'numactl-dev', '', d)} \
 python-dev \
 slang-dev \
 strace-dev \

@@ -27,7 +27,7 @@
 #
 #MACHINE ?= "axxiaarm"
 #MACHINE ?= "axxiaarm64"
-#MACHINE ?= "axxiax86-64"
+#MACHINE ?= "axxiapowerpc"
 #
 # This sets the default machine to be qemux86 if no other machine is selected:
 MACHINE ??= "axxiaarm64"
