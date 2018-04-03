@@ -127,12 +127,20 @@ device-tree-compiler (dtc)
 
 3. Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
-   select the right meta-axxia repository, branch, and version.
+   select the right meta-axxia repository, branch, and version.  Use
+   the 'morty' branch or the tag specified in the release notes.
 
    $ cd $YOCTO
    $ (the git clone command chosen above)
    $ cd meta-axxia
-   $ git checkout tags/snr_delivery11_linux4_9
+
+   If using the 'morty' branch.
+
+   $ git checkout morty
+
+   If using the tag specified in the releases notes.
+
+   $ git checkout tags/(the tag specified in the releases notes)
 
 4. The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
