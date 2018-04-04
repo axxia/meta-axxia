@@ -62,7 +62,6 @@ groff \
 gzip \
 hdparm \
 hostap-utils \
-${@base_conditional('MACHINE', 'axxiax86-64', 'iasl', '', d)} \
 icu \
 inetutils \
 inetutils-telnetd \
@@ -81,40 +80,35 @@ ldd \
 less \
 libaio \
 libasan \
+libubsan \
 libcap \
 libcheck \
 libdaemon \
 libevent \
 libffi \
-libgcc \
 libgcrypt \
 libgpg-error \
 libice \
 libkmod \
 libnfsidmap \
 libnl \
-libnl-genl \
-libnl-nf \
-libnl-route \
 libnss-mdns \
 libogg \
+libpython2 \
 libpam \
 libpcap \
 libpcap-dev \
 libpcre \
-libpython2 \
-libpython3 \
 libsamplerate0 \
 libsm \
 libsndfile1 \
 libtasn1 \
 libtirpc \
 libtool \
-libubsan \
 libudev \
 libunwind \
-libusb-compat \
 libusb1 \
+libusb-compat \
 libxau \
 libxcb \
 libxdmcp \
@@ -138,13 +132,11 @@ modutils-initscripts \
 msmtp \
 mtd-utils \
 ncurses \
-net-tools \
-netkit-tftp-client \
 netbase \
-netcat \
+net-tools \
 nfs-utils \
 nfs-utils-client \
-${@base_conditional('MACHINE', 'axxiaarm', '', 'numactl', d)} \
+${@base_conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
 openssh \
 openssh-sftp \
 openssh-sftp-server \
@@ -160,7 +152,6 @@ ${@base_conditional('MACHINE', 'axxiaarm64', 'perf', '', d)} \
 perl \
 perl-module-bigint \
 pkgconfig \
-${@base_conditional('MACHINE', 'axxiax86-64', 'pmtools', '', d)} \
 popt \
 portmap \
 ppp \
@@ -173,13 +164,6 @@ python-distutils \
 python-modules \
 python-netserver \
 python-nose \
-python3-cffi \
-python3-core \
-python3-dev \
-python3-distutils \
-python3-modules \
-python3-netserver \
-python3-nose \
 quota \
 readline \
 rpcbind \
@@ -194,16 +178,14 @@ stat \
 strace \
 strongswan \
 sudo \
-swig \
 sysfsutils \
 sysklogd \
 tar \
 tcl \
-tcp-wrappers \
 tcpdump \
+tcp-wrappers \
 telnetd \
 time \
-tk \
 tmux \
 tzdata \
 udev \
@@ -221,12 +203,11 @@ wget \
 which \
 wireless-tools \
 wpa-supplicant \
+ypbind-mt \
 yp-tools \
 yp-tools-dev \
-ypbind-mt \
 zip \
 zlib \
-${@base_conditional('MACHINE', 'axxiax86-64', 'axxia-rc-local', '', d)} \
 ${LXC_SUPPORT} "
 
 LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \

@@ -8,15 +8,21 @@ inherit axxia-kernel
 KV = "4.1"
 LINUX_VERSION = "4.1.48"
 
-KBRANCH = "standard/preempt-rt/axxia/base"
-SRCREV_machine = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
-SRCREV_meta = "78e5080885b6c72d436fc14614e575ec0f422c76"
-SRC_URI += "file://fit"
+KBRANCH_axxiaarm = "standard/preempt-rt/axxia/base"
+SRCREV_machine_axxiaarm = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia/base"
+SRCREV_machine_axxiaarm64 = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+KBRANCH_axxiapowerpc = "standard/preempt-rt/axxia/base"
+SRCREV_machine_axxiapowerpc = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+
+SRCREV_meta = "4e12cb8f8e06636f2058ea0ab3096ed38228a88b"
+
+SRC_URI_append = " file://fit"
 
 require dt/dt-${KARCH}.inc
 require frags/frags-${KARCH}.inc
 
-COMPATIBLE_MACHINE = "^axxiaarm$|^axxiaarm64$|^axxiapowerpc$"
+COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64|axxiapowerpc"
 INSANE_SKIP_kernel-dev = "debug-files"
 
 SMP ?= "yes"
