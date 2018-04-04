@@ -10,6 +10,9 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 # Kernel versions: 4.1, 4.9
 PREFERRED_VERSION_linux-yocto-rt = "4.9%"
 
+# Release version should be the tag for meta-axxia from release note (README).
+# RELEASE_VERSION = "" 
+
 BB_NUMBER_THREADS = "12"
 PARALLEL_MAKE = "-j 12"
 
