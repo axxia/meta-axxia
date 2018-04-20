@@ -13,7 +13,7 @@ SRCREV_machine_axxiaarm = "803eeda7b95b15d7b61534767c458ccac4e450e6"
 KBRANCH_axxiaarm64 = "standard/axxia/base"
 SRCREV_machine_axxiaarm64 = "803eeda7b95b15d7b61534767c458ccac4e450e6"
 
-SRCREV_meta = "e10da92d2984c77ed67be9722e4a39af9d025e2f"
+SRCREV_meta = "83c0097ff3955126cae27bf11f977869b78922d6"
 
 SRC_URI_append = " file://fit"
 
