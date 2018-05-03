@@ -9,11 +9,11 @@ KV = "4.12"
 LINUX_VERSION = "4.12.22"
 
 KBRANCH_axxiaarm = "standard/axxia/base"
-SRCREV_machine_axxiaarm = "803eeda7b95b15d7b61534767c458ccac4e450e6"
+SRCREV_machine_axxiaarm = "d8159f7179b59d8234273df99ef44a44b42e74cc"
 KBRANCH_axxiaarm64 = "standard/axxia/base"
-SRCREV_machine_axxiaarm64 = "803eeda7b95b15d7b61534767c458ccac4e450e6"
+SRCREV_machine_axxiaarm64 = "d8159f7179b59d8234273df99ef44a44b42e74cc"
 
-SRCREV_meta = "83c0097ff3955126cae27bf11f977869b78922d6"
+SRCREV_meta = "8359926e32b1f6a28734f4fc33f22c4beda8af38"
 
 SRC_URI_append = " file://fit"
 
