@@ -23,6 +23,7 @@ boost-dev \
 busybox \
 busybox-udhcpc \
 bzip2 \
+connman \
 coreutils \
 cpio \
 cracklib \
