@@ -6,16 +6,16 @@ ${THISDIR}\
 inherit axxia-kernel
 
 KV = "4.1"
-LINUX_VERSION = "4.1.48"
+LINUX_VERSION = "4.1.52"
 
 KBRANCH_axxiaarm = "standard/preempt-rt/axxia/base"
-SRCREV_machine_axxiaarm = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+SRCREV_machine_axxiaarm = "76224309c35a0cd07c4871caf29df84b66683859"
 KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia/base"
-SRCREV_machine_axxiaarm64 = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+SRCREV_machine_axxiaarm64 = "76224309c35a0cd07c4871caf29df84b66683859"
 KBRANCH_axxiapowerpc = "standard/preempt-rt/axxia/base"
-SRCREV_machine_axxiapowerpc = "7aec10d695230d2bd7fec3c1e86a4305288cfe82"
+SRCREV_machine_axxiapowerpc = "76224309c35a0cd07c4871caf29df84b66683859"
 
-SRCREV_meta = "4e12cb8f8e06636f2058ea0ab3096ed38228a88b"
+SRCREV_meta = "7c153e20d0ebb26db087d508f2c2be4a5a69a870"
 
 SRC_URI_append = " file://fit"
 
