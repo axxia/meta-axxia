@@ -8,16 +8,16 @@ require recipes-kernel/linux/linux-yocto.inc
 inherit axxia-kernel
 
 KV = "4.1"
-LINUX_VERSION = "4.1.49"
+LINUX_VERSION = "4.1.52"
 LINUX_KERNEL_TYPE = "preempt-rt"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 KBRANCH_axxiaarm = "standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm = "98ae380a61d1fc72141e3e12f3720de0e730a896"
+SRCREV_machine_axxiaarm = "e07e4d53a0d7a65c84890c77e05138293eda2d75"
 KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "98ae380a61d1fc72141e3e12f3720de0e730a896"
+SRCREV_machine_axxiaarm64 = "e07e4d53a0d7a65c84890c77e05138293eda2d75"
 KBRANCH_axxiapowerpc = "standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiapowerpc = "98ae380a61d1fc72141e3e12f3720de0e730a896"
+SRCREV_machine_axxiapowerpc = "e07e4d53a0d7a65c84890c77e05138293eda2d75"
 
 KMETA = ""
 
