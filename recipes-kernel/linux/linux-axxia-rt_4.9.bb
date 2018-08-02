@@ -8,14 +8,14 @@ require recipes-kernel/linux/linux-yocto.inc
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.9"
-LINUX_VERSION = "4.9.82"
+LINUX_VERSION = "4.9.113"
 LINUX_KERNEL_TYPE = "preempt-rt"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 KBRANCH_axxiaarm = "standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm = "39a619e8cbbeb0c505f1d2bd5ee0f806d226731d"
+SRCREV_machine_axxiaarm = "637ddfd0743762118a90e8c4963302cfe8f73392"
 KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "39a619e8cbbeb0c505f1d2bd5ee0f806d226731d"
+SRCREV_machine_axxiaarm64 = "637ddfd0743762118a90e8c4963302cfe8f73392"
 
 KMETA = ""
 
