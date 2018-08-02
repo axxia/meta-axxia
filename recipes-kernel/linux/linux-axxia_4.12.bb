@@ -1,20 +1,21 @@
 FILESEXTRAPATHS_prepend := "\
 ${THISDIR}\
-:${THISDIR}/conf/axxia-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
+:${THISDIR}/conf/axxia-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}\
+:${THISDIR}/conf/axxia-${KV}/${MACHINE}/${CHIPSET}/${LINUX_KERNEL_TYPE}:"
 
 require recipes-kernel/linux/linux-yocto.inc
 
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.12"
-LINUX_VERSION = "4.12.18"
+LINUX_VERSION = "4.12.26"
 LINUX_KERNEL_TYPE = "standard"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 KBRANCH_axxiaarm = "standard/axxia-dev/base"
-SRCREV_machine_axxiaarm = "b5bd65eede6348b686384be326d758b69529c6ac"
+SRCREV_machine_axxiaarm = "db680c4f8dd79b99452451f4a6c93f763448aae2"
 KBRANCH_axxiaarm64 = "standard/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "b5bd65eede6348b686384be326d758b69529c6ac"
+SRCREV_machine_axxiaarm64 = "db680c4f8dd79b99452451f4a6c93f763448aae2"
 
 KMETA = ""
 
