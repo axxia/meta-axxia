@@ -8,17 +8,17 @@ require recipes-kernel/linux/linux-yocto.inc
 inherit axxia-kernel
 
 KV = "4.9"
-LINUX_VERSION = "4.9.71"
+LINUX_VERSION = "4.9.113"
 LINUX_KERNEL_TYPE = "standard"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 KBRANCH_axxiaarm = "standard/axxia/base"
-SRCREV_machine_axxiaarm = "95fe699e8a23c05858255c17b92816b67c37b5ce"
+SRCREV_machine_axxiaarm = "71e0f060cfdcc3a916aab08190acd82098e70a4a"
 KBRANCH_axxiaarm64 = "standard/axxia/base"
-SRCREV_machine_axxiaarm64 = "95fe699e8a23c05858255c17b92816b67c37b5ce"
+SRCREV_machine_axxiaarm64 = "71e0f060cfdcc3a916aab08190acd82098e70a4a"
 
 KMETA = "kernel-meta"
-SRCREV_meta = "688a904c38ecfdc36c23eafc8e93aadc2c537535"
+SRCREV_meta = "5e993963afb54bdc82a02077c29ecdbc0b12368e"
 
 SRC_URI = "git://git.yoctoproject.org/linux-yocto-4.9.git;name=machine;branch=${KBRANCH}; \
            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.9;destsuffix=${KMETA} \
