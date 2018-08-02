@@ -6,7 +6,7 @@ require recipes-kernel/linux/linux-yocto.inc
 inherit axxia-kernel
 
 KV = "4.1"
-LINUX_VERSION = "4.1.42"
+LINUX_VERSION = "4.1.52"
 LINUX_KERNEL_TYPE = "standard"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
