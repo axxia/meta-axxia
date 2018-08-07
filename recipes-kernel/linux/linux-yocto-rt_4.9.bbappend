@@ -9,9 +9,9 @@ KV = "4.9"
 LINUX_VERSION = "4.9.113"
 
 KBRANCH_axxiaarm = "standard/preempt-rt/axxia/base"
-SRCREV_machine_axxiaarm = "1894b766d44af68b1238fbf513a067bde72462dc"
+SRCREV_machine_axxiaarm = "ed3ef33cadb612cb45faab048ad8771e8f13d110"
 KBRANCH_axxiaarm64 = "standard/preempt-rt/axxia/base"
-SRCREV_machine_axxiaarm64 = "1894b766d44af68b1238fbf513a067bde72462dc"
+SRCREV_machine_axxiaarm64 = "ed3ef33cadb612cb45faab048ad8771e8f13d110"
 
 SRCREV_meta = "5e993963afb54bdc82a02077c29ecdbc0b12368e"
 
