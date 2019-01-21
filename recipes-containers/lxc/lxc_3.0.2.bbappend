@@ -1,6 +1,4 @@
-PACKAGECONFIG[python3] = "--enable-python,--disable-python,python3,"
-
-pkg_postinst_${PN}-networking_append() {
+pkg_postinst_ontarget_${PN}-networking_append() {
 	# set static ip for lxcbr0 bridge
 	LXCBR_IP="iface lxcbr0 inet static\n        address 10.0.3.1\n        netmask 255.255.255.0"
 	sed -i "s/iface lxcbr0 inet dhcp/${LXCBR_IP}/g" /etc/network/interfaces
