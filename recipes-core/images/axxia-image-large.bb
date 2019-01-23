@@ -13,7 +13,6 @@ base-files \
 base-passwd \
 bash \
 bc \
-beecrypt \
 bind \
 bind-utils \
 bison \
@@ -62,7 +61,6 @@ grep \
 groff \
 gzip \
 hdparm \
-hostap-utils \
 icu \
 inetutils \
 inetutils-telnetd \
@@ -72,6 +70,7 @@ iproute2 \
 iptables \
 iputils \
 irda-utils \
+iw \
 kdump \
 kernel-modules \
 kexec \
@@ -91,7 +90,6 @@ libgcrypt \
 libgpg-error \
 libice \
 libkmod \
-libnfsidmap \
 libnl \
 libnss-mdns \
 libogg \
@@ -128,7 +126,6 @@ lzo \
 man \
 man-pages \
 mdadm \
-mktemp \
 modutils-initscripts \
 msmtp \
 mtd-utils \
@@ -137,19 +134,18 @@ netbase \
 net-tools \
 nfs-utils \
 nfs-utils-client \
-${@base_conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
+${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
 openssh \
 openssh-sftp \
 openssh-sftp-server \
 openssl \
 opkg \
 opkg-arch-config \
-ossp-uuid \
 packagegroup-core-boot \
 packagegroup-core-buildessential \
 parted \
 pciutils \
-${@base_conditional('MACHINE', 'axxiaarm64', 'perf', '', d)} \
+${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'perf', '', d)} \
 perl \
 perl-module-bigint \
 pkgconfig \
@@ -174,7 +170,6 @@ setserial \
 shadow \
 shadow-securetty \
 sqlite3 \
-stat \
 strace \
 strongswan \
 sudo \
@@ -201,8 +196,6 @@ vlan \
 watchdog \
 wget \
 which \
-wireless-tools \
-wpa-supplicant \
 ypbind-mt \
 yp-tools \
 yp-tools-dev \
@@ -210,8 +203,15 @@ zip \
 zlib \
 ${LXC_SUPPORT} "
 
-LXC_SUPPORT = "xz gnupg cgroup-lite libvirt libvirt-libvirtd \
-	       lxc lxc-setup lxc-templates "
+LXC_SUPPORT ?= " \
+cgroup-lite \
+gnupg \
+libvirt \
+libvirt-libvirtd \
+lxc \
+lxc-networking \
+lxc-templates \
+xz"
 
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 TOOLCHAIN_TARGET_TASK_append = " libc-staticdev"

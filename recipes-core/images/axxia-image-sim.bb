@@ -40,7 +40,7 @@ lttng-ust \
 lttng-ust-dev \
 netcat \
 netkit-tftp-client \
-${@base_conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
+${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'numactl', '', d)} \
 openssh \
 openssh-sftp \
 pciutils \
