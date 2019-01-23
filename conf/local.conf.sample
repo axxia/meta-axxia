@@ -7,7 +7,7 @@ CHIPSET = "X9"
 # Kernel providers: linux-yocto, linux-yocto-rt, linux-axxia, linux-axxia-rt
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 
-# Kernel versions: 4.12 and 4.18
+# Kernel versions: 4.12 and 4.19
 PREFERRED_VERSION_linux-yocto-rt = "4.12%"
 
 BB_NUMBER_THREADS = "12"

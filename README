@@ -71,19 +71,19 @@ This layer depends on:
 Poky
 ----
 URI: git://git.yoctoproject.org/poky.git
-branch: rocko
+branch: thud
 revision: HEAD
 
 OpenEmbedded
 ------------
 URI: https://github.com/openembedded/meta-openembedded.git
-branch: rocko
+branch: thud
 revision: HEAD
 
 Yocto Virtualization Layer
 --------------------------
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: rocko
+branch: thud
 revision: HEAD
 
 
@@ -113,7 +113,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/poky.git
    $ cd poky
-   $ git checkout rocko
+   $ git checkout thud
 
 3. Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
@@ -122,7 +122,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ (the git clone command chosen above)
    $ cd meta-axxia
-   $ git checkout rocko
+   $ git checkout thud
 
 4. The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
@@ -131,7 +131,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-openembedded
-   $ git checkout rocko
+   $ git checkout thud
 
 5. Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
@@ -139,7 +139,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/meta-virtualization
    $ cd meta-virtualization
-   $ git checkout rocko
+   $ git checkout thud
 
 6. Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
@@ -162,6 +162,7 @@ below shoud be replaced with the actual value you provided in step 1).
             $YOCTO/poky/meta-poky \
             $YOCTO/meta-openembedded/meta-oe \
             $YOCTO/meta-openembedded/meta-networking \
+            $YOCTO/meta-openembedded/meta-filesystems \
             $YOCTO/meta-openembedded/meta-python \
             $YOCTO/meta-virtualization \
             $YOCTO/meta-axxia \
@@ -217,11 +218,11 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 
    will build from Yocto repos:
-   4.9: http://git.yoctoproject.org/git/linux-yocto-4.9
-        standard/axxia/base or standard/preempt-rt/axxia/base branch
-
    4.12: http://git.yoctoproject.org/git/linux-yocto-4.12
-        standard/axxia/base or standard/preempt-rt/axxia/base branch
+         standard/axxia/base or standard/preempt-rt/axxia/base branch
+
+   4.19: http://git.yoctoproject.org/git/linux-yocto
+         v4.19/standard/axxia or v4.19/standard/preempt-rt/axxia branch
 
 b. Private Axxia Github (github.com/axxia)
 
@@ -233,20 +234,20 @@ b. Private Axxia Github (github.com/axxia)
 
    will build kernel from GitHub private repos (require authentication with
    public key):
-   4.9: git@github.com:axxia/axxia_yocto_linux_4.9_private.git
-        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
-
    4.12: git@github.com:axxia/axxia_yocto_linux_4.12_private.git
-        standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
+         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
 
+   4.19: git@github.com:axxia/linux-yocto_private.git
+         v4.19/standard/axxia-dev/base or v4.19/standard/preempt-rt/axxia-dev/base branch
 
 8.6 Select the kernel version:
 
-   for 4.9, depending on PREFERRED_PROVIDER_virtual/kernel
-   PREFERRED_VERSION_(preferred-provider)= "4.9%"
-
    for 4.12, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_(preferred-provider)= "4.12%"
+
+
+   for 4.19, depending on PREFERRED_PROVIDER_virtual/kernel
+   PREFERRED_VERSION_(preferred-provider)= "4.19%"
 
 NOTE: (preferred-provider) can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
@@ -259,7 +260,7 @@ NOTE: This options are available only for linux-yocto kernel.
 
       When building the kernel from the Yocto repositories, the final
       .config is built using configuration fragments. Otherwise, when
-      building from axxiagithub, an defconfig is used.  Besides the options
+      building from axxiagithub, an defconfig is used. Besides the options
       specific to the standard and preempt-rt kernel, you are able to add
       extra kernel fragments by setting the following options:
 
@@ -378,7 +379,7 @@ SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto = "4.9%"
+PREFERRED_VERSION_linux-yocto = "4.12%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
@@ -405,7 +406,7 @@ SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto-rt = "4.9%"
+PREFERRED_VERSION_linux-yocto-rt = "4.12%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
@@ -527,7 +528,6 @@ Maintenance
 ===========
 
 Maintainers: Daniel Dragomir (daniel.dragomir@windriver.com)
-	     Lucian Creanga (lucian.creanga@windriver.com)
 	     John Jacques (john.jacques@intel.com)
 
 Please see the meta-axxia/MAINTAINERS file for more details.
