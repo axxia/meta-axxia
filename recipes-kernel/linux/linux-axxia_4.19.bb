@@ -10,14 +10,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 KV = "4.19"
-LINUX_VERSION = "4.19.8"
+LINUX_VERSION = "4.19.19"
 LINUX_KERNEL_TYPE = "standard"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 KBRANCH_axxiaarm = "v4.19/standard/axxia-dev/base"
-SRCREV_machine_axxiaarm = "b66feb8994f99411c5140c2a760d4309d1f1804e"
+SRCREV_machine_axxiaarm = "f76c98f8f13c03777f806c2b51c4f5c7bbc18171"
 KBRANCH_axxiaarm64 = "v4.19/standard/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "b66feb8994f99411c5140c2a760d4309d1f1804e"
+SRCREV_machine_axxiaarm64 = "f76c98f8f13c03777f806c2b51c4f5c7bbc18171"
 
 KMETA = ""
 
