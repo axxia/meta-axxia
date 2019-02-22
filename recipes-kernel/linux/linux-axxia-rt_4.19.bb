@@ -14,10 +14,10 @@ LINUX_VERSION = "4.19.19"
 LINUX_KERNEL_TYPE = "preempt-rt"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
-KBRANCH_axxiaarm = "v4.19/standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm = "08796f579f9d5c14268b94292ee25f72e787ed86"
-KBRANCH_axxiaarm64 = "v4.19/standard/preempt-rt/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "08796f579f9d5c14268b94292ee25f72e787ed86"
+KBRANCH_axxiaarm = "v4.19/standard/preempt-rt/axxia-dev/base-3059029"
+SRCREV_machine_axxiaarm = "9ccc5e460522b8888a3f2d15c28675df2e029b74"
+KBRANCH_axxiaarm64 = "v4.19/standard/preempt-rt/axxia-dev/base-3059029"
+SRCREV_machine_axxiaarm64 = "9ccc5e460522b8888a3f2d15c28675df2e029b74"
 
 KMETA = ""
 
