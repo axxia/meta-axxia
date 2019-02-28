@@ -1,7 +1,7 @@
 FILESEXTRAPATHS_prepend := "\
 ${THISDIR}\
-:${THISDIR}/conf/yocto-${KV}/${MACHINE}/common\
-:${THISDIR}/conf/yocto-${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
+:${THISDIR}/frags/${KV}/${MACHINE}/common\
+:${THISDIR}/frags/${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 require recipes-kernel/linux/linux-yocto.inc
 
