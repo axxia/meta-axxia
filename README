@@ -255,16 +255,29 @@ NOTE: (preferred-provider) can be linux-yocto, linux-yocto-rt,
 
 8.7 Customizing the Kernel .config file
 
-NOTE: This options are available only for linux-yocto kernel.
-      When building linux-axxia, fixed defconfigs are used instead.
+NOTE: For linux-axxia (kernel from the Github repositories), defconfigs
+      from kernel source tree are used to generate the final .config.
 
-      When building the kernel from the Yocto repositories, the final
-      .config is built using configuration fragments. Otherwise, when
-      building from axxiagithub, an defconfig is used. Besides the options
-      specific to the standard and preempt-rt kernel, you are able to add
-      extra kernel fragments by setting the following options:
+      For linux-yocto (kernel from the Yocto repositories), configuration
+      fragments from yocto-kernel-cache repository and from meta layer are
+      used to generate the final .config.
 
-a. Power management scheme:
+      Besides the options specific to the standard and preempt-rt kernel,
+      you are able to add extra customizations to the .config by setting the
+      following options:
+
+a. Debug options (axxia and yocto):
+   - DBG = "no" (DEFAULT)
+   - DBG = "yes"
+     Will enable options for debug in the Kernel config.
+
+b. Chip specific options (axxia and yocto):
+    CHIPSET = "X9" -> add X9 specific kernel options
+    CHIPSET = "XLF" -> add XLF specific kernel options
+
+Note: CHIPSET variable is also used for fine tuning (see 8.9).
+
+c. Power management scheme (yocto only):
    - POWER_MANAGEMENT = "low-power" (DEFAULT)
      to keep the core low power when is shut down
    - POWER_MANAGEMENT = "full-power"
@@ -272,32 +285,20 @@ a. Power management scheme:
    - POWER_MANAGEMENT = "full-power-L2"
      to complete power down the core and L2 cache when is shut down
 
-b. Big-endian or little-endian:
+d. Big-endian or little-endian (yocto only):
 Set the order in which a sequence of bytes are stored in computer memory.
    - BIG_ENDIAN = "no" (DEFAULT)
      Little-endian is the default settings.
    - BIG_ENDIAN = "yes"
      Kernel will be built with CONFIG_CPU_BIG_ENDIAN enabled.
 
-c. Debug options:
-   - DBG = "no" (DEFAULT)
-   - DBG = "yes"
-     Will enable options for debug in the Kernel config.
-
-d. SMP options:
+e. SMP options (yocto only):
    - SMP = "yes" (DEFAULT)
    - SMP = "no"
      Will enable or disable SMP related kernel options.
 
-e. Regression testing:
+f. Regression testing (yocto only):
     TESTING = "yes"
-
-f. Chip specific options (for axxiaarm64):
-    CHIPSET = "X9" -> add X9 specific kernel options
-    CHIPSET = "XLF" -> add XLF specific kernel options
-
-Note: CHIPSET variable is also used for fine tuning (see 7.9) and to choose the
-proper defconfig for Github builds (see 7.7).
 
 8.8 Choose proper fine tuning for each CHIPSET As long as specfic
     tunes are defined, user can choose the proper tune using the CHIPSET
