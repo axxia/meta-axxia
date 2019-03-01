@@ -1,44 +1,20 @@
-FILESEXTRAPATHS_prepend := "\
-${THISDIR}\
-:${THISDIR}/frags/${KV}/${MACHINE}/common\
-:${THISDIR}/frags/${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
-
-require recipes-kernel/linux/linux-yocto.inc
+require linux-yocto.inc
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
-SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;name=machine;branch=${KBRANCH}; \
-           git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.12;destsuffix=${KMETA}"
-
-DEPENDS += "u-boot-mkimage-native dtc-native"
+SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=machine \
+           git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.19;destsuffix=${KMETA} \
+           file://fit"
 
 KV = "4.19"
 LINUX_VERSION = "4.19.14"
-
-PV = "${LINUX_VERSION}+git${SRCPV}"
-
-KMETA = "kernel-meta"
-KCONF_BSP_AUDIT_LEVEL = "2"
+LINUX_KERNEL_TYPE = "preempt-rt"
 
 KBRANCH_axxiaarm = "v4.19/standard/preempt-rt/base"
 SRCREV_machine_axxiaarm = "7a0b04e5a8d036cd9dcc6ee64a838e8d8d5cdd56"
 KBRANCH_axxiaarm64 = "v4.19/standard/preempt-rt/base"
 SRCREV_machine_axxiaarm64 = "7a0b04e5a8d036cd9dcc6ee64a838e8d8d5cdd56"
 
-SRCREV_meta = "70d33ded25747f73381baff8d8758e86967e4ee2"
+SRCREV_meta = "41fe45f7c5e69f6ec26c657fea16c459544042cf"
 
-SRC_URI_append = " file://fit"
-
-require dt/dt-${KARCH}.inc
 require frags.inc
-
-COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64"
-INSANE_SKIP_kernel-dev = "debug-files"
-
-SMP ?= "yes"
-POWER_MANAGEMENT ?= "low-power"
-CHIPSET ?= "5500"
-BIG_ENDIAN ?= "no"
-DBG ?= "no"
-TESTING ?= "no"
-KERNEL_EXTRA_FEATURES = ""
