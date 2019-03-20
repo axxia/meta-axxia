@@ -14,7 +14,11 @@ tools-testapps \
 debug-tweaks \
 ssh-server-openssh"
 
-IMAGE_INSTALL += "kernel-devsrc"
+IMAGE_INSTALL += " \
+autoconf \
+kernel-devsrc \
+rpcsvc-proto \
+"
 
 TOOLCHAIN_TARGET_TASK_append = " \
 binutils-staticdev \
