@@ -7,8 +7,8 @@ LINUX_VERSION = "4.19.19"
 LINUX_KERNEL_TYPE = "standard"
 
 KBRANCH_axxiaarm = "v4.19/standard/axxia-dev/base"
-SRCREV_machine_axxiaarm = "fb47c24b54b2cdee0f0697eebc2ce5e7933b3f8b"
+SRCREV_machine_axxiaarm = "b160f406a379121a974017db375f44955726806f"
 KBRANCH_axxiaarm64 = "v4.19/standard/axxia-dev/base"
-SRCREV_machine_axxiaarm64 = "fb47c24b54b2cdee0f0697eebc2ce5e7933b3f8b"
+SRCREV_machine_axxiaarm64 = "b160f406a379121a974017db375f44955726806f"
 
 KREPO_KERNEL = "git://git@github.com/axxia/linux-yocto_private.git;protocol=ssh"
