@@ -1,4 +1,5 @@
 do_install_append() {
+    (
     cd ${S}
     # copy all Kbuild and *.mk files for "clean" target
     cp --parents $(find  -type f -name "Kbuild*" -o -name "*.mk") $kerneldir/build
@@ -21,6 +22,13 @@ do_install_append() {
     cp -a --parents arch/x86/lib/* $kerneldir/build/
     cp -a --parents arch/x86/include/asm/* $kerneldir/build/
     cp -a --parents arch/x86/tools/gen-insn-attr-x86.awk $kerneldir/build/
+    )
+
+    (
+    cd ${B}
+    # copy all the header files included by Linux kernel headers
+    cp --parents $(find -type f -name "*.h") $kerneldir/build
+    )
 
     # change path in INCLUDES for some headers from HOSTARCH such as orc_types.h
     sed -i "s@(ARCH)\/include@(HOSTARCH)\/include@g" \
