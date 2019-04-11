@@ -18,6 +18,7 @@ expect \
 gdb \
 gdbserver \
 inetutils \
+kernel-dev \
 kernel-modules \
 kmod \
 ldd \

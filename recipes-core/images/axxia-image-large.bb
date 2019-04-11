@@ -71,6 +71,7 @@ iputils \
 irda-utils \
 iw \
 kdump \
+kernel-dev \
 kernel-modules \
 kexec \
 kexec-tools \

@@ -13,6 +13,7 @@ dhcp-client \
 libgcc \
 inetutils \
 gdbserver \
+kernel-dev \
 kernel-modules \
 libasan \
 libubsan "
