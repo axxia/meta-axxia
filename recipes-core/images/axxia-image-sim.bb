@@ -58,8 +58,6 @@ vlan "
 
 IMAGE_FEATURES += "dev-pkgs"
 
-IMAGE_LINGUAS = " "
-
 LICENSE = "MIT"
 
 inherit core-image
