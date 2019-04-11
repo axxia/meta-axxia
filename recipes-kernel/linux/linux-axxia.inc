@@ -6,6 +6,8 @@ DEPENDS += "u-boot-mkimage-native dtc-native"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
+LINUX_VERSION_EXTENSION = "-axxia-${LINUX_KERNEL_TYPE}"
+
 KMETA = ""
 
 SRC_URI = "${KREPO_KERNEL};name=machine;branch=${KBRANCH} \

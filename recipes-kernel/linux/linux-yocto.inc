@@ -9,6 +9,8 @@ DEPENDS += "u-boot-mkimage-native dtc-native"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
+LINUX_VERSION_EXTENSION = "-yocto-axxia-${LINUX_KERNEL_TYPE}"
+
 KMETA = "kernel-meta"
 KCONF_BSP_AUDIT_LEVEL = "2"
 
