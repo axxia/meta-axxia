@@ -87,6 +87,9 @@ DISTRO = "axxia"
 # useful to most new users.
 # DISTRO ?= "poky-bleeding"
 
+# Release version should be the released tag for meta-axxia
+# RELEASE_VERSION = ""
+
 #
 # Package Management configuration
 #
