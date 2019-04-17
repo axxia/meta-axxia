@@ -46,6 +46,11 @@ do_kernel_metadata_prepend() {
     )
 }
 
+do_configure_append() {
+	sed -i s@UTS_VERSION=\"\#\$VERSION\"@UTS_VERSION=\"${RELEASE_VERSION}\ \#\$VERSION\"@g \
+	       ${STAGING_KERNEL_DIR}/scripts/mkcompile_h
+}
+
 kernel_do_deploy_append() {
 	install -d ${DEPLOYDIR}
 	install -m 0644 ${KBUILD_OUTPUT}/System.map \
