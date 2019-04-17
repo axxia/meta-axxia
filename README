@@ -211,7 +211,7 @@ below shoud be replaced with the actual value you provided in step 1).
     IMAGE_FSTYPES += "hddimg"
 
 8.6 Select the kernel to use.
-    Meta-axxia is able to build the kernel from 2 sources:
+    Meta-axxia is able to build the kernel from 3 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
 
@@ -244,6 +244,20 @@ b. Private Axxia Github (github.com/axxia)
    4.19: git@github.com:axxia/linux-yocto_private.git
          v4.19/standard/axxia-dev/base or v4.19/standard/preempt-rt/axxia-dev/base branch
 
+c. Local Kernel repositories (development purpose)
+
+   PREFERRED_PROVIDER_virtual/kernel = "linux-local"
+
+   To use a local kernel repository, you also need to add in local.conf
+   or to ajust directly in recipes-kernel/linux/linux-local.bb recipe:
+
+   LOCAL_KERNEL_PATH = "(path-to-local-kernel-repository)"
+   LOCAL_KERNEL_BRANCH = "(kernel-branch)"
+
+   NOTE: All changes should be committed in the local kernel.
+   NOTE: Full defconfig should be copied in recipes-kernel/linux,
+         besides linux-local.bb recipe.
+
 8.7 Select the kernel version:
 
    for 4.12, depending on PREFERRED_PROVIDER_virtual/kernel
@@ -255,7 +269,7 @@ b. Private Axxia Github (github.com/axxia)
 
 NOTE: (preferred-provider) can be linux-yocto, linux-yocto-rt,
       linux-axxia, linux-axxia-rt. See  9.5.
-
+NOTE: No preferred version should be set for linux-local provider.
 
 8.8 Customizing the Kernel .config file
 
