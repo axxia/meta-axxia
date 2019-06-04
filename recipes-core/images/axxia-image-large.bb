@@ -53,6 +53,8 @@ gawk \
 gdb \
 gdbserver \
 gettext \
+gfortran \
+gfortran-symlinks \
 glib-2.0 \
 gmp \
 gnutls \
@@ -87,6 +89,9 @@ libdaemon \
 libevent \
 libffi \
 libgcrypt \
+libgfortran \
+libgfortran-dev \
+libgfortran-dbg \
 libgpg-error \
 libice \
 libkmod \
