@@ -71,20 +71,20 @@ This layer depends on:
 Poky
 ----
 URI: git://git.yoctoproject.org/poky.git
-branch: thud
-revision: cdd4a52578f4f1b79b3fc2c92aa4434b99efd91c
+branch: warrior
+revision: 01b8a8b54bc569e5ef3f5e6fc6abcee365ab25d9
 
 OpenEmbedded
 ------------
 URI: https://github.com/openembedded/meta-openembedded.git
-branch: thud
-revision: 9b3b907f30b0d5b92d58c7e68289184fda733d3e
+branch: warrior
+revision: 8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0
 
 Yocto Virtualization Layer
 --------------------------
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: thud
-revision: bbc38dc9d6d02e73c08df289bb22a292c2264e9b
+branch: warrior
+revision: 2c6f451aa2b954c0cab2052d4f4635618050f648
 
 
 Building the meta-axxia BSP layer
@@ -113,7 +113,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/poky.git
    $ cd poky
-   $ git checkout thud
+   $ git checkout warrior
 
 3. Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
@@ -122,7 +122,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ (the git clone command chosen above)
    $ cd meta-axxia
-   $ git checkout thud
+   $ git checkout warrior
 
 4. The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
@@ -131,7 +131,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone https://github.com/openembedded/meta-openembedded.git
    $ cd meta-openembedded
-   $ git checkout thud
+   $ git checkout warrior
 
 5. Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
@@ -139,7 +139,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/meta-virtualization
    $ cd meta-virtualization
-   $ git checkout thud
+   $ git checkout warrior
 
 6. Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
