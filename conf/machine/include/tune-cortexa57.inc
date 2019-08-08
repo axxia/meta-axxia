@@ -1,4 +1,4 @@
-require conf/machine/include/arm/arch-armv8a.inc
+require conf/machine/include/arm/arch-armv8a-axxia.inc
 
 TUNEVALID[cortexa57] = "Enable Cortex-A57 specific processor optimizations"
 TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'cortexa57', bb.utils.contains('TUNE_FEATURES', [ 'crypto', 'aarch64' ], ' -mcpu=cortex-a57+crypto', ' -mcpu=cortex-a57', d), '', d)}"
