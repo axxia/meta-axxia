@@ -457,11 +457,7 @@ Available root filesystem types:
      An image used in simulation.
 
    * axxia-image-large
-     A more complete image.
-
-   * axxia-image-large-sdk
-     Image that includes everything within axxia-image-large plus meta-toolchain, 
-     development headers and libraries to form a standalone SDK.
+     A more complete image including native tool chain and kernel source.
 
 Once complete the images for the target machine will be available in the output
 directory 'tmp/deploy/images/$MACHINE'.
@@ -489,7 +485,7 @@ To set up the environment to use the tools, source environment-setup*
 in the install directory.
 
 Note that to include the Linux source (to build external modules), use
-'bitbake axxia-image-large-sdk -c populate_sdk'.  For other targets,
+'bitbake axxia-image-large -c populate_sdk'.  For other targets,
 the Linux source will not be available.
 
 After the installation completes, do the following.

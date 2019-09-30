@@ -8,6 +8,7 @@ IMAGE_INSTALL = " \
 acl \
 at \
 attr \
+autoconf \
 autofs \
 base-files \
 base-passwd \
@@ -74,6 +75,7 @@ irda-utils \
 iw \
 kdump \
 kernel-dev \
+kernel-devsrc \
 kernel-modules \
 kexec \
 kexec-tools \
@@ -168,6 +170,7 @@ python-nose \
 quota \
 readline \
 rpcbind \
+rpcsvc-proto \
 rpm \
 run-postinsts \
 sed \
@@ -218,5 +221,33 @@ lxc-networking \
 lxc-templates \
 xz"
 
+IMAGE_FEATURES += " \
+dev-pkgs \
+tools-sdk \
+tools-debug \
+eclipse-debug \
+${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'tools-profile', '', d)} \
+tools-testapps \
+debug-tweaks \
+ssh-server-openssh"
+
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
-TOOLCHAIN_TARGET_TASK_append = " libc-staticdev"
+
+TOOLCHAIN_TARGET_TASK_append = " \
+libc-staticdev \
+binutils-staticdev \
+elfutils-dev \
+libelf \
+libnl-dev \
+libunwind-dev \
+${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'numactl-dev', '', d)} \
+python-dev \
+slang-dev \
+strace-dev \
+systemtap \
+systemtap-dev \
+xz-dev"
+
+TOOLCHAIN_HOST_TASK_append = " \
+nativesdk-bison \
+nativesdk-python-dev"
