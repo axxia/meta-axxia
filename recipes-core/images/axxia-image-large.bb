@@ -99,6 +99,7 @@ libice \
 libkmod \
 libnl \
 libnss-mdns \
+libnss-nis \
 libogg \
 libpython2 \
 libpam \
