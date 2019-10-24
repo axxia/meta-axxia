@@ -6,7 +6,6 @@ SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=mac
            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.19;destsuffix=${KMETA} \
            file://fit"
 
-KV = "4.19"
 LINUX_VERSION = "4.19.14"
 LINUX_KERNEL_TYPE = "standard"
 

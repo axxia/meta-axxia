@@ -2,7 +2,6 @@ require linux-axxia.inc
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
-KV = "4.19"
 LINUX_VERSION = "4.19.72"
 LINUX_KERNEL_TYPE = "preempt-rt"
 

@@ -2,14 +2,15 @@ require recipes-kernel/linux/linux-yocto.inc
 
 FILESEXTRAPATHS_prepend := "\
 ${THISDIR}\
-:${THISDIR}/frags/${KV}/${MACHINE}/common\
-:${THISDIR}/frags/${KV}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
+:${THISDIR}/frags/${KERNEL_MAJOR_VERSION}/${MACHINE}/common\
+:${THISDIR}/frags/${KERNEL_MAJOR_VERSION}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
 DEPENDS += "u-boot-mkimage-native dtc-native"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 LINUX_VERSION_EXTENSION = "-yocto-axxia-${LINUX_KERNEL_TYPE}"
+KERNEL_MAJOR_VERSION = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 
 KMETA = "kernel-meta"
 KCONF_BSP_AUDIT_LEVEL = "2"
