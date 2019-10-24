@@ -222,9 +222,6 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 
    will build from Yocto repos:
-   4.12: http://git.yoctoproject.org/git/linux-yocto-4.12
-         standard/axxia/base or standard/preempt-rt/axxia/base branch
-
    4.19: http://git.yoctoproject.org/git/linux-yocto
          v4.19/standard/axxia or v4.19/standard/preempt-rt/axxia branch
 
@@ -238,9 +235,6 @@ b. Private Axxia Github (github.com/axxia)
 
    will build kernel from GitHub private repos (require authentication with
    public key):
-   4.12: git@github.com:axxia/axxia_yocto_linux_4.12_private.git
-         standard/axxia-dev/base or standard/preempt-rt/axxia/base branch
-
    4.19: git@github.com:axxia/linux-yocto_private.git
          v4.19/standard/axxia-dev/base or v4.19/standard/preempt-rt/axxia-dev/base branch
 
@@ -259,10 +253,6 @@ c. Local Kernel repositories (development purpose)
          besides linux-local.bb recipe.
 
 8.7 Select the kernel version:
-
-   for 4.12, depending on PREFERRED_PROVIDER_virtual/kernel
-   PREFERRED_VERSION_(preferred-provider)= "4.12%"
-
 
    for 4.19, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_(preferred-provider)= "4.19%"
@@ -398,7 +388,7 @@ SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto = "4.12%"
+PREFERRED_VERSION_linux-yocto = "4.19%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
@@ -425,7 +415,7 @@ SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto-rt = "4.12%"
+PREFERRED_VERSION_linux-yocto-rt = "4.19%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
