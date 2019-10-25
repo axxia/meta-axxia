@@ -41,16 +41,23 @@ mk_fit_images() {
 
 install_fit_images() {
 	name=$1
+
+	if [ "${KERNEL_PACKAGE_NAME}" = "kernel" ]; then
+		FIT_DEPLOYDIR="${DEPLOYDIR}"
+	else
+		FIT_DEPLOYDIR="${DEPLOYDIR}/${KERNEL_PACKAGE_NAME}"
+	fi
+
 	if [ "${KARCH}" = "arm" ]
 	then
-		install ${B}/arch/${KARCH}/boot/dts/${name}.dtb ${DEPLOYDIR}/${name}.dtb
+		install ${B}/arch/${KARCH}/boot/dts/${name}.dtb ${FIT_DEPLOYDIR}/${name}.dtb
 	elif [ "${KARCH}" = "arm64" ]
 	then
-		install ${B}/arch/${KARCH}/boot/dts/intel/${name}.dtb ${DEPLOYDIR}/${name}.dtb
+		install ${B}/arch/${KARCH}/boot/dts/intel/${name}.dtb ${FIT_DEPLOYDIR}/${name}.dtb
 	else
-		install ${B}/arch/${KARCH}/boot/${name}.dtb ${DEPLOYDIR}/${name}.dtb
+		install ${B}/arch/${KARCH}/boot/${name}.dtb ${FIT_DEPLOYDIR}/${name}.dtb
 	fi
-	install ${B}/../fit/linux.fit-${name} ${DEPLOYDIR}/linux.fit-${name}
-	install ${B}/../fit/fdt.fit-${name} ${DEPLOYDIR}/fdt.fit-${name}
-	install ${B}/../fit/multi.fit-${name} ${DEPLOYDIR}/multi.fit-${name}
+	install ${B}/../fit/linux.fit-${name} ${FIT_DEPLOYDIR}/linux.fit-${name}
+	install ${B}/../fit/fdt.fit-${name} ${FIT_DEPLOYDIR}/fdt.fit-${name}
+	install ${B}/../fit/multi.fit-${name} ${FIT_DEPLOYDIR}/multi.fit-${name}
 }
