@@ -210,7 +210,12 @@ yp-tools \
 yp-tools-dev \
 zip \
 zlib \
-${LXC_SUPPORT} "
+${LXC_SUPPORT} \
+${@oe.utils.conditional('KERNEL_MAJOR_PROVIDER', 'linux-yocto', \
+			'${YOCTO_ALTERNATIVE_KERNELS}', '', d)} \
+${@oe.utils.conditional('KERNEL_MAJOR_PROVIDER', 'linux-axxia', \
+			'${AXXIA_ALTERNATIVE_KERNELS}', '', d)} \
+"
 
 LXC_SUPPORT ?= " \
 cgroup-lite \
@@ -221,6 +226,23 @@ lxc \
 lxc-networking \
 lxc-templates \
 xz"
+
+KERNEL_MAJOR_PROVIDER = \
+"${@'-'.join(d.getVar('PREFERRED_PROVIDER_virtual/kernel').split('-')[0:2])}"
+
+YOCTO_ALTERNATIVE_KERNELS ?= " \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-yocto', '',    'kernel-linux-yocto', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-yocto-rt', '', 'kernel-linux-yocto-rt', d)} \
+"
+
+AXXIA_ALTERNATIVE_KERNELS ?= " \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-axxia', '',    'kernel-linux-axxia', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-axxia-rt', '', 'kernel-linux-axxia-rt', d)} \
+"
 
 IMAGE_FEATURES += " \
 dev-pkgs \

@@ -18,6 +18,11 @@ require dt/dt-${KARCH}.inc
 COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64"
 INSANE_SKIP_kernel-dev = "debug-files"
 
+# If this kernel package is not set as virtual/kernel provider,
+# allow to be used as alternative kernel.
+KERNEL_PACKAGE_NAME = "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+		      '${PN}', 'kernel', 'kernel-${PN}', d)}"
+
 SMP ?= "yes"
 POWER_MANAGEMENT ?= "low-power"
 CHIPSET ?= "5500"
