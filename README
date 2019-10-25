@@ -210,7 +210,7 @@ below shoud be replaced with the actual value you provided in step 1).
     IMAGE_FSTYPES += "tar.gz"
     IMAGE_FSTYPES += "hddimg"
 
-8.6 Select the kernel to use.
+8.6 Select the main kernel to use (virtual/kernel provider).
     Meta-axxia is able to build the kernel from 3 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
@@ -252,16 +252,50 @@ c. Local Kernel repositories (development purpose)
    NOTE: Full defconfig should be copied in recipes-kernel/linux,
          besides linux-local.bb recipe.
 
-8.7 Select the kernel version:
+8.7 Select the version for the main kernel:
 
-   for 4.19, depending on PREFERRED_PROVIDER_virtual/kernel
    PREFERRED_VERSION_(preferred-provider)= "4.19%"
 
-NOTE: (preferred-provider) can be linux-yocto, linux-yocto-rt,
-      linux-axxia, linux-axxia-rt. See  9.5.
 NOTE: No preferred version should be set for linux-local provider.
 
-8.8 Customizing the Kernel .config file
+8.8 Build multiple versions of the kernel in one build
+
+   By default, meta-axxia builds 4 versions of kernel in one build,
+   depending on the generic provider for virtual/kernel: axxia or yocto:
+   
+   - for any linux-yocto* kernel provider, bitbake will build linux-yocto,
+     linux-yocto-rt, linux-yocto-debug and linux-yocto-rt-debug kernels
+
+   - for any linux-axxia* kernel provider, bitbake will build linux-axxia,
+     linux-axxia-rt, linux-axxia-debug and linux-axxia-rt-debug kernels
+
+   The kernel which is set as virtual/kernel provider will be installed
+   as usual in the deploy directory of the build. Alternative kernels
+   will be installed in deploy directory under separate folders having
+   the following template name: kernel-<PN>. 
+   
+   Alternative kernels will be also installed in rootfs on /boot directory.
+   Kernels can be swhitch by recreating the Image symlink in /boot or
+   copying the choosen fit image from each kernel-<PN> directory.
+   Default is the kernel set as preferred provider for virtual/kernel.
+
+   Note that kernel modules archives should be deployed for each kernel
+   version as we do for virtual/kernel provider. Archives with kernel
+   modules are found in each separate folder (kernel-<PN>) from deploy
+   directory of the build.
+
+   If don't want to build alternative kernels, just reset the following
+   variables in local.conf:
+   
+   - YOCTO_ALTERNATIVE_KERNELS if the virtual/kernel provider is set to
+     a linux-yocto* kernel:
+     YOCTO_ALTERNATIVE_KERNELS = ""
+     
+   - AXXIA_ALTERNATIVE_KERNELS if the virtual/kernel provider is set to
+     a linux-axxia* kernel:
+     AXXIA_ALTERNATIVE_KERNELS = ""
+
+8.9 Customizing the Kernel .config file
 
 NOTE: For linux-axxia (kernel from the Github repositories), defconfigs
       from kernel source tree are used to generate the final .config.
@@ -308,7 +342,7 @@ e. SMP options (yocto only):
 f. Regression testing (yocto only):
     TESTING = "yes"
 
-8.9 Choose proper fine tuning for each CHIPSET As long as specfic
+8.10 Choose proper fine tuning for each CHIPSET As long as specfic
     tunes are defined, user can choose the proper tune using the CHIPSET
     variable. Features and flags for each tune are defined bellow:
 
@@ -348,7 +382,7 @@ NOTE: For ARMv8, AArch64 state, other availabe tunes are for BE with
           floating-point, thumb and neon extensions. Crypto, thumb and BE are 
           optional.
 
-8.10 Building a 32-bit RootFS for ARMv8 based boards:
+8.11 Building a 32-bit RootFS for ARMv8 based boards:
 For ARM architecture, depending on the machine selected on step 7.2, 
 specific Kernel and RootFS are built for specific boards:
     - axxiaarm: 32-bit Kernel and Rootfs for 5500 board series which have
@@ -368,12 +402,12 @@ If CHIPSET is not set, it will default to 5500 (ARMv7).
 NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel 
       resulting from an axxiaarm64 build.
 
-8.11 Other optional settings for saving disk space and build time:
+8.12 Other optional settings for saving disk space and build time:
    
    DL_DIR = "/(some-shared-location)/downloads"
    SSTATE_DIR = "/(some-shared-location)/sstate-cache
 
-8.12 Examples.
+8.13 Examples.
 
      See http://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html
      for complete documentation on the Yocto build system.
@@ -388,7 +422,7 @@ SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
 PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto = "4.19%"
+PREFERRED_VERSION_linux-yocto-rt = "4.19%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"

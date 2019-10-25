@@ -4,11 +4,13 @@ MACHINE = "axxiaarm64"
 # Chipset required only for arm builds: 5500, X9, XLF
 CHIPSET = "X9"
 
-# Kernel providers: linux-yocto, linux-yocto-rt, linux-axxia, linux-axxia-rt
-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+# Kernel providers: linux-yocto, linux-yocto-rt, linux-axxia, linux-axxia-rt,
+#                   linux-yocto-debug, linux-yocto-rt-debug,
+#                   linux-axxia-debug, linux-axxia-rt-debug
+PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
 
-# Kernel versions:  4.19
-PREFERRED_VERSION_linux-yocto-rt = "4.19%"
+# Kernel versions: only 4.19 is supported and is set by default
+#PREFERRED_VERSION_linux-axxia-rt = "4.19%"
 
 # Release version should be the released tag for meta-axxia
 # RELEASE_VERSION = ""
