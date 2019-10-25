@@ -1,5 +1,3 @@
-require linux-yocto.inc
-
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=machine \
@@ -16,4 +14,5 @@ SRCREV_machine_axxiaarm64 = "7a0b04e5a8d036cd9dcc6ee64a838e8d8d5cdd56"
 
 SRCREV_meta = "41fe45f7c5e69f6ec26c657fea16c459544042cf"
 
+require linux-yocto.inc
 require frags.inc
