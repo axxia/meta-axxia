@@ -235,6 +235,10 @@ ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
 	'linux-yocto', '',    'kernel-linux-yocto', d)} \
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
 	'linux-yocto-rt', '', 'kernel-linux-yocto-rt', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-yocto-debug', '',    'kernel-linux-yocto-debug', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-yocto-rt-debug', '', 'kernel-linux-yocto-rt-debug', d)} \
 "
 
 AXXIA_ALTERNATIVE_KERNELS ?= " \
@@ -242,6 +246,10 @@ ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
 	'linux-axxia', '',    'kernel-linux-axxia', d)} \
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
 	'linux-axxia-rt', '', 'kernel-linux-axxia-rt', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-axxia-debug', '',    'kernel-linux-axxia-debug', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
+	'linux-axxia-rt-debug', '', 'kernel-linux-axxia-rt-debug', d)} \
 "
 
 IMAGE_FEATURES += " \

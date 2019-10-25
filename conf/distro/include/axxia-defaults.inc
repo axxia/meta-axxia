@@ -1,0 +1,15 @@
+PREFERRED_VERSION_linux-yocto ?= "4.19%"
+PREFERRED_VERSION_linux-yocto-rt ?= "4.19%"
+PREFERRED_VERSION_linux-yocto-debug ?= "4.19%"
+PREFERRED_VERSION_linux-yocto-rt-debug ?= "4.19%"
+PREFERRED_VERSION_linux-axxia ?= "4.19%"
+PREFERRED_VERSION_linux-axxia-rt ?= "4.19%"
+PREFERRED_VERSION_linux-axxia-debug ?= "4.19%"
+PREFERRED_VERSION_linux-axxia-rt-debug ?= "4.19%"
+
+PREFERRED_RPROVIDER_iasl ?= "iasl"
+PREFERRED_RPROVIDER_iasl-native ?= "iasl-native"
+PREFERRED_VERSION_rpcbind ?= "0.2.3"
+PREFERRED_VERSION_autofs ?= "5.1.5"
+
+FORTRAN_forcevariable = ",fortran"
