@@ -63,28 +63,11 @@ For changes accepted by the Yocto project, use the following.
 
    $ git clone git://git.yoctoproject.org/meta-axxia
 
+
 Dependencies
 ============
 
-This layer depends on:
-
-Poky
-----
-URI: git://git.yoctoproject.org/poky.git
-branch: thud
-revision: cdd4a52578f4f1b79b3fc2c92aa4434b99efd91c
-
-OpenEmbedded
-------------
-URI: https://github.com/openembedded/meta-openembedded.git
-branch: thud
-revision: 9b3b907f30b0d5b92d58c7e68289184fda733d3e
-
-Yocto Virtualization Layer
---------------------------
-URI: git://git.yoctoproject.org/meta-virtualization
-branch: thud
-revision: bbc38dc9d6d02e73c08df289bb22a292c2264e9b
+See DEPENDENCIES.
 
 
 Building the meta-axxia BSP layer
