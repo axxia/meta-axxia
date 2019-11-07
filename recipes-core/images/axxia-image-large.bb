@@ -63,6 +63,7 @@ grep \
 groff \
 gzip \
 hdparm \
+i2c-tools \
 icu \
 inetutils \
 inetutils-telnetd \
