@@ -180,8 +180,8 @@ do_install() {
 	cp --parents $(find -type f -name "*.h") $kerneldir/build
     )
 
-    # change path in INCLUDES for some headers from HOSTARCH such as orc_types.h
-    sed -i "s@(ARCH)\/include@(HOSTARCH)\/include@g" \
+    # hardcode include path to x86 to find headers when compiling on board and SDK
+    sed -i "s@\$(ARCH)\/include@x86\/include@g" \
         $kerneldir/build/tools/objtool/Makefile
 
     # Be sure decode.c from tools/objtool/arch/x86 is compiled to avoid undefined
