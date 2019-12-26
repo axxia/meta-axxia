@@ -5,7 +5,7 @@ Poky
 ----
 URI: git://git.yoctoproject.org/poky.git
 branch: thud
-revision: 9155e70299b3f8e25413a24ca3d1a60fe46f5c6f
+revision: 390f760d176aba8a320ea66b8112469d89e9e2d4
 
 OpenEmbedded
 ------------
