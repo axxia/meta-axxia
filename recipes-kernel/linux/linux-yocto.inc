@@ -38,6 +38,10 @@ do_configure_append() {
 	       ${STAGING_KERNEL_DIR}/scripts/mkcompile_h
 }
 
+do_install_append() {
+	depmod -a -b ${D} -F ${D}/boot/System.map-${KERNEL_VERSION} ${KERNEL_VERSION}
+}
+
 do_shared_workdir_append() {
 	if [ "${KERNEL_PACKAGE_NAME}" != "kernel" ]; then
 		# Expose kernel tree in work-shared if not preferred provider for virtual/kernel
@@ -57,3 +61,5 @@ kernel_do_deploy_append() {
 		ln -sf System-${PN}${KERNEL_ARTIFACT_NAME}.map System.map
 	fi
 }
+
+FILES_${KERNEL_PACKAGE_NAME}-modules += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/modules.*"
