@@ -212,7 +212,9 @@ yp-tools-dev \
 zip \
 zlib \
 ${LXC_SUPPORT} \
-${ALTERNATIVE_KERNELS_INSTALL} \
+${@oe.utils.conditional('ALTERNATIVE_KERNELS', '', '', ' \
+	${ALTERNATIVE_KERNELS_INSTALL} \
+	${ALTERNATIVE_KERNELS_MODULES_INSTALL}', d)} \
 "
 
 LXC_SUPPORT ?= " \

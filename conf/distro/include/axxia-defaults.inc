@@ -1,23 +1,23 @@
-YOCTO_ALTERNATIVE_KERNELS ?= " \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-yocto', '',    'linux-yocto', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-yocto-rt', '', 'linux-yocto-rt', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-yocto-debug', '',    'linux-yocto-debug', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-yocto-rt-debug', '', 'linux-yocto-rt-debug', d)} \
+YOCTO_ALTERNATIVE_KERNELS ?= "\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-yocto', '',    ' linux-yocto', d)}\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-yocto-rt', '', ' linux-yocto-rt', d)} \
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-yocto-debug', '',    ' linux-yocto-debug', d)}\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-yocto-rt-debug', '', ' linux-yocto-rt-debug', d)}\
 "
 
-AXXIA_ALTERNATIVE_KERNELS ?= " \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-axxia', '',    'linux-axxia', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-axxia-rt', '', 'linux-axxia-rt', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-axxia-debug', '',    'linux-axxia-debug', d)} \
-${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-	'linux-axxia-rt-debug', '', 'linux-axxia-rt-debug', d)} \
+AXXIA_ALTERNATIVE_KERNELS ?= "\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-axxia', '',    ' linux-axxia', d)}\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-axxia-rt', '', ' linux-axxia-rt', d)}\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-axxia-debug', '',    ' linux-axxia-debug', d)}\
+${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
+	'linux-axxia-rt-debug', '', ' linux-axxia-rt-debug', d)}\
 "
 
 ALTERNATIVE_KERNELS ?= \
@@ -26,6 +26,9 @@ ALTERNATIVE_KERNELS ?= \
 
 ALTERNATIVE_KERNELS_INSTALL ?= \
 "${@d.getVar('ALTERNATIVE_KERNELS').replace('linux-','kernel-linux-')}"
+
+ALTERNATIVE_KERNELS_MODULES_INSTALL ?= \
+"${@'-modules '.join(d.getVar('ALTERNATIVE_KERNELS_INSTALL')[1:].split(' '))}-modules"
 
 PREFERRED_VERSION_linux-yocto ?= "4.19%"
 PREFERRED_VERSION_linux-yocto-rt ?= "4.19%"
