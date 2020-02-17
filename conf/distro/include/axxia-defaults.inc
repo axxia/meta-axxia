@@ -2,7 +2,7 @@ YOCTO_ALTERNATIVE_KERNELS ?= "\
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
 	'linux-yocto', '',    ' linux-yocto', d)}\
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
-	'linux-yocto-rt', '', ' linux-yocto-rt', d)} \
+	'linux-yocto-rt', '', ' linux-yocto-rt', d)}\
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
 	'linux-yocto-debug', '',    ' linux-yocto-debug', d)}\
 ${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel',\
