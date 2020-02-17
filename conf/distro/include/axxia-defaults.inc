@@ -30,6 +30,9 @@ ALTERNATIVE_KERNELS_INSTALL ?= \
 ALTERNATIVE_KERNELS_MODULES_INSTALL ?= \
 "${@'-modules '.join(d.getVar('ALTERNATIVE_KERNELS_INSTALL')[1:].split(' '))}-modules"
 
+ALTERNATIVE_KERNELS_LTTNG_MODULES ?= \
+"${@d.getVar('ALTERNATIVE_KERNELS').replace('linux-','lttng-modules-linux-')}"
+
 PREFERRED_VERSION_linux-yocto ?= "4.19%"
 PREFERRED_VERSION_linux-yocto-rt ?= "4.19%"
 PREFERRED_VERSION_linux-yocto-debug ?= "4.19%"
