@@ -172,6 +172,17 @@ do_install() {
 	cp -a --parents arch/x86/lib/* $kerneldir/build/
 	cp -a --parents arch/x86/include/asm/* $kerneldir/build/
 	cp -a --parents arch/x86/tools/gen-insn-attr-x86.awk $kerneldir/build/
+
+	# required files for "modules_prepare" target
+	cp -a --parents kernel/bounds.c $kerneldir/build/
+	cp -a --parents kernel/time/timeconst.bc $kerneldir/build/
+	cp -a --parents tools/lib $kerneldir/build/
+	cp -a --parents tools/include $kerneldir/build/
+	cp -a --parents tools/scripts/utilities.mak $kerneldir/build/
+	if [ "${ARCH}" = "arm64" ]; then
+		cp -a --parents arch/arm64/kernel/asm-offsets*.c $kerneldir/build/
+		cp -a --parents arch/arm64/kernel/vdso/vdso*.S $kerneldir/build/
+	fi
     )
 
     (
