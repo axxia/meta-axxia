@@ -12,18 +12,18 @@ Boards Supported by this layer (Please refer to the associate .conf
 for more information):
 
 	* axxiaarm - Axxia 5000 ARM Mobile & Enterprise Communication 
-                     Processors family (32-bit)
+                 Processors family (32-bit)
 
 	* axxiaarm64 - Axxia 5000 and 6000 ARM Mobile & Enterprise 
-                       Communication Processors family (64-bit)
+                   Communication Processors family (64-bit)
 
 NOTE: Machines are divided by architecture. By building Linux for
 axxiaarm machine (e.g.), you will build binaries for all available ARM
 targets.
 
 
-Reference Boards
-================
+Reference platforms
+===================
 
 Amarillo – Reference board for the Axxia 5500 line of Communication
 Processor devices. The 5500 device combines an ARM CPU subsystem with
@@ -41,8 +41,24 @@ subsystem with up to 32 Cortex-A53 Cores along with advanced
 packet-processing acceleration engines.
 
 
-Sources
-=======
+Table of Contents
+=================
+
+  I. Sources
+ II. Dependencies 
+III. Build prerequisites
+ IV. Building meta-srp
+     1. Clone OpenEmbedded/Yocto layers
+     2. Prepare and customize the build
+     3. Select the image type and start the build
+     4. Build and install the SDK
+  V. Guidelines for submitting patches
+ VI. Maintenance
+VII. License
+  
+
+I. Sources
+==========
 
 In most cases, the public repositories can be used (poky,
 meta-openembedded, etc.). In the meta-axxia case, however, there are
@@ -64,41 +80,48 @@ For changes accepted by the Yocto project, use the following.
    $ git clone git://git.yoctoproject.org/meta-axxia
 
 
-Dependencies
-============
+II. Dependencies
+================
 
-See DEPENDENCIES.
+For a complete list of dependent layers, please check DEPENDENCIES.
 
 
-Building the meta-axxia BSP layer
-=================================
+III. Build prerequisites
+========================
 
-To begin using the Yocto Project build tools, you must first setup your work
-environment and verify that you have the required host packages installed
-on the system you will be using for builds. 
+To begin using the Yocto Project build tools, you must first setup your
+work environment and verify that you have the required host packages
+installed on the system you will be using for builds. 
 
-Check the YOCTO Reference Manual for the system you are using and verify you
-have the minimum required packages installed:
+Check the YOCTO Reference Manual for the system you are using and verify
+you have the minimum required packages installed:
 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
 
-1. Create an empty build directory and verify that the partition has
-   at least 50Gb of free space. Next set an environment variable, YOCTO,
-   to the full path.
+Create an empty directory and verify that the partition has at least
+50Gb of free space. Next set an environment variable, YOCTO, to the
+full path.
 
    $ cd $HOME
    $ df -h .  # verify output shows adequate space available
    $ mkdir yocto
    $ cd yocto
-   $ export YOCTO=$HOME/yocto # should also add this to your ~/.bashrc file.
+   $ export YOCTO=$HOME/yocto # should also add to your ~/.bashrc file.
 
-2. Clone the Yocto Project build tools (Poky) environment.
+
+IV. Building meta-axxia
+=======================
+
+1. Clone OpenEmbedded/Yocto layers
+----------------------------------
+
+1.1 Clone the Yocto Project build tools (Poky) environment.
 
    $ cd $YOCTO
    $ git clone git://git.yoctoproject.org/poky.git
    $ cd poky
    $ git checkout thud
 
-3. Clone the Axxia meta layer. This provides meta data for building
+1.2 Clone the Axxia meta layer. This provides meta data for building
    images for the Axxia specific board types.  See 'Sources' above to
    select the right meta-axxia repository, branch, and version.
 
@@ -107,7 +130,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd meta-axxia
    $ git checkout thud
 
-4. The Open Embedded project provides many useful layers and packages
+1.3 The Open Embedded project provides many useful layers and packages
    such as networking. Download the Open Embedded Yocto Project hosted
    repository with the following.
 
@@ -116,7 +139,7 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd meta-openembedded
    $ git checkout thud
 
-5. Clone Yocto Virtualization Layer which provides packages for
+1.4 Clone Yocto Virtualization Layer which provides packages for
    virtualization such as Linux Container Support (lxc).
 
    $ cd $YOCTO
@@ -124,7 +147,11 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ cd meta-virtualization
    $ git checkout thud
 
-6. Create the build directory. The name is optional and will default
+
+2. Prepare and customize the build
+----------------------------------
+
+2.1 Create the build directory. The name is optional and will default
    to 'build', however it helps to choose a name to match the board
    type. For example, we will use axxia.
 
@@ -132,13 +159,13 @@ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html
    $ source meta-axxia/axxia-env
    $ source poky/oe-init-build-env axxia-build
 
-7. Check the conf/bblayers.conf file and edit if necessary.
+2.2 Check the conf/bblayers.conf file and edit if necessary.
 
    $ pwd (you should be at $YOCTO/axxia-build)
    $ vi conf/bblayers.conf
 
-BBLAYERS variable should have the following content (references to $YOCTO
-below shoud be replaced with the actual value you provided in step 1).
+BBLAYERS variable should have the following content (references to YOCTO
+below shoud be replaced with the actual value you provided prior).
 
    BBLAYERS ?= " \
             $YOCTO/poky/meta \
@@ -151,25 +178,19 @@ below shoud be replaced with the actual value you provided in step 1).
             $YOCTO/meta-axxia \
             "
 
-8. Check the conf/local.conf file and edit if necessary.
+2.3 Check the conf/local.conf file and edit if necessary.
 
    $ vi conf/local.conf
 
-8.1 Set distribution configuration to have all Axxia specific features.
+2.3.1 Set distribution configuration to have all Axxia specific features.
 
     DISTRO = "axxia"
 
-8.2 Set Release version. Replace it with the release tag for meta-axxia.
+2.3.2 Set Release version. Replace it with the release tag for meta-axxia.
 
     RELEASE_VERSION = "(meta-axxia-tag)"
 
-8.3 Depending on your processor, set these two options that control
-    how much parallelism BitBake should use:
-
-  BB_NUMBER_THREADS = "12"
-  PARALLEL_MAKE = "-j 12"
-
-8.4 Select a specific machine to target the build with:
+2.3.3 Select a specific machine to target the build with:
 
     NOTE: Machines are divided by architecture. By building Linux for
     axxiaarm machine (e.g.), you will build binaries for all available
@@ -183,7 +204,7 @@ below shoud be replaced with the actual value you provided in step 1).
     family (Victoria and Waco).
   MACHINE = "axxiaarm64"
 
-8.5 Select the root filesystem image compression type (can set
+2.3.4 Select the root filesystem image compression type (can set
     multiple types):
 
     NOTE: Default types are set for each machine configuration file
@@ -193,7 +214,7 @@ below shoud be replaced with the actual value you provided in step 1).
     IMAGE_FSTYPES += "tar.gz"
     IMAGE_FSTYPES += "hddimg"
 
-8.6 Select the main kernel to use (virtual/kernel provider).
+2.3.5 Select the main kernel to use (virtual/kernel provider).
     Meta-axxia is able to build the kernel from 3 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
@@ -235,13 +256,13 @@ c. Local Kernel repositories (development purpose)
    NOTE: Full defconfig should be copied in recipes-kernel/linux,
          besides linux-local.bb recipe.
 
-8.7 Select the version for the main kernel:
+2.3.6 Select the version for the main kernel:
 
    PREFERRED_VERSION_(preferred-provider)= "4.19%"
 
 NOTE: No preferred version should be set for linux-local provider.
 
-8.8 Build multiple versions of the kernel in one build
+2.3.7 Build multiple versions of the kernel in one build
 
    By default, meta-axxia builds 4 versions of kernel in one build,
    depending on the generic provider for virtual/kernel: axxia or yocto:
@@ -268,7 +289,7 @@ NOTE: No preferred version should be set for linux-local provider.
 
    ALTERNATIVE_KERNELS = ""
 
-8.9 Customizing the Kernel .config file
+2.3.8 Customizing the Kernel .config file
 
 NOTE: For linux-axxia (kernel from the Github repositories), defconfigs
       from kernel source tree are used to generate the final .config.
@@ -315,7 +336,7 @@ e. SMP options (yocto only):
 f. Regression testing (yocto only):
     TESTING = "yes"
 
-8.10 Choose proper fine tuning for each CHIPSET As long as specfic
+2.3.9 Choose proper fine tuning for each CHIPSET As long as specfic
     tunes are defined, user can choose the proper tune using the CHIPSET
     variable. Features and flags for each tune are defined bellow:
 
@@ -355,7 +376,7 @@ NOTE: For ARMv8, AArch64 state, other availabe tunes are for BE with
           floating-point, thumb and neon extensions. Crypto, thumb and BE are 
           optional.
 
-8.11 Building a 32-bit RootFS for ARMv8 based boards:
+2.3.10 Building a 32-bit RootFS for ARMv8 based boards:
 For ARM architecture, depending on the machine selected on step 7.2, 
 specific Kernel and RootFS are built for specific boards:
     - axxiaarm: 32-bit Kernel and Rootfs for 5500 board series which have
@@ -375,19 +396,23 @@ If CHIPSET is not set, it will default to 5500 (ARMv7).
 NOTE: You can boot the resulting 32-bit RootFS with a 64-bit Kernel 
       resulting from an axxiaarm64 build.
 
-8.12 Other optional settings for saving disk space and build time:
+2.3.11 Depending on your processor, set these two options that control
+    how much parallelism BitBake should use:
+
+  BB_NUMBER_THREADS = "12"
+  PARALLEL_MAKE = "-j 12"
+  
+2.3.12 Other optional settings for saving disk space and build time:
    
    DL_DIR = "/(some-shared-location)/downloads"
    SSTATE_DIR = "/(some-shared-location)/sstate-cache
 
-8.13 Examples.
+2.3.14 Examples.
 
      See http://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html
      for complete documentation on the Yocto build system.
 
      Here are the local.conf files used for open builds.
-
-8.13.1 axxiaarm
 
 MACHINE = "axxiaarm"
 CHIPSET = "5500"
@@ -414,7 +439,6 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-8.13.2 axxiaarm64
 
 MACHINE = "axxiaarm64"
 CHIPSET = "X9"
@@ -441,7 +465,10 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-9. Select the image type and start the build
+
+3. Select the image type and start the build
+--------------------------------------------
+
    $ cd $YOCTO/axxia-build
    $ bitbake (image type)
 
@@ -459,7 +486,7 @@ Available root filesystem types:
 Once complete the images for the target machine will be available in the output
 directory 'tmp/deploy/images/$MACHINE'.
 
-10. Images generated:
+3.1. Images generated:
 
 * (image type)-(machine name).ext2 (rootfs in EXT2 format)
 * (image type)-(machine name).tar.gz (rootfs in tar+GZIP format)
@@ -474,20 +501,36 @@ NOTE: For axxiaarm64, only Image files are generated, instead of zImage.
 	* linux.fit-(target name) (Kernel binary in fit image format)
 	* multi.fit-(target name) (Kernel binary + DTB in fit image format)
 
-11. Build and install the SDK:
 
-In step 9. above, add '-c populate_sdk' to create the SDK install self
-extracting script in tmp/deploy/sdk.  Simply run the poky*.sh script.
-To set up the environment to use the tools, source environment-setup*
-in the install directory.
+4. Build and install the SDK
+----------------------------
 
-Note that to include the Linux source (to build external modules), use
-'bitbake axxia-image-large -c populate_sdk'.  For other targets,
-the Linux source will not be available.
+Run 'populate_sdk' task for srp-eaglecrest-development image to build
+the SDK. 
 
-After the installation completes, do the following.
+    $ bitbake axxia-image-large -c populate_sdk
 
-11.1 libnl Links
+It will install a self extracting script in tmp/deploy/sdk. Simply run
+the poky*.sh script. To set up the environment to use the tools, source
+environment-setup* in the install directory.
+
+After the installation completes, do the following:
+
+4.1 Optional Linux Module Tools Update
+
+If external Linux modules need to be buildable after installing the
+SDK, the Linux kernel sources need to be updated as follows, using the
+external-modules-setup.sh script which is deployed with the SDK.
+
+source (install directory)/environment-setup*
+./(install directory)/external-modules-setup.sh
+
+The SDK should contain all you need to run the above. In case the Linux
+build fails because of missing packages on the host, be sure you have
+the following installed: libncurses5-dev flex bison libssl-dev dkms
+libelf-dev (for Ubuntu).
+
+4.2 libnl Links
 
 At present, no links get created in (sysroot)/usr/lib for the expected
 names of the netlink libraries.  DPDK, for example, expects
@@ -500,27 +543,14 @@ ln -s libnl-genl-3.so.200 libnl-genl-3.so
 ln -s libnl-nf-3.so.200 libnl-nf-3.so
 ln -s libnl-route-3.so.200 libnl-route-3.so
 
-11.2 Some Updates for LTTng
+4.3 Some Updates for LTTng
 
 cd $SYSROOT/usr/lib
 sed -i "s|/usr/lib|$SYSROOT/usr/lib|" liblttng-ust.la
 
-11.3 Optional Linux Module Tools Update
 
-If external Linux modules need to be buildable on multiple versions of
-Linux hosts, and the tools were installed on the most recent version,
-external Linux modules may not build.  This is because the version of
-glibc on the Linux host that the SDK install script was executed on
-are expected.  To use an older version, simply do the following on the
-older Linux host.
-
-source (install directory)/environment-setup*
-cd $SYSROOT/usr/src/kernel
-make clean silentoldconfig scripts
-
-
-Guidelines for submitting patches
-=================================
+V. Guidelines for submitting patches
+======================================
 
 Please submit any patches against meta-axxia BSPs to the meta-axxia
 mailing list (meta-lsi@yoctoproject.org) and cc: the maintainers.
@@ -536,8 +566,8 @@ When sending patches, please use something like:
 		      (generated patch)
 
 
-Maintenance
-===========
+VI. Maintenance
+===============
 
 Maintainers: Daniel Dragomir (daniel.dragomir@windriver.com)
 	     John Jacques (john.jacques@intel.com)
@@ -545,8 +575,8 @@ Maintainers: Daniel Dragomir (daniel.dragomir@windriver.com)
 Please see the meta-axxia/MAINTAINERS file for more details.
 
 
-License
-=======
+VII. License
+==========
 
 All metadata is MIT licensed unless otherwise stated. Souce code included
 in tree for individual recipes is under the LICENSE stated in each recipe
