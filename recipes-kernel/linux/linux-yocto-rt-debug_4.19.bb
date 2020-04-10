@@ -1,4 +1,4 @@
-require linux-yocto-rt_4.19.bb
+require linux-yocto-rt_${PV}.bb
 
 LINUX_VERSION_EXTENSION = "-axxia-debug-${LINUX_KERNEL_TYPE}"
 DBG = "yes"

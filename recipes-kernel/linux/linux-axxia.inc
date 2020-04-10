@@ -1,36 +1,22 @@
-require recipes-kernel/linux/linux-yocto.inc
+LINUX_VERSION_standard = "4.19.87"
+LINUX_VERSION_preempt-rt = "4.19.87"
+KBRANCH_standard = "next/v4.19/standard/axxia-dev/base"
+KBRANCH_preempt-rt = "next/v4.19/standard/preempt-rt/axxia-dev/base"
+SRCREV_standard = "c1d28108ea6daea2e23b0d11df2b94d68951ee7d"
+SRCREV_preempt-rt = "5ac5cb799fa85117740fb58d6c1f3ca6b128739c"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
-DEPENDS += "u-boot-mkimage-native dtc-native"
-
-PV = "${LINUX_VERSION}+git${SRCPV}"
-
+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 LINUX_VERSION_EXTENSION = "-axxia-${LINUX_KERNEL_TYPE}"
 
 KMETA = ""
 
+KREPO_KERNEL = "git://git@github.com/axxia/linux-yocto_private.git;protocol=ssh"
 SRC_URI = "${KREPO_KERNEL};name=machine;branch=${KBRANCH} \
            file://fit "
 
-require dt/dt-${KARCH}.inc
-
-COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64"
-INSANE_SKIP_kernel-dev = "debug-files"
-
-# If this kernel package is not set as virtual/kernel provider,
-# allow to be used as alternative kernel.
-KERNEL_PACKAGE_NAME = "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-		      '${PN}', 'kernel', 'kernel-${PN}', d)}"
-
-SMP ?= "yes"
-POWER_MANAGEMENT ?= "low-power"
-CHIPSET ?= "5500"
-CHIPSET_LOWER = "${@d.getVar('CHIPSET').lower()}"
-BIG_ENDIAN ?= "no"
-DBG ?= "no"
-TESTING ?= "no"
-KERNEL_EXTRA_FEATURES = ""
+require linux-common.inc
 
 KCONFIG_MODE = "--alldefconfig"
 DEFCONFIG_TYPE = "${@oe.utils.conditional('LINUX_KERNEL_TYPE', 'preempt-rt', '_rt', '', d)}"
@@ -51,48 +37,17 @@ do_kernel_metadata_prepend() {
     )
 }
 
-do_configure_append() {
-	sed -i s@UTS_VERSION=\"\#\$VERSION\"@UTS_VERSION=\"${RELEASE_VERSION}\ \#\$VERSION\"@g \
-	       ${STAGING_KERNEL_DIR}/scripts/mkcompile_h
-}
+LINUX_VERSION_pn-linux-axxia = "${LINUX_VERSION_standard}"
+LINUX_VERSION_pn-linux-axxia-debug = "${LINUX_VERSION_standard}"
+LINUX_VERSION_pn-linux-axxia-rt = "${LINUX_VERSION_preempt-rt}"
+LINUX_VERSION_pn-linux-axxia-rt-debug = "${LINUX_VERSION_preempt-rt}"
 
-do_install_append() {
-	depmod -a -b ${D} -F ${D}/boot/System.map-${KERNEL_VERSION} ${KERNEL_VERSION}
-}
+KBRANCH_pn-linux-axxia = "${KBRANCH_standard}"
+KBRANCH_pn-linux-axxia-debug = "${KBRANCH_standard}"
+KBRANCH_pn-linux-axxia-rt = "${KBRANCH_preempt-rt}"
+KBRANCH_pn-linux-axxia-rt-debug = "${KBRANCH_preempt-rt}"
 
-do_shared_workdir_append() {
-	if [ "${KERNEL_PACKAGE_NAME}" != "kernel" ]; then
-		# Expose kernel tree in work-shared if not preferred provider for virtual/kernel
-		rm -f ${TMPDIR}/work-shared/${MACHINE}/kernel-*-${PN}
-		ln -sf ${STAGING_KERNEL_DIR} ${TMPDIR}/work-shared/${MACHINE}/kernel-source-${PN}
-		ln -sf ${STAGING_KERNEL_BUILDDIR} ${TMPDIR}/work-shared/${MACHINE}/kernel-build-artifacts-${PN}
-	fi
-}
-
-kernel_do_deploy_append() {
-	install -d ${DEPLOYDIR}
-	install -m 0644 ${KBUILD_OUTPUT}/System.map \
-		${DEPLOYDIR}/System-${PN}${KERNEL_ARTIFACT_NAME}.map
-	if [ "${KERNEL_PACKAGE_NAME}" = "kernel" ]; then
-		cd ${DEPLOYDIR}
-		rm -f System.map
-		ln -sf System-${PN}${KERNEL_ARTIFACT_NAME}.map System.map
-	fi
-}
-
-FILES_${KERNEL_PACKAGE_NAME}-modules += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/modules.*"
-
-# Clean alternative kernels if virtual/kernel's clean or cleansstate is run
-ALTERNATIVE_KERNELS_CLEAN = "${@':do_clean '.join(d.getVar('ALTERNATIVE_KERNELS')[1:].split(' '))}:do_clean"
-ALTERNATIVE_KERNELS_CLEANSSTATE = "${@':do_cleansstate '.join(d.getVar('ALTERNATIVE_KERNELS')[1:].split(' '))}:do_cleansstate"
-ALTERNATIVE_KERNELS_CLEAN_CHECK = "${@oe.utils.conditional('ALTERNATIVE_KERNELS', '', '', \
-				   '${ALTERNATIVE_KERNELS_CLEAN}', d)}"
-ALTERNATIVE_KERNELS_CLEANSSTATE_CHECK = "${@oe.utils.conditional('ALTERNATIVE_KERNELS', '', '', \
-					'${ALTERNATIVE_KERNELS_CLEANSSTATE}', d)}"
-do_clean[depends] += "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', '${PN}', \
-		     '${ALTERNATIVE_KERNELS_CLEAN_CHECK}', '', d)}"
-do_cleansstate[depends] += "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', '${PN}', \
-			   '${ALTERNATIVE_KERNELS_CLEANSSTATE_CHECK}', '', d)}"
-
-# Compile tools needed by external modules each time kernel is clean
-do_clean[depends] += "make-mod-scripts:do_cleansstate"
+SRCREV_machine_pn-linux-axxia = "${SRCREV_standard}"
+SRCREV_machine_pn-linux-axxia-debug = "${SRCREV_standard}"
+SRCREV_machine_pn-linux-axxia-rt = "${SRCREV_preempt-rt}"
+SRCREV_machine_pn-linux-axxia-rt-debug = "${SRCREV_preempt-rt}"

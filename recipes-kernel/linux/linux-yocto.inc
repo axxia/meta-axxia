@@ -1,80 +1,41 @@
-require recipes-kernel/linux/linux-yocto.inc
+LINUX_VERSION_standard = "4.19.14"
+LINUX_VERSION_preempt-rt = "4.19.14"
+KBRANCH_standard = "v4.19/standard/base"
+KBRANCH_preempt-rt = "v4.19/standard/preempt-rt/base"
+SRCREV_standard = "eebb51300a07804a020ec468b5f8c5bf720198d9"
+SRCREV_preempt-rt = "7a0b04e5a8d036cd9dcc6ee64a838e8d8d5cdd56"
+SRCREV_meta = "41fe45f7c5e69f6ec26c657fea16c459544042cf"
 
-FILESEXTRAPATHS_prepend := "\
-${THISDIR}\
+FILESEXTRAPATHS_prepend := "${THISDIR}\
 :${THISDIR}/frags/${KERNEL_MAJOR_VERSION}/${MACHINE}/common\
 :${THISDIR}/frags/${KERNEL_MAJOR_VERSION}/${MACHINE}/${LINUX_KERNEL_TYPE}:"
 
-DEPENDS += "u-boot-mkimage-native dtc-native"
-
-PV = "${LINUX_VERSION}+git${SRCPV}"
+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 LINUX_VERSION_EXTENSION = "-yocto-axxia-${LINUX_KERNEL_TYPE}"
 KERNEL_MAJOR_VERSION = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 
+SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=machine \
+           git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-4.19;destsuffix=${KMETA} \
+           file://fit"
+
+require linux-common.inc
+require frags.inc
+
 KMETA = "kernel-meta"
 KCONF_BSP_AUDIT_LEVEL = "2"
 
-require dt/dt-${KARCH}.inc
+LINUX_VERSION_pn-linux-yocto = "${LINUX_VERSION_standard}"
+LINUX_VERSION_pn-linux-yocto-debug = "${LINUX_VERSION_standard}"
+LINUX_VERSION_pn-linux-yocto-rt = "${LINUX_VERSION_preempt-rt}"
+LINUX_VERSION_pn-linux-yocto-rt-debug = "${LINUX_VERSION_preempt-rt}"
 
-COMPATIBLE_MACHINE = "axxiaarm|axxiaarm64"
-INSANE_SKIP_kernel-dev = "debug-files"
+KBRANCH_pn-linux-yocto = "${KBRANCH_standard}"
+KBRANCH_pn-linux-yocto-debug = "${KBRANCH_standard}"
+KBRANCH_pn-linux-yocto-rt = "${KBRANCH_preempt-rt}"
+KBRANCH_pn-linux-yocto-rt-debug = "${KBRANCH_preempt-rt}"
 
-# If this kernel package is not set as virtual/kernel provider,
-# allow to be used as alternative kernel.
-KERNEL_PACKAGE_NAME = "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', \
-		      '${PN}', 'kernel', 'kernel-${PN}', d)}"
-
-SMP ?= "yes"
-POWER_MANAGEMENT ?= "low-power"
-CHIPSET ?= "5500"
-BIG_ENDIAN ?= "no"
-DBG ?= "no"
-TESTING ?= "no"
-KERNEL_EXTRA_FEATURES = ""
-
-do_configure_append() {
-	sed -i s@UTS_VERSION=\"\#\$VERSION\"@UTS_VERSION=\"${RELEASE_VERSION}\ \#\$VERSION\"@g \
-	       ${STAGING_KERNEL_DIR}/scripts/mkcompile_h
-}
-
-do_install_append() {
-	depmod -a -b ${D} -F ${D}/boot/System.map-${KERNEL_VERSION} ${KERNEL_VERSION}
-}
-
-do_shared_workdir_append() {
-	if [ "${KERNEL_PACKAGE_NAME}" != "kernel" ]; then
-		# Expose kernel tree in work-shared if not preferred provider for virtual/kernel
-		rm -f ${TMPDIR}/work-shared/${MACHINE}/kernel-*-${PN}
-		ln -sf ${STAGING_KERNEL_DIR} ${TMPDIR}/work-shared/${MACHINE}/kernel-source-${PN}
-		ln -sf ${STAGING_KERNEL_BUILDDIR} ${TMPDIR}/work-shared/${MACHINE}/kernel-build-artifacts-${PN}
-	fi
-}
-
-kernel_do_deploy_append() {
-	install -d ${DEPLOYDIR}
-	install -m 0644 ${KBUILD_OUTPUT}/System.map \
-		${DEPLOYDIR}/System-${PN}${KERNEL_ARTIFACT_NAME}.map
-	if [ "${KERNEL_PACKAGE_NAME}" = "kernel" ]; then
-		cd ${DEPLOYDIR}
-		rm -f System.map
-		ln -sf System-${PN}${KERNEL_ARTIFACT_NAME}.map System.map
-	fi
-}
-
-FILES_${KERNEL_PACKAGE_NAME}-modules += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/modules.*"
-
-# Clean alternative kernels if virtual/kernel's clean or cleansstate is run
-ALTERNATIVE_KERNELS_CLEAN = "${@':do_clean '.join(d.getVar('ALTERNATIVE_KERNELS')[1:].split(' '))}:do_clean"
-ALTERNATIVE_KERNELS_CLEANSSTATE = "${@':do_cleansstate '.join(d.getVar('ALTERNATIVE_KERNELS')[1:].split(' '))}:do_cleansstate"
-ALTERNATIVE_KERNELS_CLEAN_CHECK = "${@oe.utils.conditional('ALTERNATIVE_KERNELS', '', '', \
-				   '${ALTERNATIVE_KERNELS_CLEAN}', d)}"
-ALTERNATIVE_KERNELS_CLEANSSTATE_CHECK = "${@oe.utils.conditional('ALTERNATIVE_KERNELS', '', '', \
-					'${ALTERNATIVE_KERNELS_CLEANSSTATE}', d)}"
-do_clean[depends] += "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', '${PN}', \
-		     '${ALTERNATIVE_KERNELS_CLEAN_CHECK}', '', d)}"
-do_cleansstate[depends] += "${@oe.utils.conditional('PREFERRED_PROVIDER_virtual/kernel', '${PN}', \
-			   '${ALTERNATIVE_KERNELS_CLEANSSTATE_CHECK}', '', d)}"
-
-# Compile tools needed by external modules each time kernel is clean
-do_clean[depends] += "make-mod-scripts:do_cleansstate"
+SRCREV_machine_pn-linux-yocto = "${SRCREV_standard}"
+SRCREV_machine_pn-linux-yocto-debug = "${SRCREV_standard}"
+SRCREV_machine_pn-linux-yocto-rt = "${SRCREV_preempt-rt}"
+SRCREV_machine_pn-linux-yocto-rt-debug = "${SRCREV_preempt-rt}"
