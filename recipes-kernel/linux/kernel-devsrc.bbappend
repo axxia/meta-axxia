@@ -180,8 +180,12 @@ do_install() {
 	cp -a --parents tools/include $kerneldir/build/
 	cp -a --parents tools/scripts/utilities.mak $kerneldir/build/
 	if [ "${ARCH}" = "arm64" ]; then
-		cp -a --parents arch/arm64/kernel/asm-offsets*.c $kerneldir/build/
-		cp -a --parents arch/arm64/kernel/vdso/vdso*.S $kerneldir/build/
+		cp -a --parents arch/${ARCH}/kernel/asm-offsets*.c $kerneldir/build/
+		cp -a --parents arch/${ARCH}/kernel/vdso/vdso*.S $kerneldir/build/
+	fi
+	if [ "${ARCH}" = "arm" ]; then
+		cp -a --parents arch/${ARCH}/kernel/asm-offsets*.c $kerneldir/build/
+		cp -a --parents arch/${ARCH}/kernel/signal.h $kerneldir/build/
 	fi
     )
 
