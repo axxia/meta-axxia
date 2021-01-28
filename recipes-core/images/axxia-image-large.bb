@@ -154,7 +154,7 @@ packagegroup-core-boot \
 packagegroup-core-buildessential \
 parted \
 pciutils \
-${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'perf', '', d)} \
+perf \
 perl \
 perl-module-bigint \
 pkgconfig \
