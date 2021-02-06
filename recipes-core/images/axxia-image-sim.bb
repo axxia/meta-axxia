@@ -18,6 +18,7 @@ expect \
 gdb \
 gdbserver \
 inetutils \
+initscripts-readonly-rootfs-overlay \
 kernel-dev \
 kernel-modules \
 kmod \

@@ -69,6 +69,7 @@ inetutils \
 inetutils-telnetd \
 init-ifupdown \
 initscripts \
+initscripts-readonly-rootfs-overlay \
 iproute2 \
 iptables \
 iputils \

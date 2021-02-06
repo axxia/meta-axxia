@@ -12,6 +12,7 @@ IMAGE_INSTALL_append = " \
 dhcp-client \
 libgcc \
 inetutils \
+initscripts-readonly-rootfs-overlay \
 gdbserver \
 kernel-dev \
 kernel-modules \
