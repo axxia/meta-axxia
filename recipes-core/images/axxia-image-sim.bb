@@ -58,6 +58,10 @@ vlan "
 
 IMAGE_FEATURES += "dev-pkgs"
 
+TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
+
+TOOLCHAIN_HOST_TASK_append = " nativesdk-elfutils-dev"
+
 LICENSE = "MIT"
 
 inherit core-image
