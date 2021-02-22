@@ -553,24 +553,24 @@ V. Guidelines for submitting patches
 ======================================
 
 Please submit any patches against meta-axxia BSPs to the meta-axxia
-mailing list (meta-lsi@yoctoproject.org) and cc: the maintainers.
+mailing list (meta-axxia@yoctoproject.org) and cc: the maintainers.
 
 Mailing list:
-	https://lists.yoctoproject.org/listinfo/meta-lsi
+	https://lists.yoctoproject.org/listinfo/meta-axxia
 
 When creating patches, please use something like:
 	git format-patch -s --subject-prefix='meta-axxia][PATCH' origin
 
 When sending patches, please use something like:
-	git send-email --to meta-lsi@yoctoproject.org --cc (maintainers)
+	git send-email --to meta-axxia@yoctoproject.org --cc (maintainers)
 		      (generated patch)
 
 
 VI. Maintenance
 ===============
 
-Maintainers: Daniel Dragomir (daniel.dragomir@windriver.com)
-	     John Jacques (john.jacques@intel.com)
+Maintainers: John Jacques (john.jacques@intel.com)
+             Daniel Dragomir (daniel.dragomir@windriver.com)
 
 Please see the meta-axxia/MAINTAINERS file for more details.
 
