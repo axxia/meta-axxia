@@ -46,6 +46,5 @@ PREFERRED_VERSION_linux-axxia-rt-debug ?= "4.19%"
 
 PREFERRED_RPROVIDER_iasl ?= "iasl"
 PREFERRED_RPROVIDER_iasl-native ?= "iasl-native"
-PREFERRED_VERSION_rpcbind ?= "0.2.3"
 
 FORTRAN_forcevariable = ",fortran"
