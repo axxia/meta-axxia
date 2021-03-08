@@ -61,6 +61,12 @@ do_install() {
 	# be dealt with.
 	# cp -a scripts $kerneldir/build
 
+	# although module.lds can be regenerated on target via 'make modules_prepare'
+	# there are several places where 'makes scripts prepare' is done, and that won't
+	# regenerate the file. So we copy it onto the target as a migration to using
+	# modules_prepare
+	cp -a --parents scripts/module.lds $kerneldir/build/ 2>/dev/null || :
+
         if [ -d arch/${ARCH}/scripts ]; then
 	    cp -a arch/${ARCH}/scripts $kerneldir/build/arch/${ARCH}
 	fi
@@ -71,6 +77,17 @@ do_install() {
 	rm -f $kerneldir/build/scripts/*.o
 	rm -f $kerneldir/build/scripts/*/*.o
 
+	if [ "${ARCH}" = "powerpc" ]; then
+	    if [ -e arch/powerpc/lib/crtsavres.S ] ||
+		   [ -e arch/powerpc/lib/crtsavres.o ]; then
+		cp -a --parents arch/powerpc/lib/crtsavres.[So] $kerneldir/build/
+	    fi
+	fi
+
+	if [ "${ARCH}" = "arm64" ]; then
+	    cp -a --parents arch/arm64/kernel/vdso/vdso.lds $kerneldir/build/
+	fi
+
 	cp -a include $kerneldir/build/include
     )
 
@@ -79,6 +96,26 @@ do_install() {
 	cd $S
 
 	cp -a scripts $kerneldir/build
+
+	# if our build dir had objtool, it will also be rebuilt on target, so
+	# we copy what is required for that build
+	if [ -f ${B}/tools/objtool/objtool ]; then
+	    # these are a few files associated with objtool, since we'll need to
+	    # rebuild it
+	    cp -a --parents tools/build/Build.include $kerneldir/build/
+	    cp -a --parents tools/build/Build $kerneldir/build/
+	    cp -a --parents tools/build/fixdep.c $kerneldir/build/
+	    cp -a --parents tools/scripts/utilities.mak $kerneldir/build/
+
+	    # extra files, just in case
+	    cp -a --parents tools/objtool/* $kerneldir/build/
+	    cp -a --parents tools/lib/* $kerneldir/build/
+	    cp -a --parents tools/lib/subcmd/* $kerneldir/build/
+
+	    cp -a --parents tools/include/* $kerneldir/build/
+
+	    cp -a --parents $(find tools/arch/${ARCH}/ -type f) $kerneldir/build/
+	fi
 
 	if [ "${ARCH}" = "arm64" ]; then
 	    # arch/arm64/include/asm/xen references arch/arm
@@ -91,7 +128,7 @@ do_install() {
             cp -a --parents arch/arm64/kernel/vdso/note.S $kerneldir/build/
             cp -a --parents arch/arm64/kernel/vdso/gen_vdso_offsets.sh $kerneldir/build/
 
-            cp -a --parents arch/arm64/kernel/module.lds $kerneldir/build/
+            cp -a --parents arch/arm64/kernel/module.lds $kerneldir/build/ 2>/dev/null || :
 	fi
 
 	# include the machine specific headers for ARM variants, if available.
@@ -123,7 +160,8 @@ do_install() {
 	cp -a --parents tools/include/tools/be_byteshift.h $kerneldir/build/
 
 	# required for generate missing syscalls prepare phase
-	cp -a --parents arch/x86/entry/syscalls/syscall_32.tbl $kerneldir/build
+	cp -a --parents $(find arch/x86 -type f -name "syscall_32.tbl") $kerneldir/build
+	cp -a --parents $(find arch/arm -type f -name "*.tbl") $kerneldir/build 2>/dev/null || :
 
 	# required to build scripts/selinux/genheaders/genheaders
 	cp -a --parents security/selinux/include/* $kerneldir/build/
