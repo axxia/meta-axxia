@@ -103,7 +103,7 @@ libnl \
 libnss-mdns \
 libnss-nis \
 libogg \
-libpython2 \
+libpython3 \
 libpam \
 libpcap \
 libpcap-dev \
@@ -163,13 +163,13 @@ popt \
 ppp \
 procps \
 psmisc \
-python-cffi \
-python-core \
-python-dev \
-python-distutils \
-python-modules \
-python-netserver \
-python-nose \
+python3-cffi \
+python3-core \
+python3-dev \
+python3-distutils \
+python3-modules \
+python3-netserver \
+python3-nose \
 quota \
 readline \
 rpcbind \
@@ -249,7 +249,7 @@ libelf \
 libnl-dev \
 libunwind-dev \
 ${@oe.utils.conditional('MACHINE', 'axxiaarm64', 'numactl-dev', '', d)} \
-python-dev \
+python3-dev \
 slang-dev \
 strace-dev \
 systemtap \
@@ -258,4 +258,4 @@ xz-dev"
 
 TOOLCHAIN_HOST_TASK_append = " \
 nativesdk-bison \
-nativesdk-python-dev"
+nativesdk-python3-dev"
