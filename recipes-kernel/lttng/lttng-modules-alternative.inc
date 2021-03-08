@@ -3,11 +3,9 @@ KERNEL = "${@d.getVar('ALTERNATIVE_KERNELS')[1:].split(' ')[${ALTERNATIVE_KERNEL
 BPN = "lttng-modules"
 PN = "lttng-modules-${KERNEL}"
 
-FILESEXTRAPATHS_prepend := "${COREBASE}/meta/recipes-kernel/lttng/${BPN}:${THISDIR}/${PN}:"
+FILESEXTRAPATHS_prepend := "${COREBASE}/meta/recipes-kernel/lttng/${BPN}:"
 
 DEPENDS += "${KERNEL} make-mod-scripts"
-
-SRC_URI_append = " file://writeback-fix-sync-livelock-due-to-b_dirty_time-processing.patch"
 
 KERNEL_PATH = "${TMPDIR}/work-shared/${MACHINE}/kernel-source-${KERNEL}"
 KERNEL_OUTPUT = "${TMPDIR}/work-shared/${MACHINE}/kernel-build-artifacts-${KERNEL}"
