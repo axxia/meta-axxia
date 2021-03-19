@@ -219,6 +219,7 @@ below shoud be replaced with the actual value you provided prior).
     Meta-axxia is able to build the kernel from 3 sources:
 
 a. Yocto Project Source repositories (git.yoctoproject.org)
+   NOTE: Not available until Axxia patches will be submitted upstream.
 
    for standard
    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
@@ -227,8 +228,8 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
 
    will build from Yocto repos:
-   4.19: http://git.yoctoproject.org/git/linux-yocto
-         v4.19/standard/axxia or v4.19/standard/preempt-rt/axxia branch
+   5.4: http://git.yoctoproject.org/git/linux-yocto
+         v5.4/standard/axxia or v5.4/standard/preempt-rt/axxia branch
 
 b. Private Axxia Github (github.com/axxia)
 
@@ -240,8 +241,8 @@ b. Private Axxia Github (github.com/axxia)
 
    will build kernel from GitHub private repos (require authentication with
    public key):
-   4.19: git@github.com:axxia/linux-yocto_private.git
-         v4.19/standard/axxia-dev/base or v4.19/standard/preempt-rt/axxia-dev/base branch
+   5.4: git@github.com:axxia/linux-yocto_private.git
+         v5.4/standard/axxia-dev/base or v5.4/standard/preempt-rt/axxia-dev/base branch
 
 c. Local Kernel repositories (development purpose)
 
@@ -259,7 +260,7 @@ c. Local Kernel repositories (development purpose)
 
 2.3.6 Select the version for the main kernel:
 
-   PREFERRED_VERSION_(preferred-provider)= "4.19%"
+   PREFERRED_VERSION_(preferred-provider)= "5.4%"
 
 NOTE: No preferred version should be set for linux-local provider.
 
@@ -420,8 +421,8 @@ CHIPSET = "5500"
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto-rt = "4.19%"
+PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
+PREFERRED_VERSION_linux-axxia-rt = "5.4%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
@@ -446,8 +447,8 @@ CHIPSET = "X9"
 SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
 IMAGE_FSTYPES += "ext2"
 IMAGE_FSTYPES += "tar.gz"
-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-PREFERRED_VERSION_linux-yocto-rt = "4.19%"
+PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
+PREFERRED_VERSION_linux-axxia-rt = "5.4%"
 DISTRO = "axxia"
 PACKAGE_CLASSES ?= "package_rpm"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
