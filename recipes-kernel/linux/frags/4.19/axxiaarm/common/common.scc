@@ -1,5 +1,0 @@
-include features/taskstats/taskstats.scc
-include features/overlayfs/overlayfs.scc
-
-kconf non-hardware common-non-hw.cfg
-kconf hardware common-hw.cfg

@@ -1,4 +1,0 @@
-require linux-yocto_${PV}.bb
-
-LINUX_VERSION_EXTENSION = "-axxia-debug-${LINUX_KERNEL_TYPE}"
-DBG = "yes"
