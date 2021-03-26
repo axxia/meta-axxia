@@ -22,7 +22,7 @@ do_install() {
     (
         if [ "$S" = "${STAGING_KERNEL_DIR}" ]; then
             cd ${D}/usr/src
-            ln -s ${KERNEL_BUILD_ROOT}$KERNEL_VERSION/source kernel
+            lnr ${KERNEL_BUILD_ROOT}$KERNEL_VERSION/source kernel
         fi
     )
 
@@ -53,7 +53,7 @@ do_install() {
 	    cp Module.markers $kerneldir/build
 	fi
 
-	cp .config $kerneldir/build
+	cp -a .config $kerneldir/build
 
 	# This scripts copy blow up QA, so for now, we require a more
 	# complex 'make scripts' to restore these, versus copying them
@@ -205,26 +205,19 @@ do_install() {
 	cp -a --parents tools/objtool/* $kerneldir/build/
 	cp -a --parents tools/lib/str_error_r.c $kerneldir/build/
 	cp -a --parents tools/lib/string.c $kerneldir/build/
+	cp -a --parents tools/lib/ctype.c $kerneldir/build/
 	cp -a --parents tools/lib/subcmd/* $kerneldir/build/
 	cp -a --parents tools/include/* $kerneldir/build/
-	cp -a --parents arch/x86/lib/* $kerneldir/build/
-	cp -a --parents arch/x86/include/asm/* $kerneldir/build/
-	cp -a --parents arch/x86/tools/gen-insn-attr-x86.awk $kerneldir/build/
+	cp -a --parents tools/arch/x86/* $kerneldir/build/
+	cp -a --parents arch/x86/lib/insn.c $kerneldir/build/
 
 	# required files for "modules_prepare" target
 	cp -a --parents kernel/bounds.c $kerneldir/build/
 	cp -a --parents kernel/time/timeconst.bc $kerneldir/build/
-	cp -a --parents tools/lib $kerneldir/build/
-	cp -a --parents tools/include $kerneldir/build/
-	cp -a --parents tools/scripts/utilities.mak $kerneldir/build/
-	if [ "${ARCH}" = "arm64" ]; then
-		cp -a --parents arch/${ARCH}/kernel/asm-offsets*.c $kerneldir/build/
-		cp -a --parents arch/${ARCH}/kernel/vdso/vdso*.S $kerneldir/build/
-	fi
-	if [ "${ARCH}" = "arm" ]; then
-		cp -a --parents arch/${ARCH}/kernel/asm-offsets*.c $kerneldir/build/
-		cp -a --parents arch/${ARCH}/kernel/signal.h $kerneldir/build/
-	fi
+	cp -a --parents tools/include/tools/*_byteshift.h $kerneldir/build/
+	cp -a --parents arch/${ARCH}/kernel/asm-offsets*.c $kerneldir/build/
+	cp -a --parents arch/arm64/kernel/vdso/vdso*.S $kerneldir/build/
+	cp -a --parents arch/arm/kernel/signal.h $kerneldir/build/
     )
 
     (
@@ -234,7 +227,7 @@ do_install() {
     )
 
     # hardcode include path to x86 to find headers when compiling on board and SDK
-    sed -i "s@\$(ARCH)\/include@x86\/include@g" \
+    sed -i "s@\$(SRCARCH)\/include@x86\/include@g" \
         $kerneldir/build/tools/objtool/Makefile
 
     # Be sure decode.c from tools/objtool/arch/x86 is compiled to avoid undefined
