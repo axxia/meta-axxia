@@ -22,7 +22,7 @@ do_install() {
     (
         if [ "$S" = "${STAGING_KERNEL_DIR}" ]; then
             cd ${D}/usr/src
-            lnr ${KERNEL_BUILD_ROOT}$KERNEL_VERSION/source kernel
+            lnr ${D}${KERNEL_BUILD_ROOT}$KERNEL_VERSION/source kernel
         fi
     )
 
