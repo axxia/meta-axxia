@@ -1,10 +1,10 @@
-LINUX_VERSION_standard = "4.19.14"
-LINUX_VERSION_preempt-rt = "4.19.14"
-KBRANCH_standard = "v4.19/standard/base"
-KBRANCH_preempt-rt = "v4.19/standard/preempt-rt/base"
-SRCREV_standard = "eebb51300a07804a020ec468b5f8c5bf720198d9"
-SRCREV_preempt-rt = "7a0b04e5a8d036cd9dcc6ee64a838e8d8d5cdd56"
-SRCREV_meta = "41fe45f7c5e69f6ec26c657fea16c459544042cf"
+LINUX_VERSION_standard = "4.19.168"
+LINUX_VERSION_preempt-rt = "4.19.168"
+KBRANCH_standard = "v4.19/standard/axxia"
+KBRANCH_preempt-rt = "v4.19/standard/preempt-rt/axxia"
+SRCREV_standard = "f2503f5ca63e2b3057797b42a3b5d49d164d018d"
+SRCREV_preempt-rt = "878ade22bf5a023ff07f935ef5f18280129efff1"
+SRCREV_meta = "5150ac3e13079895158bb337770942d46d7420e8"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}\
 :${THISDIR}/frags/${KERNEL_MAJOR_VERSION}/${MACHINE}/common\
