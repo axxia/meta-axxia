@@ -9,8 +9,6 @@ ${CORE_IMAGE_EXTRA_INSTALL} \
 
 IMAGE_INSTALL_append = " \
 boost \
-dhcp-server \
-dhcp-client \
 dmidecode \
 e2fsprogs-resize2fs \
 ethtool \

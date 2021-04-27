@@ -9,7 +9,6 @@ ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
 IMAGE_INSTALL_append = " \
-dhcp-client \
 libgcc \
 inetutils \
 initscripts-readonly-rootfs-overlay \
