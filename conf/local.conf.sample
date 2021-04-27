@@ -9,8 +9,8 @@ CHIPSET = "X9"
 #                   linux-axxia-debug, linux-axxia-rt-debug
 PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
 
-# Kernel versions: only 5.4 is supported and is set by default
-#PREFERRED_VERSION_linux-axxia-rt = "5.4%"
+# Kernel versions: only 5.10 is supported and is set by default
+#PREFERRED_VERSION_linux-axxia-rt = "5.10
 
 # Release version should be the released tag for meta-axxia
 # RELEASE_VERSION = ""

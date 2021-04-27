@@ -35,13 +35,13 @@ ALTERNATIVE_KERNELS_MODULES_INSTALL ?= \
 ALTERNATIVE_KERNELS_LTTNG_MODULES ?= \
 "${@d.getVar('ALTERNATIVE_KERNELS').replace('linux-','lttng-modules-linux-')}"
 
-PREFERRED_VERSION_linux-yocto ?= "5.4%"
-PREFERRED_VERSION_linux-yocto-rt ?= "5.4%"
-PREFERRED_VERSION_linux-yocto-debug ?= "5.4%"
-PREFERRED_VERSION_linux-yocto-rt-debug ?= "5.4%"
-PREFERRED_VERSION_linux-axxia ?= "5.4%"
-PREFERRED_VERSION_linux-axxia-rt ?= "5.4%"
-PREFERRED_VERSION_linux-axxia-debug ?= "5.4%"
-PREFERRED_VERSION_linux-axxia-rt-debug ?= "5.4%"
+PREFERRED_VERSION_linux-yocto ?= "5.10%"
+PREFERRED_VERSION_linux-yocto-rt ?= "5.10%"
+PREFERRED_VERSION_linux-yocto-debug ?= "5.10%"
+PREFERRED_VERSION_linux-yocto-rt-debug ?= "5.10%"
+PREFERRED_VERSION_linux-axxia ?= "5.10%"
+PREFERRED_VERSION_linux-axxia-rt ?= "5.10%"
+PREFERRED_VERSION_linux-axxia-debug ?= "5.10%"
+PREFERRED_VERSION_linux-axxia-rt-debug ?= "5.10%"
 
 FORTRAN_forcevariable = ",fortran"
