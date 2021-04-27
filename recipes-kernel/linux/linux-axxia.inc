@@ -1,13 +1,13 @@
-LINUX_VERSION_standard = "5.4.112"
-LINUX_VERSION_preempt-rt = "5.4.112"
-KBRANCH_standard = "v5.4/standard/axxia-dev/base"
-KBRANCH_preempt-rt = "v5.4/standard/preempt-rt/axxia-dev/base"
-SRCREV_standard = "c2ff4d651641b09bed4e45312e4d7b087412b125"
-SRCREV_preempt-rt = "4f6700f9c264c83398db3e741fe222062dcfba15"
+LINUX_VERSION_standard = "5.10.30"
+LINUX_VERSION_preempt-rt = "5.10.30"
+KBRANCH_standard = "v5.10/standard/axxia-dev/base"
+KBRANCH_preempt-rt = "v5.10/standard/preempt-rt/axxia-dev/base"
+SRCREV_standard = "566ddd96a862ac2778b34f0cb9bcc34cb4b86de7"
+SRCREV_preempt-rt = "5a9580040f9ae89d9cea2b65da2e1407f8584a1d"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 LINUX_VERSION_EXTENSION = "-axxia-${LINUX_KERNEL_TYPE}"
 
 KMETA = ""
