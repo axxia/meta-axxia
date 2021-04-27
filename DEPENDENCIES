@@ -4,17 +4,17 @@ Dependencies
 Poky
 ----
 URI: git://git.yoctoproject.org/poky.git
-branch: dunfell
-revision: b573215eafbd79f3d7ac12ff662753b6835baac3
+branch: hardknott
+revision: 464472d851d3e36334f3f2c39e6f62952eae7326
 
 OpenEmbedded
 ------------
 URI: https://github.com/openembedded/meta-openembedded.git
-branch: dunfell
-revision: 346681e7bf9c78008a845fc89031be4fd4ceb3a1
+branch: hardknott
+revision: 71b546ed8595b14d29efc1e8b951f8c845ad10c4
 
 Yocto Virtualization Layer
 --------------------------
 URI: git://git.yoctoproject.org/meta-virtualization
-branch: dunfell
-revision: 89abc62b47f6f20db9d00a8ec9b2c1b6b60ac3f9
+branch: hardknott
+revision: c492f6b3d0458fa9ea0de2b07f1b3fb9162a02a0
