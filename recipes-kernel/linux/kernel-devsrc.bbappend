@@ -89,6 +89,15 @@ do_install() {
 	fi
 
 	cp -a include $kerneldir/build/include
+
+	# we don't usually copy generated files, since they can be rebuilt on the target,
+	# but without this file, we get a forced syncconfig run in v5.8+, which prompts and
+	# breaks workflows.
+	cp -a --parents include/generated/autoconf.h $kerneldir/build 2>/dev/null || :
+
+	if [ -e $kerneldir/include/generated/.vdso-offsets.h.cmd ]; then
+	    rm $kerneldir/include/generated/.vdso-offsets.h.cmd
+	fi
     )
 
     # now grab the chunks from the source tree that we need
@@ -145,7 +154,7 @@ do_install() {
 	        cp -a --parents $SYSCALL_TOOLS $kerneldir/build/
             fi
 
-            cp -a --parents arch/arm/kernel/module.lds $kerneldir/build/
+            cp -a --parents arch/arm/kernel/module.lds $kerneldir/build/ 2>/dev/null || :
 	fi
 
 	if [ -d arch/${ARCH}/include ]; then
@@ -176,6 +185,22 @@ do_install() {
 
     # Copy .config to include/config/auto.conf so "make prepare" is unnecessary.
     cp $kerneldir/build/.config $kerneldir/build/include/config/auto.conf
+
+    # make sure these are at least as old as the .config, or rebuilds will trigger
+    touch -r $kerneldir/build/.config $kerneldir/build/include/generated/autoconf.h 2>/dev/null || :
+    touch -r $kerneldir/build/.config $kerneldir/build/include/config/auto.conf* 2>/dev/null || :
+
+    if [ -e "$kerneldir/build/include/config/auto.conf.cmd" ]; then
+        sed -i 's/ifneq "$(CC)" ".*-linux-.*gcc.*$/ifneq "$(CC)" "gcc"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(LD)" ".*-linux-.*ld.bfd.*$/ifneq "$(LD)" "ld"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(AR)" ".*-linux-.*ar.*$/ifneq "$(AR)" "ar"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(HOSTCXX)" ".*$/ifneq "$(HOSTCXX)" "g++"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(HOSTCC)" ".*$/ifneq "$(HOSTCC)" "gcc"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(CC_VERSION_TEXT)".*\(gcc.*\)"/ifneq "$(CC_VERSION_TEXT)" "\1"/' "$kerneldir/build/include/config/auto.conf.cmd"
+        sed -i 's/ifneq "$(srctree)" ".*"/ifneq "$(srctree)" "."/' "$kerneldir/build/include/config/auto.conf.cmd"
+        # we don't build against the defconfig, so make sure it isn't the trigger for syncconfig
+        sed -i 's/ifneq "$(KBUILD_DEFCONFIG)".*"\(.*\)"/ifneq "\1" "\1"/' "$kerneldir/build/include/config/auto.conf.cmd"
+    fi
 
     # make the scripts python3 safe. We won't be running these, and if they are
     # left as /usr/bin/python rootfs assembly will fail, since we only have python3
