@@ -231,6 +231,7 @@ do_install() {
 	cp -a --parents tools/lib/str_error_r.c $kerneldir/build/
 	cp -a --parents tools/lib/string.c $kerneldir/build/
 	cp -a --parents tools/lib/ctype.c $kerneldir/build/
+	cp -a --parents tools/lib/rbtree.c $kerneldir/build/
 	cp -a --parents tools/lib/subcmd/* $kerneldir/build/
 	cp -a --parents tools/include/* $kerneldir/build/
 	cp -a --parents tools/arch/x86/* $kerneldir/build/
