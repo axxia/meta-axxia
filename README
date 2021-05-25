@@ -474,14 +474,14 @@ CONF_VERSION = "1"
    $ bitbake (image type)
 
 Available root filesystem types:
-   * axxia-image-small 
+   * axxia-image-min
      A small image used in simulation, flash, or as a ram disk. Should be
      sufficient to use the RTE. 
 
-   * axxia-image-sim
+   * axxia-image-run
      An image used in simulation.
 
-   * axxia-image-large
+   * axxia-image-dev
      A more complete image including native tool chain and kernel source.
 
 Once complete the images for the target machine will be available in the output
@@ -509,7 +509,7 @@ NOTE: For axxiaarm64, only Image files are generated, instead of zImage.
 Run 'populate_sdk' task for srp-eaglecrest-development image to build
 the SDK. 
 
-    $ bitbake axxia-image-large -c populate_sdk
+    $ bitbake axxia-image-dev -c populate_sdk
 
 It will install a self extracting script in tmp/deploy/sdk. Simply run
 the poky*.sh script. To set up the environment to use the tools, source
