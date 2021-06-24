@@ -1,9 +1,9 @@
-LINUX_VERSION_standard = "5.10.30"
-LINUX_VERSION_preempt-rt = "5.10.30"
+LINUX_VERSION_standard = "5.10.46"
+LINUX_VERSION_preempt-rt = "5.10.46"
 KBRANCH_standard = "v5.10/standard/axxia-dev/base"
 KBRANCH_preempt-rt = "v5.10/standard/preempt-rt/axxia-dev/base"
-SRCREV_standard = "566ddd96a862ac2778b34f0cb9bcc34cb4b86de7"
-SRCREV_preempt-rt = "5a9580040f9ae89d9cea2b65da2e1407f8584a1d"
+SRCREV_standard = "81e959f39b6f6ced04c15a05a5dd085ddba233d4"
+SRCREV_preempt-rt = "8c971cd50c1432ee2a4cceb9758f626efd3b2629"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
