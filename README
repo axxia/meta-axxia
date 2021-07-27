@@ -231,7 +231,7 @@ a. Yocto Project Source repositories (git.yoctoproject.org)
    5.10: http://git.yoctoproject.org/git/linux-yocto
          v5.10/standard/axxia or v5.10/standard/preempt-rt/axxia branch
 
-b. Private Axxia Github (github.com/axxia)
+b. Public and Private Axxia Github (github.com/axxia)
 
    for standard
    PREFERRED_PROVIDER_virtual/kernel = "linux-axxia"
@@ -239,8 +239,14 @@ b. Private Axxia Github (github.com/axxia)
    for preempt-rt
    PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
 
-   will build kernel from GitHub private repos (require authentication with
-   public key):
+   will build kernel from Axxia GitHub repositories depending on KREPO_AXXIA
+   variable:
+
+   for KREPO_AXXIA = "public" (default):
+   5.10: git@github.com:axxia/linux-yocto.git
+         v5.10/standard/axxia-dev/base or v5.10/standard/preempt-rt/axxia-dev/base branch
+
+   for KREPO_AXXIA = "private" (require authentication with public key):
    5.10: git@github.com:axxia/linux-yocto_private.git
          v5.10/standard/axxia-dev/base or v5.10/standard/preempt-rt/axxia-dev/base branch
 

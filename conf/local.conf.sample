@@ -12,6 +12,9 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-axxia-rt"
 # Kernel versions: only 5.10 is supported and is set by default
 #PREFERRED_VERSION_linux-axxia-rt = "5.10
 
+# For linux-axxia* kernels, choose between public and private Github repo
+# KREPO_AXXIA = "private"
+
 # Release version should be the released tag for meta-axxia
 # RELEASE_VERSION = ""
 

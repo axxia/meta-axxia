@@ -12,8 +12,12 @@ LINUX_VERSION_EXTENSION = "-axxia-${LINUX_KERNEL_TYPE}"
 
 KMETA = ""
 
-KREPO_KERNEL = "git://git@github.com/axxia/linux-yocto_private.git;protocol=ssh"
-SRC_URI = "${KREPO_KERNEL};name=machine;branch=${KBRANCH} \
+KREPO_AXXIA ?= "public"
+KREPO_PRIVATE = "git://git@github.com/axxia/linux-yocto_private.git;protocol=ssh"
+KREPO_PUBLIC = "git://git@github.com/axxia/linux-yocto.git;protocol=http"
+KREPO = "${@oe.utils.conditional('KREPO_AXXIA', 'private', '${KREPO_PRIVATE}', '${KREPO_PUBLIC}', d)}"
+
+SRC_URI = "${KREPO};name=machine;branch=${KBRANCH} \
            file://fit "
 
 require linux-common.inc
