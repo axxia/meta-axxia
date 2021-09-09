@@ -181,6 +181,7 @@ shadow \
 shadow-securetty \
 sqlite3 \
 strace \
+stress-ng \
 strongswan \
 sudo \
 sysfsutils \

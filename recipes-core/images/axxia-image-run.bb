@@ -51,6 +51,7 @@ python3-distutils \
 python3-modules \
 python3-netserver \
 python3-nose \
+stress-ng \
 telnetd \
 tmux \
 vlan "
