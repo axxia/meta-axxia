@@ -10,6 +10,7 @@ at \
 attr \
 autoconf \
 autofs \
+axxia-rc-local \
 base-files \
 base-passwd \
 bash \
