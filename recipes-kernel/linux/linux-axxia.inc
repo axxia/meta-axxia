@@ -17,6 +17,13 @@ KREPO_PRIVATE = "git://git@github.com/axxia/linux-yocto_private.git;protocol=ssh
 KREPO_PUBLIC = "git://git@github.com/axxia/linux-yocto.git;protocol=http"
 KREPO = "${@oe.utils.conditional('KREPO_AXXIA', 'private', '${KREPO_PRIVATE}', '${KREPO_PUBLIC}', d)}"
 
+KSTATE_AXXIA ?= "release"
+KSTATE = "${@oe.utils.conditional('KREPO_AXXIA', 'public', 'release', '${KSTATE_AXXIA}', d)}"
+KBRANCH_DEV_standard = "next/v5.10/standard/axxia-dev/base"
+KBRANCH_DEV_preempt-rt = "next/v5.10/standard/preempt-rt/axxia-dev/base"
+DEV_SUFFIX = "${@oe.utils.conditional('KSTATE', 'release', '', '-DEV', d)}"
+KERNEL_VERSION_SANITY_SKIP = "${@oe.utils.conditional('KSTATE', 'release', '0', '1', d)}"
+
 SRC_URI = "${KREPO};name=machine;branch=${KBRANCH} \
            file://fit "
 
@@ -41,17 +48,17 @@ do_kernel_metadata_prepend() {
     )
 }
 
-LINUX_VERSION_pn-linux-axxia = "${LINUX_VERSION_standard}"
-LINUX_VERSION_pn-linux-axxia-debug = "${LINUX_VERSION_standard}"
-LINUX_VERSION_pn-linux-axxia-rt = "${LINUX_VERSION_preempt-rt}"
-LINUX_VERSION_pn-linux-axxia-rt-debug = "${LINUX_VERSION_preempt-rt}"
+LINUX_VERSION_pn-linux-axxia = "${LINUX_VERSION_standard}${DEV_SUFFIX}"
+LINUX_VERSION_pn-linux-axxia-debug = "${LINUX_VERSION_standard}${DEV_SUFFIX}"
+LINUX_VERSION_pn-linux-axxia-rt = "${LINUX_VERSION_preempt-rt}${DEV_SUFFIX}"
+LINUX_VERSION_pn-linux-axxia-rt-debug = "${LINUX_VERSION_preempt-rt}${DEV_SUFFIX}"
 
-KBRANCH_pn-linux-axxia = "${KBRANCH_standard}"
-KBRANCH_pn-linux-axxia-debug = "${KBRANCH_standard}"
-KBRANCH_pn-linux-axxia-rt = "${KBRANCH_preempt-rt}"
-KBRANCH_pn-linux-axxia-rt-debug = "${KBRANCH_preempt-rt}"
+KBRANCH_pn-linux-axxia = "${@oe.utils.conditional('KSTATE', 'release', '${KBRANCH_standard}', '${KBRANCH_DEV_standard}', d)}"
+KBRANCH_pn-linux-axxia-debug = "${@oe.utils.conditional('KSTATE', 'release', '${KBRANCH_standard}', '${KBRANCH_DEV_standard}', d)}"
+KBRANCH_pn-linux-axxia-rt = "${@oe.utils.conditional('KSTATE', 'release', '${KBRANCH_preempt-rt}', '${KBRANCH_DEV_preempt-rt}', d)}"
+KBRANCH_pn-linux-axxia-rt-debug = "${@oe.utils.conditional('KSTATE', 'release', '${KBRANCH_preempt-rt}', '${KBRANCH_DEV_preempt-rt}', d)}"
 
-SRCREV_machine_pn-linux-axxia = "${SRCREV_standard}"
-SRCREV_machine_pn-linux-axxia-debug = "${SRCREV_standard}"
-SRCREV_machine_pn-linux-axxia-rt = "${SRCREV_preempt-rt}"
-SRCREV_machine_pn-linux-axxia-rt-debug = "${SRCREV_preempt-rt}"
+SRCREV_machine_pn-linux-axxia = "${@oe.utils.conditional('KSTATE', 'release', '${SRCREV_standard}', '${AUTOREV}', d)}"
+SRCREV_machine_pn-linux-axxia-debug = "${@oe.utils.conditional('KSTATE', 'release', '${SRCREV_standard}', '${AUTOREV}', d)}"
+SRCREV_machine_pn-linux-axxia-rt = "${@oe.utils.conditional('KSTATE', 'release', '${SRCREV_preempt-rt}', '${AUTOREV}', d)}"
+SRCREV_machine_pn-linux-axxia-rt-debug = "${@oe.utils.conditional('KSTATE', 'release', '${SRCREV_preempt-rt}', '${AUTOREV}', d)}"

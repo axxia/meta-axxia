@@ -248,7 +248,13 @@ b. Public and Private Axxia Github (github.com/axxia)
 
    for KREPO_AXXIA = "private" (require authentication with public key):
    5.10: git@github.com:axxia/linux-yocto_private.git
-         v5.10/standard/axxia-dev/base or v5.10/standard/preempt-rt/axxia-dev/base branch
+
+         for KSTATE_AXXIA = "relase" (default), will build the following branches:
+         v5.10/standard/axxia-dev/base or v5.10/standard/preempt-rt/axxia-dev/base
+
+         for KSTATE_AXXIA = "dev", will build the latest from the development branches:
+         next/v5.10/standard/axxia-dev/base or next/v5.10/standard/preempt-rt/axxia-dev/base
+         (AUTOREV for revision and -DEV suffix in LINUX_VERSION)
 
 c. Local Kernel repositories (development purpose)
 
